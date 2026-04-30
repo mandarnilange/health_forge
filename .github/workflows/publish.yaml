@@ -4,6 +4,10 @@ on:
   push:
     tags:
       - 'v*'
+  workflow_dispatch:
+    # Manual trigger: publishes any pubspec version not yet on pub.dev.
+    # Use this when a tag was pushed via GITHUB_TOKEN (which doesn't fire
+    # downstream workflow events) or when re-running a stuck publish.
 
 # Publish requires the OIDC token for pub.dev authentication
 permissions:
