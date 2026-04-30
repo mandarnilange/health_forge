@@ -28,8 +28,8 @@ Built on [`health_forge_core`](https://pub.dev/packages/health_forge_core) (pure
 
 ```yaml
 dependencies:
-  health_forge: ^0.1.0
-  health_forge_oura: ^0.1.0
+  health_forge: ^0.1.1
+  health_forge_oura: ^0.1.1
 ```
 
 Register an Oura app at [cloud.ouraring.com](https://cloud.ouraring.com/oauth/applications) to get a client ID. Configure your OAuth redirect URI (e.g. `healthforge://oura/callback`). See [docs/getting_started.md](https://github.com/mandarnilange/health_forge/blob/main/docs/getting_started.md) for deep-link setup.

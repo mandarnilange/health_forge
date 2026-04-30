@@ -1,3 +1,10 @@
+## 0.1.1
+
+- Added `example/example.dart` demonstrating OAuth 2.0 PKCE setup
+- Added `example/README.md` describing the live PKCE flow prerequisites
+- Bumped `health_forge_core` dependency to `^0.1.1`
+- Shortened pubspec description for cleaner pub.dev display
+
 ## 0.1.0
 
 - Initial release

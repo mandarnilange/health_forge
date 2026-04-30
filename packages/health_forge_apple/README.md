@@ -20,8 +20,8 @@ Activity (4), Cardiovascular (3), Sleep (1 session with stages), Body (4), Respi
 
 ```yaml
 dependencies:
-  health_forge: ^0.1.0
-  health_forge_apple: ^0.1.0
+  health_forge: ^0.1.1
+  health_forge_apple: ^0.1.1
 ```
 
 Add HealthKit entitlement and `NSHealthShareUsageDescription` to `ios/Runner/Info.plist`. See [docs/getting_started.md](https://github.com/mandarnilange/health_forge/blob/main/docs/getting_started.md) for full iOS setup.

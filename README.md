@@ -54,11 +54,11 @@ Add only the packages you need:
 
 ```yaml
 dependencies:
-  health_forge: ^0.1.0
-  health_forge_apple: ^0.1.0   # iOS — HealthKit
-  health_forge_ghc: ^0.1.0     # Android — Health Connect
-  health_forge_oura: ^0.1.0    # Oura Ring — REST API
-  health_forge_strava: ^0.1.0  # Strava — REST API
+  health_forge: ^0.1.1
+  health_forge_apple: ^0.1.1   # iOS — HealthKit
+  health_forge_ghc: ^0.1.1     # Android — Health Connect
+  health_forge_oura: ^0.1.1    # Oura Ring — REST API
+  health_forge_strava: ^0.1.1  # Strava — REST API
 ```
 
 ### Usage

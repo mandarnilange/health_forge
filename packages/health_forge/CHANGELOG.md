@@ -1,3 +1,11 @@
+## 0.1.1
+
+- Added `example/example.dart` demonstrating `HealthForgeClient` and
+  `QueryBuilder` usage
+- Added `example/README.md` linking to the workspace Flutter example app
+- Bumped `health_forge_core` dependency to `^0.1.1`
+- Shortened pubspec description for cleaner pub.dev display
+
 ## 0.1.0
 
 - Initial release

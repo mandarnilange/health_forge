@@ -1,3 +1,10 @@
+## 0.1.1
+
+- Added `example/example.dart` demonstrating the merge engine with two
+  overlapping heart-rate samples
+- Added `example/README.md` describing how to run the example
+- Shortened pubspec description for cleaner pub.dev display
+
 ## 0.1.0
 
 - Initial release

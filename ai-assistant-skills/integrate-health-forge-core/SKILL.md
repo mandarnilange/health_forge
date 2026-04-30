@@ -27,7 +27,7 @@ For Flutter apps that consume data from the official adapters (`health_forge_app
 
 ```yaml
 dependencies:
-  health_forge_core: ^0.1.0
+  health_forge_core: ^0.1.1
 ```
 
 Run `dart pub get` (or `flutter pub get`).

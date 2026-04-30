@@ -26,7 +26,7 @@ If applicable, add screenshots to help explain your problem.
 **Environment**
  - OS: [e.g. iOS, Android, macOS]
  - Health Forge Package: [e.g. health_forge_core, health_forge_apple]
- - Package Version: [e.g. 0.1.0]
+ - Package Version: [e.g. 0.1.1]
  - Flutter Version: [e.g. 3.27.0]
  - Dart Version: [e.g. 3.6.0]
 

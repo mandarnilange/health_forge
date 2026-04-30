@@ -18,7 +18,7 @@ This package has **zero Flutter dependencies** and is isolate-safe. It defines t
 
 ```yaml
 dependencies:
-  health_forge_core: ^0.1.0
+  health_forge_core: ^0.1.1
 ```
 
 You typically won't depend on this package directly — use [`health_forge`](https://pub.dev/packages/health_forge) (Flutter client) plus the provider adapters you need.
