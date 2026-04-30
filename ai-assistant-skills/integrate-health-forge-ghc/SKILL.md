@@ -31,8 +31,8 @@ Read Google Health Connect data on Android. 14 read-only metric types, mapped to
 
 ```yaml
 dependencies:
-  health_forge: ^0.1.0
-  health_forge_ghc: ^0.1.0
+  health_forge: ^0.1.1
+  health_forge_ghc: ^0.1.1
 ```
 
 ### 2. Android — permissions

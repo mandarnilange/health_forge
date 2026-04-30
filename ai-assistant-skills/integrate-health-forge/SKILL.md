@@ -21,12 +21,12 @@ This skill is the **foundation** — invoke alongside one or more adapter skills
 
 ```yaml
 dependencies:
-  health_forge: ^0.1.0
+  health_forge: ^0.1.1
   # Add each adapter the user needs — see related skills:
-  health_forge_apple: ^0.1.0     # iOS HealthKit
-  health_forge_ghc: ^0.1.0       # Android Health Connect
-  health_forge_oura: ^0.1.0      # Oura Ring
-  health_forge_strava: ^0.1.0    # Strava
+  health_forge_apple: ^0.1.1     # iOS HealthKit
+  health_forge_ghc: ^0.1.1       # Android Health Connect
+  health_forge_oura: ^0.1.1      # Oura Ring
+  health_forge_strava: ^0.1.1    # Strava
 ```
 
 Run `flutter pub get`.

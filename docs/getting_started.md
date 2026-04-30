@@ -200,15 +200,15 @@ Add only the packages you need to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  health_forge: ^0.1.0
+  health_forge: ^0.1.1
 
   # Platform adapters (pick one or both)
-  health_forge_apple: ^0.1.0   # iOS — Apple HealthKit
-  health_forge_ghc: ^0.1.0     # Android — Google Health Connect
+  health_forge_apple: ^0.1.1   # iOS — Apple HealthKit
+  health_forge_ghc: ^0.1.1     # Android — Google Health Connect
 
   # REST API adapters (optional)
-  health_forge_oura: ^0.1.0    # Oura Ring
-  health_forge_strava: ^0.1.0  # Strava
+  health_forge_oura: ^0.1.1    # Oura Ring
+  health_forge_strava: ^0.1.1  # Strava
 ```
 
 Then run:

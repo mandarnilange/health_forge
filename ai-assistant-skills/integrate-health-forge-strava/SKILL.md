@@ -57,8 +57,8 @@ Same pattern as Oura — see [`integrate-health-forge-oura`](../integrate-health
 
 ```yaml
 dependencies:
-  health_forge: ^0.1.0
-  health_forge_strava: ^0.1.0
+  health_forge: ^0.1.1
+  health_forge_strava: ^0.1.1
   url_launcher: ^6.2.0
   app_links: ^6.0.0
   flutter_secure_storage: ^9.0.0

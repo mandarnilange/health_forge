@@ -26,8 +26,8 @@ Built on [`health_forge_core`](https://pub.dev/packages/health_forge_core) (pure
 
 ```yaml
 dependencies:
-  health_forge: ^0.1.0
-  health_forge_strava: ^0.1.0
+  health_forge: ^0.1.1
+  health_forge_strava: ^0.1.1
 ```
 
 Register a Strava app at [strava.com/settings/api](https://www.strava.com/settings/api) to get a client ID and secret. Strava requires a client secret even with PKCE — use a backend token-exchange proxy or accept the security tradeoff for personal apps. The adapter supports a pluggable `StravaTokenExchange` for backend exchange. See [docs/getting_started.md](https://github.com/mandarnilange/health_forge/blob/main/docs/getting_started.md).

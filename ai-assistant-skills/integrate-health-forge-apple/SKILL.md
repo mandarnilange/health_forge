@@ -31,8 +31,8 @@ Read Apple HealthKit data on iOS. 14 read-only metric types, mapped to the unifi
 
 ```yaml
 dependencies:
-  health_forge: ^0.1.0
-  health_forge_apple: ^0.1.0
+  health_forge: ^0.1.1
+  health_forge_apple: ^0.1.1
 ```
 
 ### 2. iOS — entitlements

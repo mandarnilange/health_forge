@@ -1,6 +1,9 @@
 ## 0.1.1
 
-- Added `example/example.dart` demonstrating provider registration
+- Added `example/example.dart` demonstrating `AppleHealthProvider`
+  construction and capability inspection
+- Added `example/README.md` linking to the workspace Flutter example app
+- Bumped `health_forge_core` dependency to `^0.1.1`
 
 ## 0.1.0
 
