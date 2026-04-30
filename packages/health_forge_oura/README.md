@@ -1,6 +1,6 @@
 # health_forge_oura
 
-Oura Ring REST API adapter for [Health Forge](https://github.com/mandarnilange/health_forge_workspace) — fetches sleep, heart rate, readiness, stress, activity, and SpO2 data via OAuth 2.0 PKCE with automatic pagination and rate limiting.
+Oura Ring REST API adapter for [Health Forge](https://github.com/mandarnilange/health_forge) — fetches sleep, heart rate, readiness, stress, activity, and SpO2 data via OAuth 2.0 PKCE with automatic pagination and rate limiting.
 
 Built on [`health_forge_core`](https://pub.dev/packages/health_forge_core) (pure Dart data model + merge engine) and typically used with [`health_forge`](https://pub.dev/packages/health_forge) (Flutter client).
 
@@ -32,7 +32,7 @@ dependencies:
   health_forge_oura: ^0.1.0
 ```
 
-Register an Oura app at [cloud.ouraring.com](https://cloud.ouraring.com/oauth/applications) to get a client ID. Configure your OAuth redirect URI (e.g. `healthforge://oura/callback`). See [docs/getting_started.md](https://github.com/mandarnilange/health_forge_workspace/blob/main/docs/getting_started.md) for deep-link setup.
+Register an Oura app at [cloud.ouraring.com](https://cloud.ouraring.com/oauth/applications) to get a client ID. Configure your OAuth redirect URI (e.g. `healthforge://oura/callback`). See [docs/getting_started.md](https://github.com/mandarnilange/health_forge/blob/main/docs/getting_started.md) for deep-link setup.
 
 ## Usage
 

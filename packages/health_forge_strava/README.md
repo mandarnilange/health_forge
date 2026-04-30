@@ -1,6 +1,6 @@
 # health_forge_strava
 
-Strava REST API adapter for [Health Forge](https://github.com/mandarnilange/health_forge_workspace) — fetches workouts, heart rate streams, calories, distance, and elevation via OAuth 2.0 PKCE with page-based pagination and dual rate limiting (100/15min + 1000/day).
+Strava REST API adapter for [Health Forge](https://github.com/mandarnilange/health_forge) — fetches workouts, heart rate streams, calories, distance, and elevation via OAuth 2.0 PKCE with page-based pagination and dual rate limiting (100/15min + 1000/day).
 
 Built on [`health_forge_core`](https://pub.dev/packages/health_forge_core) (pure Dart data model + merge engine) and typically used with [`health_forge`](https://pub.dev/packages/health_forge) (Flutter client).
 
@@ -30,7 +30,7 @@ dependencies:
   health_forge_strava: ^0.1.0
 ```
 
-Register a Strava app at [strava.com/settings/api](https://www.strava.com/settings/api) to get a client ID and secret. Strava requires a client secret even with PKCE — use a backend token-exchange proxy or accept the security tradeoff for personal apps. The adapter supports a pluggable `StravaTokenExchange` for backend exchange. See [docs/getting_started.md](https://github.com/mandarnilange/health_forge_workspace/blob/main/docs/getting_started.md).
+Register a Strava app at [strava.com/settings/api](https://www.strava.com/settings/api) to get a client ID and secret. Strava requires a client secret even with PKCE — use a backend token-exchange proxy or accept the security tradeoff for personal apps. The adapter supports a pluggable `StravaTokenExchange` for backend exchange. See [docs/getting_started.md](https://github.com/mandarnilange/health_forge/blob/main/docs/getting_started.md).
 
 ## Usage
 

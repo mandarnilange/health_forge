@@ -1,6 +1,6 @@
 # health_forge_apple
 
-Apple HealthKit adapter for [Health Forge](https://github.com/mandarnilange/health_forge_workspace) — reads 14 health metric types from HealthKit on iOS and maps them to the unified `health_forge_core` data model.
+Apple HealthKit adapter for [Health Forge](https://github.com/mandarnilange/health_forge) — reads 14 health metric types from HealthKit on iOS and maps them to the unified `health_forge_core` data model.
 
 Built on [`health_forge_core`](https://pub.dev/packages/health_forge_core) (pure Dart data model + merge engine) and typically used with [`health_forge`](https://pub.dev/packages/health_forge) (Flutter client).
 
@@ -24,7 +24,7 @@ dependencies:
   health_forge_apple: ^0.1.0
 ```
 
-Add HealthKit entitlement and `NSHealthShareUsageDescription` to `ios/Runner/Info.plist`. See [docs/getting_started.md](https://github.com/mandarnilange/health_forge_workspace/blob/main/docs/getting_started.md) for full iOS setup.
+Add HealthKit entitlement and `NSHealthShareUsageDescription` to `ios/Runner/Info.plist`. See [docs/getting_started.md](https://github.com/mandarnilange/health_forge/blob/main/docs/getting_started.md) for full iOS setup.
 
 ## Usage
 

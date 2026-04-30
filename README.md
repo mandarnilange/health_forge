@@ -1,6 +1,6 @@
 # Health Forge
 
-[![CI](https://img.shields.io/github/actions/workflow/status/mandarnilange/health_forge_workspace/ci.yaml?branch=main&label=CI)](https://github.com/mandarnilange/health_forge_workspace/actions/workflows/ci.yaml)
+[![CI](https://img.shields.io/github/actions/workflow/status/mandarnilange/health_forge/ci.yaml?branch=main&label=CI)](https://github.com/mandarnilange/health_forge/actions/workflows/ci.yaml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Dart](https://img.shields.io/badge/dart-%3E%3D3.6.0-0175C2.svg)](https://dart.dev)
 [![Flutter](https://img.shields.io/badge/flutter-%3E%3D3.27.0-02569B.svg)](https://flutter.dev)
@@ -193,8 +193,8 @@ See `design/adr/` for architectural decision records.
 ### Setup
 
 ```bash
-git clone https://github.com/mandarnilange/health_forge_workspace.git
-cd health_forge_workspace
+git clone https://github.com/mandarnilange/health_forge.git
+cd health_forge
 dart pub get
 dart run melos bootstrap
 ```

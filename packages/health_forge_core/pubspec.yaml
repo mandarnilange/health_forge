@@ -4,9 +4,9 @@ description: >-
   provider interfaces, and a configurable conflict resolution engine for
   multi-source health records.
 version: 0.1.0
-homepage: https://github.com/mandarnilange/health_forge_workspace
-repository: https://github.com/mandarnilange/health_forge_workspace/tree/main/packages/health_forge_core
-issue_tracker: https://github.com/mandarnilange/health_forge_workspace/issues
+homepage: https://github.com/mandarnilange/health_forge
+repository: https://github.com/mandarnilange/health_forge/tree/main/packages/health_forge_core
+issue_tracker: https://github.com/mandarnilange/health_forge/issues
 topics:
   - health
   - health-data
@@ -14,7 +14,7 @@ topics:
   - data-model
 
 environment:
-  sdk: ">=3.6.0 <4.0.0"
+  sdk: ">=3.8.0 <4.0.0"
 
 resolution: workspace
 
@@ -23,7 +23,6 @@ dependencies:
   equatable: ^2.0.8
   freezed_annotation: ^3.1.0
   json_annotation: ^4.11.0
-  meta: ^1.18.0
   uuid: ^4.5.3
 
 dev_dependencies:

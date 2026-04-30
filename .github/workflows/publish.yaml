@@ -26,6 +26,9 @@ jobs:
       - name: Bootstrap
         run: dart run melos bootstrap
 
+      - name: Generate
+        run: dart run melos run generate --no-select
+
       - name: Analyze
         run: dart run melos run analyze --no-select
 
@@ -61,6 +64,14 @@ jobs:
           else
             echo "skip=false" >> "$GITHUB_OUTPUT"
           fi
+
+      - name: Bootstrap
+        if: steps.check.outputs.skip == 'false'
+        run: dart run melos bootstrap
+
+      - name: Generate
+        if: steps.check.outputs.skip == 'false'
+        run: dart run melos run generate --no-select
 
       - name: Dry run
         if: steps.check.outputs.skip == 'false'
@@ -105,6 +116,14 @@ jobs:
           else
             echo "skip=false" >> "$GITHUB_OUTPUT"
           fi
+
+      - name: Bootstrap
+        if: steps.check.outputs.skip == 'false'
+        run: dart run melos bootstrap
+
+      - name: Generate
+        if: steps.check.outputs.skip == 'false'
+        run: dart run melos run generate --no-select
 
       - name: Dry run
         if: steps.check.outputs.skip == 'false'

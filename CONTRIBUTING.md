@@ -13,8 +13,8 @@ Thank you for your interest in contributing to Health Forge! This guide will hel
 ### Getting Started
 
 ```bash
-git clone https://github.com/mandarnilange/health_forge_workspace.git
-cd health_forge_workspace
+git clone https://github.com/mandarnilange/health_forge.git
+cd health_forge
 dart pub get
 dart run melos bootstrap
 ```

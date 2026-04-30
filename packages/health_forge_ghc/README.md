@@ -1,6 +1,6 @@
 # health_forge_ghc
 
-Google Health Connect adapter for [Health Forge](https://github.com/mandarnilange/health_forge_workspace) — reads 14 health metric types from Health Connect on Android and maps them to the unified `health_forge_core` data model.
+Google Health Connect adapter for [Health Forge](https://github.com/mandarnilange/health_forge) — reads 14 health metric types from Health Connect on Android and maps them to the unified `health_forge_core` data model.
 
 Built on [`health_forge_core`](https://pub.dev/packages/health_forge_core) (pure Dart data model + merge engine) and typically used with [`health_forge`](https://pub.dev/packages/health_forge) (Flutter client).
 
@@ -24,7 +24,7 @@ dependencies:
   health_forge_ghc: ^0.1.0
 ```
 
-Add Health Connect read permissions to `android/app/src/main/AndroidManifest.xml`. See [docs/getting_started.md](https://github.com/mandarnilange/health_forge_workspace/blob/main/docs/getting_started.md) for full Android setup.
+Add Health Connect read permissions to `android/app/src/main/AndroidManifest.xml`. See [docs/getting_started.md](https://github.com/mandarnilange/health_forge/blob/main/docs/getting_started.md) for full Android setup.
 
 ## Usage
 

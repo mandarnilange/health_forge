@@ -4,9 +4,9 @@ description: >-
   Health Connect, Oura, Strava) into a unified model with conflict resolution
   and local caching.
 version: 0.1.0
-homepage: https://github.com/mandarnilange/health_forge_workspace
-repository: https://github.com/mandarnilange/health_forge_workspace/tree/main/packages/health_forge
-issue_tracker: https://github.com/mandarnilange/health_forge_workspace/issues
+homepage: https://github.com/mandarnilange/health_forge
+repository: https://github.com/mandarnilange/health_forge/tree/main/packages/health_forge
+issue_tracker: https://github.com/mandarnilange/health_forge/issues
 topics:
   - health
   - healthkit

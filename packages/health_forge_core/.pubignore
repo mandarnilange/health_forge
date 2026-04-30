@@ -1,0 +1,13 @@
+# Re-include generated codegen that the workspace .gitignore excludes,
+# so consumers of the published archive can compile without running build_runner.
+!*.freezed.dart
+!*.g.dart
+!**/*.freezed.dart
+!**/*.g.dart
+
+# Standard publish exclusions
+test/
+coverage/
+build.yaml
+.flutter-plugins-dependencies
+*.iml

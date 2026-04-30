@@ -1,6 +1,6 @@
 # health_forge_core
 
-Pure Dart core library for [Health Forge](https://github.com/mandarnilange/health_forge_workspace) — a federated, zero-backend Flutter toolkit for aggregating health data from multiple providers into a unified data model.
+Pure Dart core library for [Health Forge](https://github.com/mandarnilange/health_forge) — a federated, zero-backend Flutter toolkit for aggregating health data from multiple providers into a unified data model.
 
 This package has **zero Flutter dependencies** and is isolate-safe. It defines the shared data model, provider interfaces, and conflict resolution engine used by every other `health_forge_*` package.
 
@@ -53,8 +53,8 @@ for (final record in merged.records) {
 
 ## Documentation
 
-- [Getting started guide](https://github.com/mandarnilange/health_forge_workspace/blob/main/docs/getting_started.md)
-- [Architecture decision records](https://github.com/mandarnilange/health_forge_workspace/tree/main/design/adr)
+- [Getting started guide](https://github.com/mandarnilange/health_forge/blob/main/docs/getting_started.md)
+- [Architecture decision records](https://github.com/mandarnilange/health_forge/tree/main/design/adr)
 
 ## License
 

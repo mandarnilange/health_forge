@@ -8,4 +8,4 @@
 - InMemoryCacheManager and DriftCacheManager (SQLite) for local caching
 - SyncManager — sync coordination with deduplication
 - TokenStore — secure OAuth token persistence via flutter_secure_storage
-- See [getting started guide](https://github.com/mandarnilange/health_forge_workspace/blob/main/docs/getting_started.md) for usage
+- See [getting started guide](https://github.com/mandarnilange/health_forge/blob/main/docs/getting_started.md) for usage

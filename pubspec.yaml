@@ -20,7 +20,7 @@ workspace:
 
 melos:
   name: health_forge
-  repository: https://github.com/mandarnilange/health_forge_workspace
+  repository: https://github.com/mandarnilange/health_forge
 
   packages:
     - packages/**

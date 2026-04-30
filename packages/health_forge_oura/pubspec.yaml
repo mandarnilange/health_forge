@@ -4,9 +4,9 @@ description: >-
   readiness, stress, and activity data via OAuth 2.0 PKCE with automatic
   pagination and rate limiting.
 version: 0.1.0
-homepage: https://github.com/mandarnilange/health_forge_workspace
-repository: https://github.com/mandarnilange/health_forge_workspace/tree/main/packages/health_forge_oura
-issue_tracker: https://github.com/mandarnilange/health_forge_workspace/issues
+homepage: https://github.com/mandarnilange/health_forge
+repository: https://github.com/mandarnilange/health_forge/tree/main/packages/health_forge_oura
+issue_tracker: https://github.com/mandarnilange/health_forge/issues
 topics:
   - health
   - oura

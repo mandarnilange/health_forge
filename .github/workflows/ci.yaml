@@ -23,6 +23,9 @@ jobs:
       - name: Bootstrap
         run: dart run melos bootstrap
 
+      - name: Generate
+        run: dart run melos run generate --no-select
+
       - name: Analyze
         run: dart run melos run analyze --no-select
 

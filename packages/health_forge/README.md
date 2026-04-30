@@ -1,6 +1,6 @@
 # health_forge
 
-Flutter client for [Health Forge](https://github.com/mandarnilange/health_forge_workspace) — aggregate health data from multiple providers (HealthKit, Health Connect, Oura, Strava) into a unified data model with conflict resolution and local caching.
+Flutter client for [Health Forge](https://github.com/mandarnilange/health_forge) — aggregate health data from multiple providers (HealthKit, Health Connect, Oura, Strava) into a unified data model with conflict resolution and local caching.
 
 Built on [`health_forge_core`](https://pub.dev/packages/health_forge_core) (pure Dart data model + merge engine).
 
@@ -60,7 +60,7 @@ for (final record in result.records) {
 
 ## Platform setup
 
-See [docs/getting_started.md](https://github.com/mandarnilange/health_forge_workspace/blob/main/docs/getting_started.md) for iOS entitlements, Android manifest, and OAuth redirect setup.
+See [docs/getting_started.md](https://github.com/mandarnilange/health_forge/blob/main/docs/getting_started.md) for iOS entitlements, Android manifest, and OAuth redirect setup.
 
 ## Related packages
 

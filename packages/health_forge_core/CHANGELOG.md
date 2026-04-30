@@ -8,4 +8,4 @@
 - MergeEngine with 5 conflict resolution strategies
 - DuplicateDetector: time-overlap clustering within each metric type (`timeOverlapThresholdSeconds`)
 - Provider extensions: OuraSleepExtension, StravaWorkoutExtension, GarminSleepExtension
-- See [getting started guide](https://github.com/mandarnilange/health_forge_workspace/blob/main/docs/getting_started.md) for usage
+- See [getting started guide](https://github.com/mandarnilange/health_forge/blob/main/docs/getting_started.md) for usage
