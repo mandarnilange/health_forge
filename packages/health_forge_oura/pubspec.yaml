@@ -1,0 +1,34 @@
+name: health_forge_oura
+description: >-
+  Oura Ring REST API adapter for health_forge — fetches sleep, heart rate,
+  readiness, stress, and activity data via OAuth 2.0 PKCE with automatic
+  pagination and rate limiting.
+version: 0.1.0
+homepage: https://github.com/mandarnilange/health_forge_workspace
+repository: https://github.com/mandarnilange/health_forge_workspace/tree/main/packages/health_forge_oura
+issue_tracker: https://github.com/mandarnilange/health_forge_workspace/issues
+topics:
+  - health
+  - oura
+  - wearables
+  - sleep-tracking
+  - rest-api
+
+environment:
+  sdk: ">=3.6.0 <4.0.0"
+  flutter: ">=3.27.0"
+
+resolution: workspace
+
+dependencies:
+  crypto: ^3.0.6
+  dio: ^5.9.2
+  flutter:
+    sdk: flutter
+  health_forge_core: ^0.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mocktail: ^1.0.4
+  very_good_analysis: ^10.2.0

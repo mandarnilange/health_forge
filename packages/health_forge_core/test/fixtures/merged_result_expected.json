@@ -1,0 +1,284 @@
+{
+  "resolved": [
+    {
+      "id": "39c0d1e2-f3a4-4b5c-d6e7-f8091a2b3c4d",
+      "provider": "oura",
+      "providerRecordType": "sleep",
+      "startTime": "2026-03-15T22:45:00.000Z",
+      "endTime": "2026-03-16T06:30:00.000Z",
+      "capturedAt": "2026-03-16T07:00:00.000Z",
+      "timezone": "America/New_York",
+      "provenance": {
+        "dataOrigin": "native",
+        "sourceDevice": {
+          "model": "Oura Ring Gen 3",
+          "manufacturer": "Oura",
+          "firmware": "2.8.1"
+        },
+        "sourceApp": "com.ouraring.oura",
+        "rawPayloadRef": null
+      },
+      "freshness": "live",
+      "extensions": {
+        "readinessScore": 82,
+        "temperatureDeviation": -0.3
+      },
+      "totalSleepMinutes": 435,
+      "remMinutes": 105,
+      "deepMinutes": 90,
+      "lightMinutes": 210,
+      "awakeMinutes": 30,
+      "efficiency": 93,
+      "stages": [
+        {
+          "stage": "awake",
+          "startTime": "2026-03-15T22:45:00.000Z",
+          "endTime": "2026-03-15T23:00:00.000Z"
+        },
+        {
+          "stage": "light",
+          "startTime": "2026-03-15T23:00:00.000Z",
+          "endTime": "2026-03-16T00:00:00.000Z"
+        },
+        {
+          "stage": "deep",
+          "startTime": "2026-03-16T00:00:00.000Z",
+          "endTime": "2026-03-16T00:45:00.000Z"
+        },
+        {
+          "stage": "rem",
+          "startTime": "2026-03-16T00:45:00.000Z",
+          "endTime": "2026-03-16T01:30:00.000Z"
+        },
+        {
+          "stage": "light",
+          "startTime": "2026-03-16T01:30:00.000Z",
+          "endTime": "2026-03-16T02:30:00.000Z"
+        },
+        {
+          "stage": "deep",
+          "startTime": "2026-03-16T02:30:00.000Z",
+          "endTime": "2026-03-16T03:15:00.000Z"
+        },
+        {
+          "stage": "rem",
+          "startTime": "2026-03-16T03:15:00.000Z",
+          "endTime": "2026-03-16T04:00:00.000Z"
+        },
+        {
+          "stage": "light",
+          "startTime": "2026-03-16T04:00:00.000Z",
+          "endTime": "2026-03-16T04:30:00.000Z"
+        },
+        {
+          "stage": "awake",
+          "startTime": "2026-03-16T04:30:00.000Z",
+          "endTime": "2026-03-16T04:45:00.000Z"
+        },
+        {
+          "stage": "light",
+          "startTime": "2026-03-16T04:45:00.000Z",
+          "endTime": "2026-03-16T05:30:00.000Z"
+        },
+        {
+          "stage": "rem",
+          "startTime": "2026-03-16T05:30:00.000Z",
+          "endTime": "2026-03-16T06:10:00.000Z"
+        },
+        {
+          "stage": "light",
+          "startTime": "2026-03-16T06:10:00.000Z",
+          "endTime": "2026-03-16T06:30:00.000Z"
+        }
+      ]
+    }
+  ],
+  "conflicts": [
+    {
+      "reason": "timeRangeOverlap",
+      "strategy": "priorityBased",
+      "winner": {
+        "id": "39c0d1e2-f3a4-4b5c-d6e7-f8091a2b3c4d",
+        "provider": "oura"
+      },
+      "loser": {
+        "id": "28b9c0d1-e2f3-4a4b-c5d6-e7f8091a2b3c",
+        "provider": "apple"
+      },
+      "overlapPercentage": 95.2
+    }
+  ],
+  "rawSources": [
+    {
+      "id": "28b9c0d1-e2f3-4a4b-c5d6-e7f8091a2b3c",
+      "provider": "apple",
+      "providerRecordType": "HKCategoryTypeIdentifierSleepAnalysis",
+      "startTime": "2026-03-15T22:30:00.000Z",
+      "endTime": "2026-03-16T06:15:00.000Z",
+      "capturedAt": "2026-03-16T06:20:00.000Z",
+      "timezone": "America/New_York",
+      "provenance": {
+        "dataOrigin": "mapped",
+        "sourceDevice": {
+          "model": "Apple Watch Series 9",
+          "manufacturer": "Apple",
+          "firmware": "10.3.1"
+        },
+        "sourceApp": "com.apple.health",
+        "rawPayloadRef": null
+      },
+      "freshness": "live",
+      "extensions": {},
+      "totalSleepMinutes": 420,
+      "remMinutes": 95,
+      "deepMinutes": 80,
+      "lightMinutes": 215,
+      "awakeMinutes": 35,
+      "efficiency": 91,
+      "stages": [
+        {
+          "stage": "awake",
+          "startTime": "2026-03-15T22:30:00.000Z",
+          "endTime": "2026-03-15T22:50:00.000Z"
+        },
+        {
+          "stage": "light",
+          "startTime": "2026-03-15T22:50:00.000Z",
+          "endTime": "2026-03-16T00:05:00.000Z"
+        },
+        {
+          "stage": "deep",
+          "startTime": "2026-03-16T00:05:00.000Z",
+          "endTime": "2026-03-16T01:00:00.000Z"
+        },
+        {
+          "stage": "rem",
+          "startTime": "2026-03-16T01:00:00.000Z",
+          "endTime": "2026-03-16T01:45:00.000Z"
+        },
+        {
+          "stage": "light",
+          "startTime": "2026-03-16T01:45:00.000Z",
+          "endTime": "2026-03-16T03:00:00.000Z"
+        },
+        {
+          "stage": "deep",
+          "startTime": "2026-03-16T03:00:00.000Z",
+          "endTime": "2026-03-16T03:35:00.000Z"
+        },
+        {
+          "stage": "rem",
+          "startTime": "2026-03-16T03:35:00.000Z",
+          "endTime": "2026-03-16T04:25:00.000Z"
+        },
+        {
+          "stage": "awake",
+          "startTime": "2026-03-16T04:25:00.000Z",
+          "endTime": "2026-03-16T04:40:00.000Z"
+        },
+        {
+          "stage": "light",
+          "startTime": "2026-03-16T04:40:00.000Z",
+          "endTime": "2026-03-16T05:50:00.000Z"
+        },
+        {
+          "stage": "rem",
+          "startTime": "2026-03-16T05:50:00.000Z",
+          "endTime": "2026-03-16T06:15:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "39c0d1e2-f3a4-4b5c-d6e7-f8091a2b3c4d",
+      "provider": "oura",
+      "providerRecordType": "sleep",
+      "startTime": "2026-03-15T22:45:00.000Z",
+      "endTime": "2026-03-16T06:30:00.000Z",
+      "capturedAt": "2026-03-16T07:00:00.000Z",
+      "timezone": "America/New_York",
+      "provenance": {
+        "dataOrigin": "native",
+        "sourceDevice": {
+          "model": "Oura Ring Gen 3",
+          "manufacturer": "Oura",
+          "firmware": "2.8.1"
+        },
+        "sourceApp": "com.ouraring.oura",
+        "rawPayloadRef": null
+      },
+      "freshness": "live",
+      "extensions": {
+        "readinessScore": 82,
+        "temperatureDeviation": -0.3
+      },
+      "totalSleepMinutes": 435,
+      "remMinutes": 105,
+      "deepMinutes": 90,
+      "lightMinutes": 210,
+      "awakeMinutes": 30,
+      "efficiency": 93,
+      "stages": [
+        {
+          "stage": "awake",
+          "startTime": "2026-03-15T22:45:00.000Z",
+          "endTime": "2026-03-15T23:00:00.000Z"
+        },
+        {
+          "stage": "light",
+          "startTime": "2026-03-15T23:00:00.000Z",
+          "endTime": "2026-03-16T00:00:00.000Z"
+        },
+        {
+          "stage": "deep",
+          "startTime": "2026-03-16T00:00:00.000Z",
+          "endTime": "2026-03-16T00:45:00.000Z"
+        },
+        {
+          "stage": "rem",
+          "startTime": "2026-03-16T00:45:00.000Z",
+          "endTime": "2026-03-16T01:30:00.000Z"
+        },
+        {
+          "stage": "light",
+          "startTime": "2026-03-16T01:30:00.000Z",
+          "endTime": "2026-03-16T02:30:00.000Z"
+        },
+        {
+          "stage": "deep",
+          "startTime": "2026-03-16T02:30:00.000Z",
+          "endTime": "2026-03-16T03:15:00.000Z"
+        },
+        {
+          "stage": "rem",
+          "startTime": "2026-03-16T03:15:00.000Z",
+          "endTime": "2026-03-16T04:00:00.000Z"
+        },
+        {
+          "stage": "light",
+          "startTime": "2026-03-16T04:00:00.000Z",
+          "endTime": "2026-03-16T04:30:00.000Z"
+        },
+        {
+          "stage": "awake",
+          "startTime": "2026-03-16T04:30:00.000Z",
+          "endTime": "2026-03-16T04:45:00.000Z"
+        },
+        {
+          "stage": "light",
+          "startTime": "2026-03-16T04:45:00.000Z",
+          "endTime": "2026-03-16T05:30:00.000Z"
+        },
+        {
+          "stage": "rem",
+          "startTime": "2026-03-16T05:30:00.000Z",
+          "endTime": "2026-03-16T06:10:00.000Z"
+        },
+        {
+          "stage": "light",
+          "startTime": "2026-03-16T06:10:00.000Z",
+          "endTime": "2026-03-16T06:30:00.000Z"
+        }
+      ]
+    }
+  ]
+}

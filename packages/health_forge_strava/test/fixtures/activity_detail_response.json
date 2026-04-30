@@ -1,0 +1,34 @@
+{
+  "id": 12345678901,
+  "name": "Morning Run",
+  "type": "Run",
+  "sport_type": "Run",
+  "start_date": "2024-01-15T07:00:00Z",
+  "start_date_local": "2024-01-15T08:00:00Z",
+  "elapsed_time": 3600,
+  "moving_time": 3400,
+  "distance": 10000.0,
+  "total_elevation_gain": 150.5,
+  "kilojoules": 2510.0,
+  "average_heartrate": 145.0,
+  "max_heartrate": 172,
+  "suffer_score": 78,
+  "has_heartrate": true,
+  "segment_efforts": [
+    {
+      "id": 9876543210,
+      "name": "Park Loop",
+      "elapsed_time": 420,
+      "moving_time": 415,
+      "distance": 2000.0,
+      "start_index": 100,
+      "end_index": 250
+    }
+  ],
+  "map": {
+    "polyline": "full_encoded_polyline_here",
+    "summary_polyline": "abc123xyz"
+  },
+  "timezone": "(GMT+01:00) Europe/Paris",
+  "calories": 600.0
+}

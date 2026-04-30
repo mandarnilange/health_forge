@@ -1,0 +1,115 @@
+name: Publish to pub.dev
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+# Publish requires the OIDC token for pub.dev authentication
+permissions:
+  id-token: write
+
+jobs:
+  verify:
+    name: Verify before publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Install dependencies
+        run: dart pub get
+
+      - name: Bootstrap
+        run: dart run melos bootstrap
+
+      - name: Analyze
+        run: dart run melos run analyze --no-select
+
+      - name: Format
+        run: dart run melos run format --no-select
+
+      - name: Test
+        run: dart run melos run test --no-select
+
+  publish-core:
+    name: Publish health_forge_core
+    needs: verify
+    runs-on: ubuntu-latest
+    env:
+      PKG: health_forge_core
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+
+      - name: Install dependencies
+        run: dart pub get
+
+      - name: Skip if version already published
+        id: check
+        run: |
+          VERSION=$(awk '/^version:/{print $2; exit}' "packages/$PKG/pubspec.yaml")
+          if curl -sfI "https://pub.dev/api/packages/$PKG/versions/$VERSION" >/dev/null; then
+            echo "$PKG $VERSION already on pub.dev — skipping publish"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Dry run
+        if: steps.check.outputs.skip == 'false'
+        run: cd "packages/$PKG" && dart pub publish --dry-run
+
+      - name: Publish
+        if: steps.check.outputs.skip == 'false'
+        run: cd "packages/$PKG" && dart pub publish --force
+
+  publish-packages:
+    name: Publish ${{ matrix.package }}
+    needs: publish-core
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 1
+      matrix:
+        package:
+          - health_forge
+          - health_forge_apple
+          - health_forge_ghc
+          - health_forge_oura
+          - health_forge_strava
+    env:
+      PKG: ${{ matrix.package }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Install dependencies
+        run: dart pub get
+
+      - name: Skip if version already published
+        id: check
+        run: |
+          VERSION=$(awk '/^version:/{print $2; exit}' "packages/$PKG/pubspec.yaml")
+          if curl -sfI "https://pub.dev/api/packages/$PKG/versions/$VERSION" >/dev/null; then
+            echo "$PKG $VERSION already on pub.dev — skipping publish"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Dry run
+        if: steps.check.outputs.skip == 'false'
+        run: cd "packages/$PKG" && dart pub publish --dry-run
+
+      - name: Publish
+        if: steps.check.outputs.skip == 'false'
+        run: cd "packages/$PKG" && dart pub publish --force

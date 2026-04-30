@@ -1,0 +1,16 @@
+[
+  {
+    "type": "time",
+    "data": [0, 1, 2, 3, 4, 5],
+    "series_type": "distance",
+    "original_size": 6,
+    "resolution": "high"
+  },
+  {
+    "type": "heartrate",
+    "data": [120, 125, 130, 135, 140, 145],
+    "series_type": "distance",
+    "original_size": 6,
+    "resolution": "high"
+  }
+]

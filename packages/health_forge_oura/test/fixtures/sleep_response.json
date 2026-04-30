@@ -1,0 +1,27 @@
+{
+  "data": [
+    {
+      "id": "sleep_001",
+      "average_breath": 14.5,
+      "average_heart_rate": 52.3,
+      "average_hrv": 45,
+      "bedtime_start": "2024-01-15T22:30:00+00:00",
+      "bedtime_end": "2024-01-16T06:45:00+00:00",
+      "deep_sleep_duration": 5400,
+      "efficiency": 92,
+      "hr_5_min": [55, 54, 52, 50, 49, 48, 50, 52, 54, 56],
+      "latency": 300,
+      "light_sleep_duration": 14400,
+      "low_battery_alert": false,
+      "period": 0,
+      "readiness_score_delta": 2.5,
+      "rem_sleep_duration": 7200,
+      "restless_periods": 3,
+      "sleep_phase_5_min": "4411112233334411122333344111",
+      "time_in_bed": 29700,
+      "total_sleep_duration": 27000,
+      "type": "long_sleep"
+    }
+  ],
+  "next_token": null
+}

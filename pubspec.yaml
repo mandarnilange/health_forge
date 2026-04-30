@@ -1,0 +1,84 @@
+name: health_forge_workspace
+publish_to: none
+
+environment:
+  sdk: ">=3.6.0 <4.0.0"
+
+dev_dependencies:
+  dlcov: ^4.2.1
+  lcov_parser: ^0.1.3
+  melos: ^7.4.1
+
+workspace:
+  - packages/health_forge_core
+  - packages/health_forge
+  - packages/health_forge_apple
+  - packages/health_forge_ghc
+  - packages/health_forge_oura
+  - packages/health_forge_strava
+  - example
+
+melos:
+  name: health_forge
+  repository: https://github.com/mandarnilange/health_forge_workspace
+
+  packages:
+    - packages/**
+
+  scripts:
+    analyze:
+      run: dart analyze --fatal-infos
+      exec:
+        concurrency: 1
+      description: Run dart analyze across all packages
+      packageFilters:
+        dirExists: lib
+
+    format:
+      run: dart format --set-exit-if-changed .
+      description: Check formatting across all packages
+
+    test:
+      run: flutter test
+      exec:
+        concurrency: 1
+        failFast: true
+      description: Run tests across all packages
+      packageFilters:
+        dirExists: test
+
+    test:coverage:
+      run: flutter test --coverage
+      exec:
+        concurrency: 1
+        failFast: true
+      description: Run tests with coverage (writes coverage/lcov.info per package)
+      packageFilters:
+        dirExists: test
+        ignore:
+          - health_forge_example
+
+    test:dart:
+      run: dart test
+      exec:
+        concurrency: 1
+        failFast: true
+      description: Run tests for pure Dart packages only
+      packageFilters:
+        dirExists: test
+        noDependsOn: flutter
+
+    generate:
+      run: dart run build_runner build --delete-conflicting-outputs
+      exec:
+        concurrency: 1
+      description: Run code generation
+      packageFilters:
+        dependsOn: build_runner
+
+    coverage:verify:
+      run: dart run tool/verify_packages_coverage.dart
+      description: >-
+        Require >=90% line coverage per workspace package under packages/
+        (example excluded; generated .g.dart .freezed.dart .part.dart and
+        health_cache_database.dart excluded). Override with COVERAGE_MIN_PERCENT.

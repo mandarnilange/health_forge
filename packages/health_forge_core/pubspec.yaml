@@ -1,0 +1,35 @@
+name: health_forge_core
+description: >-
+  Pure Dart core library for health_forge — unified health data models, enums,
+  provider interfaces, and a configurable conflict resolution engine for
+  multi-source health records.
+version: 0.1.0
+homepage: https://github.com/mandarnilange/health_forge_workspace
+repository: https://github.com/mandarnilange/health_forge_workspace/tree/main/packages/health_forge_core
+issue_tracker: https://github.com/mandarnilange/health_forge_workspace/issues
+topics:
+  - health
+  - health-data
+  - wearables
+  - data-model
+
+environment:
+  sdk: ">=3.6.0 <4.0.0"
+
+resolution: workspace
+
+dependencies:
+  collection: ^1.19.1
+  equatable: ^2.0.8
+  freezed_annotation: ^3.1.0
+  json_annotation: ^4.11.0
+  meta: ^1.18.0
+  uuid: ^4.5.3
+
+dev_dependencies:
+  build_runner: ^2.13.0
+  freezed: ^3.2.5
+  json_serializable: ^6.13.0
+  mocktail: ^1.0.4
+  test: ^1.25.0
+  very_good_analysis: ^10.2.0

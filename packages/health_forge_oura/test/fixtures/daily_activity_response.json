@@ -1,0 +1,23 @@
+{
+  "data": [
+    {
+      "id": "activity_001",
+      "day": "2024-01-15",
+      "score": 78,
+      "active_calories": 450,
+      "total_calories": 2150,
+      "steps": 8523,
+      "equivalent_walking_distance": 6400,
+      "high_activity_time": 1800,
+      "medium_activity_time": 3600,
+      "low_activity_time": 7200,
+      "sedentary_time": 28800,
+      "resting_time": 25200,
+      "met_min_high": 120,
+      "met_min_medium": 85,
+      "met_min_low": 40,
+      "timestamp": "2024-01-15T00:00:00+00:00"
+    }
+  ],
+  "next_token": null
+}

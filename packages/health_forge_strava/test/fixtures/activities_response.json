@@ -1,0 +1,44 @@
+[
+  {
+    "id": 12345678901,
+    "name": "Morning Run",
+    "type": "Run",
+    "sport_type": "Run",
+    "start_date": "2024-01-15T07:00:00Z",
+    "start_date_local": "2024-01-15T08:00:00Z",
+    "elapsed_time": 3600,
+    "moving_time": 3400,
+    "distance": 10000.0,
+    "total_elevation_gain": 150.5,
+    "kilojoules": 2510.0,
+    "average_heartrate": 145.0,
+    "max_heartrate": 172,
+    "suffer_score": 78,
+    "has_heartrate": true,
+    "map": {
+      "summary_polyline": "abc123xyz"
+    },
+    "timezone": "(GMT+01:00) Europe/Paris"
+  },
+  {
+    "id": 12345678902,
+    "name": "Afternoon Ride",
+    "type": "Ride",
+    "sport_type": "Ride",
+    "start_date": "2024-01-15T14:00:00Z",
+    "start_date_local": "2024-01-15T15:00:00Z",
+    "elapsed_time": 5400,
+    "moving_time": 5200,
+    "distance": 30000.0,
+    "total_elevation_gain": 350.0,
+    "kilojoules": 4184.0,
+    "average_heartrate": 138.0,
+    "max_heartrate": 165,
+    "suffer_score": 120,
+    "has_heartrate": true,
+    "map": {
+      "summary_polyline": "def456uvw"
+    },
+    "timezone": "(GMT+01:00) Europe/Paris"
+  }
+]

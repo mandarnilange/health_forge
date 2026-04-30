@@ -1,0 +1,30 @@
+# Dart/Flutter
+.dart_tool/
+build/
+.packages
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# Generated files
+*.g.dart
+*.freezed.dart
+pubspec_overrides.yaml
+
+# Package lock files (for packages, not apps)
+pubspec.lock
+
+# Coverage
+coverage/
+
+# Documentation
+doc/api/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db

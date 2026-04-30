@@ -1,0 +1,16 @@
+name: health_forge_labs
+description: Lab report extraction for health_forge
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ">=3.6.0 <4.0.0"
+
+resolution: workspace
+
+dependencies:
+  health_forge_core:
+
+dev_dependencies:
+  test: ^1.25.0
+  very_good_analysis: ^10.2.0

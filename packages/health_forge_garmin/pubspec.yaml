@@ -1,0 +1,22 @@
+name: health_forge_garmin
+description: Garmin adapter for health_forge (experimental)
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ">=3.6.0 <4.0.0"
+  flutter: ">=3.27.0"
+
+resolution: workspace
+
+dependencies:
+  dio: ^5.9.2
+  flutter:
+    sdk: flutter
+  health_forge_core:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mocktail: ^1.0.4
+  very_good_analysis: ^10.2.0

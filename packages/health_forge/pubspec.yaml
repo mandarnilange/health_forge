@@ -1,0 +1,36 @@
+name: health_forge
+description: >-
+  Flutter toolkit for aggregating health data from multiple providers (HealthKit,
+  Health Connect, Oura, Strava) into a unified model with conflict resolution
+  and local caching.
+version: 0.1.0
+homepage: https://github.com/mandarnilange/health_forge_workspace
+repository: https://github.com/mandarnilange/health_forge_workspace/tree/main/packages/health_forge
+issue_tracker: https://github.com/mandarnilange/health_forge_workspace/issues
+topics:
+  - health
+  - healthkit
+  - health-connect
+  - wearables
+  - flutter
+
+environment:
+  sdk: ">=3.6.0 <4.0.0"
+  flutter: ">=3.27.0"
+
+resolution: workspace
+
+dependencies:
+  drift: ^2.32.0
+  flutter:
+    sdk: flutter
+  flutter_secure_storage: ^10.0.0
+  health_forge_core: ^0.1.0
+
+dev_dependencies:
+  build_runner: ^2.13.0
+  drift_dev: ^2.32.0
+  flutter_test:
+    sdk: flutter
+  mocktail: ^1.0.4
+  very_good_analysis: ^10.2.0

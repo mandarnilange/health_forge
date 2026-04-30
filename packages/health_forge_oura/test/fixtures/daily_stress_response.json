@@ -1,0 +1,13 @@
+{
+  "data": [
+    {
+      "id": "stress_001",
+      "day": "2024-01-15",
+      "stress_high": 3600,
+      "recovery_high": 7200,
+      "day_summary": "restored",
+      "timestamp": "2024-01-15T00:00:00+00:00"
+    }
+  ],
+  "next_token": null
+}

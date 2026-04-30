@@ -1,0 +1,14 @@
+{
+  "data": [
+    {
+      "id": "spo2_001",
+      "day": "2024-01-15",
+      "spo2_percentage": {
+        "average": 97.5
+      },
+      "breathing_disturbance_index": 1.2,
+      "timestamp": "2024-01-15T00:00:00+00:00"
+    }
+  ],
+  "next_token": null
+}

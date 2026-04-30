@@ -1,0 +1,94 @@
+{
+  "id": "f6a7b8c9-d0e1-4f2a-3b4c-5d6e7f809102",
+  "provider": "oura",
+  "providerRecordType": "sleep",
+  "startTime": "2026-03-15T22:45:00.000Z",
+  "endTime": "2026-03-16T06:30:00.000Z",
+  "capturedAt": "2026-03-16T07:00:00.000Z",
+  "timezone": "America/New_York",
+  "provenance": {
+    "dataOrigin": "native",
+    "sourceDevice": {
+      "model": "Oura Ring Gen 3",
+      "manufacturer": "Oura",
+      "firmware": "2.8.1"
+    },
+    "sourceApp": "com.ouraring.oura",
+    "rawPayloadRef": null
+  },
+  "freshness": "live",
+  "extensions": {
+    "readinessScore": 82,
+    "temperatureDeviation": -0.3,
+    "restingHeartRate": 54,
+    "hrvAverage": 48
+  },
+  "totalSleepMinutes": 435,
+  "remMinutes": 105,
+  "deepMinutes": 90,
+  "lightMinutes": 210,
+  "awakeMinutes": 30,
+  "efficiency": 93,
+  "stages": [
+    {
+      "stage": "awake",
+      "startTime": "2026-03-15T22:45:00.000Z",
+      "endTime": "2026-03-15T23:00:00.000Z"
+    },
+    {
+      "stage": "light",
+      "startTime": "2026-03-15T23:00:00.000Z",
+      "endTime": "2026-03-16T00:00:00.000Z"
+    },
+    {
+      "stage": "deep",
+      "startTime": "2026-03-16T00:00:00.000Z",
+      "endTime": "2026-03-16T00:45:00.000Z"
+    },
+    {
+      "stage": "rem",
+      "startTime": "2026-03-16T00:45:00.000Z",
+      "endTime": "2026-03-16T01:30:00.000Z"
+    },
+    {
+      "stage": "light",
+      "startTime": "2026-03-16T01:30:00.000Z",
+      "endTime": "2026-03-16T02:30:00.000Z"
+    },
+    {
+      "stage": "deep",
+      "startTime": "2026-03-16T02:30:00.000Z",
+      "endTime": "2026-03-16T03:15:00.000Z"
+    },
+    {
+      "stage": "rem",
+      "startTime": "2026-03-16T03:15:00.000Z",
+      "endTime": "2026-03-16T04:00:00.000Z"
+    },
+    {
+      "stage": "light",
+      "startTime": "2026-03-16T04:00:00.000Z",
+      "endTime": "2026-03-16T04:30:00.000Z"
+    },
+    {
+      "stage": "awake",
+      "startTime": "2026-03-16T04:30:00.000Z",
+      "endTime": "2026-03-16T04:45:00.000Z"
+    },
+    {
+      "stage": "light",
+      "startTime": "2026-03-16T04:45:00.000Z",
+      "endTime": "2026-03-16T05:30:00.000Z"
+    },
+    {
+      "stage": "rem",
+      "startTime": "2026-03-16T05:30:00.000Z",
+      "endTime": "2026-03-16T06:10:00.000Z"
+    },
+    {
+      "stage": "light",
+      "startTime": "2026-03-16T06:10:00.000Z",
+      "endTime": "2026-03-16T06:30:00.000Z"
+    }
+  ]
+}

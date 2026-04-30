@@ -1,0 +1,117 @@
+[
+  {
+    "id": "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d",
+    "provider": "apple",
+    "providerRecordType": "HKQuantityTypeIdentifierHeartRate",
+    "startTime": "2026-03-16T14:00:00.000Z",
+    "endTime": "2026-03-16T14:01:00.000Z",
+    "capturedAt": "2026-03-16T14:01:00.000Z",
+    "beatsPerMinute": 72,
+    "timezone": "America/New_York",
+    "provenance": {
+      "dataOrigin": "mapped",
+      "sourceDevice": {
+        "model": "Apple Watch Series 9",
+        "manufacturer": "Apple",
+        "firmware": "10.3.1"
+      },
+      "sourceApp": "com.apple.health",
+      "rawPayloadRef": null
+    },
+    "context": "resting",
+    "freshness": "live",
+    "extensions": {}
+  },
+  {
+    "id": "b2c3d4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e",
+    "provider": "apple",
+    "providerRecordType": "HKQuantityTypeIdentifierHeartRate",
+    "startTime": "2026-03-16T14:01:00.000Z",
+    "endTime": "2026-03-16T14:02:00.000Z",
+    "capturedAt": "2026-03-16T14:02:00.000Z",
+    "beatsPerMinute": 75,
+    "timezone": "America/New_York",
+    "provenance": {
+      "dataOrigin": "mapped",
+      "sourceDevice": {
+        "model": "Apple Watch Series 9",
+        "manufacturer": "Apple",
+        "firmware": "10.3.1"
+      },
+      "sourceApp": "com.apple.health",
+      "rawPayloadRef": null
+    },
+    "context": "resting",
+    "freshness": "live",
+    "extensions": {}
+  },
+  {
+    "id": "c3d4e5f6-a7b8-4c9d-0e1f-2a3b4c5d6e7f",
+    "provider": "apple",
+    "providerRecordType": "HKQuantityTypeIdentifierHeartRate",
+    "startTime": "2026-03-16T14:02:00.000Z",
+    "endTime": "2026-03-16T14:03:00.000Z",
+    "capturedAt": "2026-03-16T14:03:00.000Z",
+    "beatsPerMinute": 65,
+    "timezone": "America/New_York",
+    "provenance": {
+      "dataOrigin": "mapped",
+      "sourceDevice": {
+        "model": "Apple Watch Series 9",
+        "manufacturer": "Apple",
+        "firmware": "10.3.1"
+      },
+      "sourceApp": "com.apple.health",
+      "rawPayloadRef": null
+    },
+    "context": "resting",
+    "freshness": "live",
+    "extensions": {}
+  },
+  {
+    "id": "d4e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f80",
+    "provider": "apple",
+    "providerRecordType": "HKQuantityTypeIdentifierHeartRate",
+    "startTime": "2026-03-16T14:03:00.000Z",
+    "endTime": "2026-03-16T14:04:00.000Z",
+    "capturedAt": "2026-03-16T14:04:00.000Z",
+    "beatsPerMinute": 98,
+    "timezone": "America/New_York",
+    "provenance": {
+      "dataOrigin": "mapped",
+      "sourceDevice": {
+        "model": "Apple Watch Series 9",
+        "manufacturer": "Apple",
+        "firmware": "10.3.1"
+      },
+      "sourceApp": "com.apple.health",
+      "rawPayloadRef": null
+    },
+    "context": "active",
+    "freshness": "live",
+    "extensions": {}
+  },
+  {
+    "id": "e5f6a7b8-c9d0-4e1f-2a3b-4c5d6e7f8091",
+    "provider": "apple",
+    "providerRecordType": "HKQuantityTypeIdentifierHeartRate",
+    "startTime": "2026-03-16T14:04:00.000Z",
+    "endTime": "2026-03-16T14:05:00.000Z",
+    "capturedAt": "2026-03-16T14:05:00.000Z",
+    "beatsPerMinute": 120,
+    "timezone": "America/New_York",
+    "provenance": {
+      "dataOrigin": "mapped",
+      "sourceDevice": {
+        "model": "Apple Watch Series 9",
+        "manufacturer": "Apple",
+        "firmware": "10.3.1"
+      },
+      "sourceApp": "com.apple.health",
+      "rawPayloadRef": null
+    },
+    "context": "active",
+    "freshness": "live",
+    "extensions": {}
+  }
+]

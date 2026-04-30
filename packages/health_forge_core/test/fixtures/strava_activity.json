@@ -1,0 +1,33 @@
+{
+  "id": "17a8b9c0-d1e2-4f3a-b4c5-d6e7f8091a2b",
+  "provider": "strava",
+  "providerRecordType": "activity",
+  "startTime": "2026-03-16T07:00:00.000Z",
+  "endTime": "2026-03-16T07:58:30.000Z",
+  "capturedAt": "2026-03-16T08:05:00.000Z",
+  "activityType": "workout",
+  "timezone": "America/New_York",
+  "provenance": {
+    "dataOrigin": "native",
+    "sourceDevice": {
+      "model": "Garmin Forerunner 265",
+      "manufacturer": "Garmin",
+      "firmware": "14.18"
+    },
+    "sourceApp": "com.strava",
+    "rawPayloadRef": null
+  },
+  "activityName": "Morning Run",
+  "totalCalories": 620.5,
+  "activeCalories": 580.0,
+  "distanceMeters": 10250.0,
+  "averageHeartRate": 155,
+  "maxHeartRate": 178,
+  "freshness": "live",
+  "extensions": {
+    "sufferScore": 72,
+    "averagePace": 5.72,
+    "elevationGain": 45.0,
+    "averageCadence": 174
+  }
+}

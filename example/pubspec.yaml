@@ -1,0 +1,32 @@
+name: health_forge_example
+description: Example app demonstrating health_forge usage
+publish_to: none
+resolution: workspace
+
+environment:
+  sdk: ">=3.6.0 <4.0.0"
+  flutter: ">=3.27.0"
+
+dependencies:
+  app_links: ^7.0.0
+  flutter:
+    sdk: flutter
+  health_forge:
+    path: ../packages/health_forge
+  health_forge_apple:
+    path: ../packages/health_forge_apple
+  health_forge_core:
+    path: ../packages/health_forge_core
+  health_forge_ghc:
+    path: ../packages/health_forge_ghc
+  health_forge_oura:
+    path: ../packages/health_forge_oura
+  health_forge_strava:
+    path: ../packages/health_forge_strava
+  intl: ^0.20.2
+  url_launcher: ^6.3.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  very_good_analysis: ^10.2.0
