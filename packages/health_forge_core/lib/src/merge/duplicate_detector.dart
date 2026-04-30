@@ -29,8 +29,9 @@ class DuplicateDetector {
 
     for (var i = 1; i < sorted.length; i++) {
       final record = sorted[i];
-      final overlapsWithGroup =
-          currentGroup.any((r) => hasTimeOverlap(r, record));
+      final overlapsWithGroup = currentGroup.any(
+        (r) => hasTimeOverlap(r, record),
+      );
 
       if (overlapsWithGroup) {
         currentGroup.add(record);

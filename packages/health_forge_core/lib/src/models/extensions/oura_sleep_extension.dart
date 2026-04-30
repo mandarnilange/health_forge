@@ -13,8 +13,8 @@ final class OuraSleepExtension extends ProviderExtension {
   factory OuraSleepExtension.fromJson(Map<String, dynamic> json) =>
       OuraSleepExtension(
         readinessScore: json['readinessScore'] as int?,
-        temperatureDeviation:
-            (json['temperatureDeviation'] as num?)?.toDouble(),
+        temperatureDeviation: (json['temperatureDeviation'] as num?)
+            ?.toDouble(),
         readinessContributorSleep: json['readinessContributorSleep'] as int?,
       );
 
@@ -32,8 +32,8 @@ final class OuraSleepExtension extends ProviderExtension {
 
   @override
   Map<String, dynamic> toJson() => {
-        'readinessScore': readinessScore,
-        'temperatureDeviation': temperatureDeviation,
-        'readinessContributorSleep': readinessContributorSleep,
-      };
+    'readinessScore': readinessScore,
+    'temperatureDeviation': temperatureDeviation,
+    'readinessContributorSleep': readinessContributorSleep,
+  };
 }

@@ -32,8 +32,8 @@ final class StravaWorkoutExtension extends ProviderExtension {
 
   @override
   Map<String, dynamic> toJson() => {
-        'sufferScore': sufferScore,
-        'segmentEfforts': segmentEfforts,
-        'routePolyline': routePolyline,
-      };
+    'sufferScore': sufferScore,
+    'segmentEfforts': segmentEfforts,
+    'routePolyline': routePolyline,
+  };
 }

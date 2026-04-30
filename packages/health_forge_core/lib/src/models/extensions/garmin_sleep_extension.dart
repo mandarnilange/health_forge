@@ -26,7 +26,7 @@ final class GarminSleepExtension extends ProviderExtension {
 
   @override
   Map<String, dynamic> toJson() => {
-        'bodyBatteryChange': bodyBatteryChange,
-        'stressQualifier': stressQualifier,
-      };
+    'bodyBatteryChange': bodyBatteryChange,
+    'stressQualifier': stressQualifier,
+  };
 }

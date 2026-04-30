@@ -9,30 +9,29 @@ void main() {
     final later = DateTime.utc(2026, 3, 17, 11);
 
     HeartRateVariability createMinimal() => HeartRateVariability(
-          id: 'hrv-1',
-          provider: DataProvider.oura,
-          providerRecordType: 'hrv',
-          startTime: now,
-          endTime: later,
-          capturedAt: now,
-          sdnnMilliseconds: 45,
-        );
+      id: 'hrv-1',
+      provider: DataProvider.oura,
+      providerRecordType: 'hrv',
+      startTime: now,
+      endTime: later,
+      capturedAt: now,
+      sdnnMilliseconds: 45,
+    );
 
     HeartRateVariability createFull() => HeartRateVariability(
-          id: 'hrv-2',
-          provider: DataProvider.apple,
-          providerRecordType:
-              'HKQuantityTypeIdentifierHeartRateVariabilitySDNN',
-          startTime: now,
-          endTime: later,
-          timezone: 'Australia/Sydney',
-          capturedAt: now,
-          provenance: const Provenance(dataOrigin: DataOrigin.native_),
-          freshness: Freshness.cached,
-          extensions: const {'method': 'sdnn'},
-          sdnnMilliseconds: 55.3,
-          rmssdMilliseconds: 42.1,
-        );
+      id: 'hrv-2',
+      provider: DataProvider.apple,
+      providerRecordType: 'HKQuantityTypeIdentifierHeartRateVariabilitySDNN',
+      startTime: now,
+      endTime: later,
+      timezone: 'Australia/Sydney',
+      capturedAt: now,
+      provenance: const Provenance(dataOrigin: DataOrigin.native_),
+      freshness: Freshness.cached,
+      extensions: const {'method': 'sdnn'},
+      sdnnMilliseconds: 55.3,
+      rmssdMilliseconds: 42.1,
+    );
 
     test('constructs with required fields only', () {
       final record = createMinimal();

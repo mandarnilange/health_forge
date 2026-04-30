@@ -10,16 +10,15 @@ void main() {
       required String id,
       required DataProvider provider,
       int bpm = 72,
-    }) =>
-        HeartRateSample(
-          id: id,
-          provider: provider,
-          providerRecordType: 'heartRate',
-          startTime: now,
-          endTime: now.add(const Duration(minutes: 1)),
-          capturedAt: now,
-          beatsPerMinute: bpm,
-        );
+    }) => HeartRateSample(
+      id: id,
+      provider: provider,
+      providerRecordType: 'heartRate',
+      startTime: now,
+      endTime: now.add(const Duration(minutes: 1)),
+      capturedAt: now,
+      beatsPerMinute: bpm,
+    );
 
     test('Oura prioritized over Apple selects Oura record', () {
       final apple = makeHR(id: '1', provider: DataProvider.apple, bpm: 70);

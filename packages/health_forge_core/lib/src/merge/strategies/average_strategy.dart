@@ -26,7 +26,8 @@ class AverageStrategy implements ConflictStrategyHandler {
   }
 
   List<HealthRecordMixin> _averageHeartRate(List<HeartRateSample> records) {
-    final avg = records.map((r) => r.beatsPerMinute).reduce((a, b) => a + b) ~/
+    final avg =
+        records.map((r) => r.beatsPerMinute).reduce((a, b) => a + b) ~/
         records.length;
 
     return [records.first.copyWith(beatsPerMinute: avg)];

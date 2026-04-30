@@ -12,7 +12,8 @@ class CustomStrategy implements ConflictStrategyHandler {
   final List<HealthRecordMixin> Function(
     List<HealthRecordMixin> records,
     MetricType metricType,
-  ) resolver;
+  )
+  resolver;
 
   @override
   List<HealthRecordMixin> resolve(

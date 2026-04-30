@@ -9,28 +9,28 @@ void main() {
     final later = DateTime.utc(2026, 3, 17, 11);
 
     ElevationGain createMinimal() => ElevationGain(
-          id: 'eg-1',
-          provider: DataProvider.strava,
-          providerRecordType: 'elevation',
-          startTime: now,
-          endTime: later,
-          capturedAt: now,
-          elevationMeters: 150,
-        );
+      id: 'eg-1',
+      provider: DataProvider.strava,
+      providerRecordType: 'elevation',
+      startTime: now,
+      endTime: later,
+      capturedAt: now,
+      elevationMeters: 150,
+    );
 
     ElevationGain createFull() => ElevationGain(
-          id: 'eg-2',
-          provider: DataProvider.garmin,
-          providerRecordType: 'elevationData',
-          startTime: now,
-          endTime: later,
-          timezone: 'Europe/Berlin',
-          capturedAt: now,
-          provenance: const Provenance(dataOrigin: DataOrigin.mapped),
-          freshness: Freshness.cached,
-          extensions: const {'climb': true},
-          elevationMeters: 320.5,
-        );
+      id: 'eg-2',
+      provider: DataProvider.garmin,
+      providerRecordType: 'elevationData',
+      startTime: now,
+      endTime: later,
+      timezone: 'Europe/Berlin',
+      capturedAt: now,
+      provenance: const Provenance(dataOrigin: DataOrigin.mapped),
+      freshness: Freshness.cached,
+      extensions: const {'climb': true},
+      elevationMeters: 320.5,
+    );
 
     test('constructs with required fields only', () {
       final record = createMinimal();

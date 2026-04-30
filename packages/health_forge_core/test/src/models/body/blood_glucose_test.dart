@@ -9,29 +9,29 @@ void main() {
     final later = DateTime.utc(2026, 3, 17, 10, 5);
 
     BloodGlucose createMinimal() => BloodGlucose(
-          id: 'bg-1',
-          provider: DataProvider.apple,
-          providerRecordType: 'HKQuantityTypeIdentifierBloodGlucose',
-          startTime: now,
-          endTime: later,
-          capturedAt: now,
-          milligramsPerDeciliter: 95,
-        );
+      id: 'bg-1',
+      provider: DataProvider.apple,
+      providerRecordType: 'HKQuantityTypeIdentifierBloodGlucose',
+      startTime: now,
+      endTime: later,
+      capturedAt: now,
+      milligramsPerDeciliter: 95,
+    );
 
     BloodGlucose createFull() => BloodGlucose(
-          id: 'bg-2',
-          provider: DataProvider.garmin,
-          providerRecordType: 'bloodGlucose',
-          startTime: now,
-          endTime: later,
-          timezone: 'America/Chicago',
-          capturedAt: now,
-          provenance: const Provenance(dataOrigin: DataOrigin.native_),
-          freshness: Freshness.cached,
-          extensions: const {'meter': 'Dexcom G7'},
-          milligramsPerDeciliter: 140,
-          mealContext: 'postprandial',
-        );
+      id: 'bg-2',
+      provider: DataProvider.garmin,
+      providerRecordType: 'bloodGlucose',
+      startTime: now,
+      endTime: later,
+      timezone: 'America/Chicago',
+      capturedAt: now,
+      provenance: const Provenance(dataOrigin: DataOrigin.native_),
+      freshness: Freshness.cached,
+      extensions: const {'meter': 'Dexcom G7'},
+      milligramsPerDeciliter: 140,
+      mealContext: 'postprandial',
+    );
 
     test('constructs with required fields only', () {
       final record = createMinimal();

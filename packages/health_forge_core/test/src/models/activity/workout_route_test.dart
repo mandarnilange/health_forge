@@ -14,30 +14,30 @@ void main() {
     ];
 
     WorkoutRoute createMinimal() => WorkoutRoute(
-          id: 'wr-1',
-          provider: DataProvider.strava,
-          providerRecordType: 'route',
-          startTime: now,
-          endTime: later,
-          capturedAt: now,
-          points: samplePoints,
-        );
+      id: 'wr-1',
+      provider: DataProvider.strava,
+      providerRecordType: 'route',
+      startTime: now,
+      endTime: later,
+      capturedAt: now,
+      points: samplePoints,
+    );
 
     WorkoutRoute createFull() => WorkoutRoute(
-          id: 'wr-2',
-          provider: DataProvider.garmin,
-          providerRecordType: 'courseRoute',
-          startTime: now,
-          endTime: later,
-          timezone: 'US/Pacific',
-          capturedAt: now,
-          provenance: const Provenance(dataOrigin: DataOrigin.native_),
-          freshness: Freshness.cached,
-          extensions: const {'format': 'gpx'},
-          points: samplePoints,
-          totalDistanceMeters: 5000,
-          elevationGainMeters: 120,
-        );
+      id: 'wr-2',
+      provider: DataProvider.garmin,
+      providerRecordType: 'courseRoute',
+      startTime: now,
+      endTime: later,
+      timezone: 'US/Pacific',
+      capturedAt: now,
+      provenance: const Provenance(dataOrigin: DataOrigin.native_),
+      freshness: Freshness.cached,
+      extensions: const {'format': 'gpx'},
+      points: samplePoints,
+      totalDistanceMeters: 5000,
+      elevationGainMeters: 120,
+    );
 
     test('constructs with required fields only', () {
       final record = createMinimal();

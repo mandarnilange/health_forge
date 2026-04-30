@@ -9,28 +9,28 @@ void main() {
     final later = DateTime.utc(2026, 3, 17, 11);
 
     RestingHeartRate createMinimal() => RestingHeartRate(
-          id: 'rhr-1',
-          provider: DataProvider.oura,
-          providerRecordType: 'restingHeartRate',
-          startTime: now,
-          endTime: later,
-          capturedAt: now,
-          beatsPerMinute: 58,
-        );
+      id: 'rhr-1',
+      provider: DataProvider.oura,
+      providerRecordType: 'restingHeartRate',
+      startTime: now,
+      endTime: later,
+      capturedAt: now,
+      beatsPerMinute: 58,
+    );
 
     RestingHeartRate createFull() => RestingHeartRate(
-          id: 'rhr-2',
-          provider: DataProvider.apple,
-          providerRecordType: 'HKQuantityTypeIdentifierRestingHeartRate',
-          startTime: now,
-          endTime: later,
-          timezone: 'Europe/Paris',
-          capturedAt: now,
-          provenance: const Provenance(dataOrigin: DataOrigin.native_),
-          freshness: Freshness.cached,
-          extensions: const {'algo': 'v2'},
-          beatsPerMinute: 52,
-        );
+      id: 'rhr-2',
+      provider: DataProvider.apple,
+      providerRecordType: 'HKQuantityTypeIdentifierRestingHeartRate',
+      startTime: now,
+      endTime: later,
+      timezone: 'Europe/Paris',
+      capturedAt: now,
+      provenance: const Provenance(dataOrigin: DataOrigin.native_),
+      freshness: Freshness.cached,
+      extensions: const {'algo': 'v2'},
+      beatsPerMinute: 52,
+    );
 
     test('constructs with required fields only', () {
       final record = createMinimal();

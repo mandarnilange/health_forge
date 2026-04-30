@@ -9,29 +9,29 @@ void main() {
     final later = DateTime.utc(2026, 3, 17, 10, 0, 1);
 
     HeartRateSample createMinimal() => HeartRateSample(
-          id: 'hr-1',
-          provider: DataProvider.apple,
-          providerRecordType: 'HKQuantityTypeIdentifierHeartRate',
-          startTime: now,
-          endTime: later,
-          capturedAt: now,
-          beatsPerMinute: 72,
-        );
+      id: 'hr-1',
+      provider: DataProvider.apple,
+      providerRecordType: 'HKQuantityTypeIdentifierHeartRate',
+      startTime: now,
+      endTime: later,
+      capturedAt: now,
+      beatsPerMinute: 72,
+    );
 
     HeartRateSample createFull() => HeartRateSample(
-          id: 'hr-2',
-          provider: DataProvider.garmin,
-          providerRecordType: 'heartRateSample',
-          startTime: now,
-          endTime: later,
-          timezone: 'America/Chicago',
-          capturedAt: now,
-          provenance: const Provenance(dataOrigin: DataOrigin.native_),
-          freshness: Freshness.cached,
-          extensions: const {'sensor': 'wrist'},
-          beatsPerMinute: 145,
-          context: 'workout',
-        );
+      id: 'hr-2',
+      provider: DataProvider.garmin,
+      providerRecordType: 'heartRateSample',
+      startTime: now,
+      endTime: later,
+      timezone: 'America/Chicago',
+      capturedAt: now,
+      provenance: const Provenance(dataOrigin: DataOrigin.native_),
+      freshness: Freshness.cached,
+      extensions: const {'sensor': 'wrist'},
+      beatsPerMinute: 145,
+      context: 'workout',
+    );
 
     test('constructs with required fields only', () {
       final record = createMinimal();

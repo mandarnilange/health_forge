@@ -9,28 +9,28 @@ void main() {
     final later = DateTime.utc(2026, 3, 17, 10, 1);
 
     BodyFat createMinimal() => BodyFat(
-          id: 'bf-1',
-          provider: DataProvider.apple,
-          providerRecordType: 'HKQuantityTypeIdentifierBodyFatPercentage',
-          startTime: now,
-          endTime: later,
-          capturedAt: now,
-          percentage: 18.5,
-        );
+      id: 'bf-1',
+      provider: DataProvider.apple,
+      providerRecordType: 'HKQuantityTypeIdentifierBodyFatPercentage',
+      startTime: now,
+      endTime: later,
+      capturedAt: now,
+      percentage: 18.5,
+    );
 
     BodyFat createFull() => BodyFat(
-          id: 'bf-2',
-          provider: DataProvider.garmin,
-          providerRecordType: 'bodyFat',
-          startTime: now,
-          endTime: later,
-          timezone: 'US/Pacific',
-          capturedAt: now,
-          provenance: const Provenance(dataOrigin: DataOrigin.native_),
-          freshness: Freshness.cached,
-          extensions: const {'method': 'bioimpedance'},
-          percentage: 22,
-        );
+      id: 'bf-2',
+      provider: DataProvider.garmin,
+      providerRecordType: 'bodyFat',
+      startTime: now,
+      endTime: later,
+      timezone: 'US/Pacific',
+      capturedAt: now,
+      provenance: const Provenance(dataOrigin: DataOrigin.native_),
+      freshness: Freshness.cached,
+      extensions: const {'method': 'bioimpedance'},
+      percentage: 22,
+    );
 
     test('constructs with required fields only', () {
       final record = createMinimal();

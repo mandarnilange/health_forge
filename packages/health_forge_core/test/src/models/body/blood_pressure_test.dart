@@ -9,31 +9,31 @@ void main() {
     final later = DateTime.utc(2026, 3, 17, 10, 1);
 
     BloodPressure createMinimal() => BloodPressure(
-          id: 'bp-1',
-          provider: DataProvider.apple,
-          providerRecordType: 'HKCorrelationTypeIdentifierBloodPressure',
-          startTime: now,
-          endTime: later,
-          capturedAt: now,
-          systolicMmHg: 120,
-          diastolicMmHg: 80,
-        );
+      id: 'bp-1',
+      provider: DataProvider.apple,
+      providerRecordType: 'HKCorrelationTypeIdentifierBloodPressure',
+      startTime: now,
+      endTime: later,
+      capturedAt: now,
+      systolicMmHg: 120,
+      diastolicMmHg: 80,
+    );
 
     BloodPressure createFull() => BloodPressure(
-          id: 'bp-2',
-          provider: DataProvider.garmin,
-          providerRecordType: 'bloodPressure',
-          startTime: now,
-          endTime: later,
-          timezone: 'Europe/Berlin',
-          capturedAt: now,
-          provenance: const Provenance(dataOrigin: DataOrigin.mapped),
-          freshness: Freshness.cached,
-          extensions: const {'cuff': 'left_arm'},
-          systolicMmHg: 135,
-          diastolicMmHg: 85,
-          pulseBpm: 72,
-        );
+      id: 'bp-2',
+      provider: DataProvider.garmin,
+      providerRecordType: 'bloodPressure',
+      startTime: now,
+      endTime: later,
+      timezone: 'Europe/Berlin',
+      capturedAt: now,
+      provenance: const Provenance(dataOrigin: DataOrigin.mapped),
+      freshness: Freshness.cached,
+      extensions: const {'cuff': 'left_arm'},
+      systolicMmHg: 135,
+      diastolicMmHg: 85,
+      pulseBpm: 72,
+    );
 
     test('constructs with required fields only', () {
       final record = createMinimal();

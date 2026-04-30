@@ -56,31 +56,29 @@ void main() {
       required DateTime start,
       required DateTime end,
       int bpm = 72,
-    }) =>
-        HeartRateSample(
-          id: id,
-          provider: provider,
-          providerRecordType: 'heartRate',
-          startTime: start,
-          endTime: end,
-          capturedAt: now,
-          beatsPerMinute: bpm,
-        );
+    }) => HeartRateSample(
+      id: id,
+      provider: provider,
+      providerRecordType: 'heartRate',
+      startTime: start,
+      endTime: end,
+      capturedAt: now,
+      beatsPerMinute: bpm,
+    );
 
     SleepSession makeSleep({
       required String id,
       required DataProvider provider,
       required DateTime start,
       required DateTime end,
-    }) =>
-        SleepSession(
-          id: id,
-          provider: provider,
-          providerRecordType: 'sleep',
-          startTime: start,
-          endTime: end,
-          capturedAt: now,
-        );
+    }) => SleepSession(
+      id: id,
+      provider: provider,
+      providerRecordType: 'sleep',
+      startTime: start,
+      endTime: end,
+      capturedAt: now,
+    );
 
     test('non-overlapping records from multiple providers all kept', () {
       final engine = MergeEngine(

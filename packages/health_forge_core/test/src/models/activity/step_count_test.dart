@@ -9,29 +9,29 @@ void main() {
     final later = DateTime.utc(2026, 3, 17, 11);
 
     StepCount createMinimal() => StepCount(
-          id: 'sc-1',
-          provider: DataProvider.apple,
-          providerRecordType: 'HKQuantityTypeIdentifierStepCount',
-          startTime: now,
-          endTime: later,
-          capturedAt: now,
-          count: 5000,
-        );
+      id: 'sc-1',
+      provider: DataProvider.apple,
+      providerRecordType: 'HKQuantityTypeIdentifierStepCount',
+      startTime: now,
+      endTime: later,
+      capturedAt: now,
+      count: 5000,
+    );
 
     StepCount createFull() => StepCount(
-          id: 'sc-2',
-          provider: DataProvider.garmin,
-          providerRecordType: 'dailySteps',
-          startTime: now,
-          endTime: later,
-          timezone: 'Europe/London',
-          capturedAt: now,
-          provenance: const Provenance(dataOrigin: DataOrigin.mapped),
-          freshness: Freshness.cached,
-          extensions: const {'device': 'watch'},
-          count: 12345,
-          source: 'Garmin Venu',
-        );
+      id: 'sc-2',
+      provider: DataProvider.garmin,
+      providerRecordType: 'dailySteps',
+      startTime: now,
+      endTime: later,
+      timezone: 'Europe/London',
+      capturedAt: now,
+      provenance: const Provenance(dataOrigin: DataOrigin.mapped),
+      freshness: Freshness.cached,
+      extensions: const {'device': 'watch'},
+      count: 12345,
+      source: 'Garmin Venu',
+    );
 
     test('constructs with required fields only', () {
       final record = createMinimal();

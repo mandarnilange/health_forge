@@ -9,29 +9,29 @@ void main() {
     final later = DateTime.utc(2026, 3, 17, 10, 5);
 
     BloodOxygenSample createMinimal() => BloodOxygenSample(
-          id: 'bo-1',
-          provider: DataProvider.apple,
-          providerRecordType: 'HKQuantityTypeIdentifierOxygenSaturation',
-          startTime: now,
-          endTime: later,
-          capturedAt: now,
-          percentage: 98.5,
-        );
+      id: 'bo-1',
+      provider: DataProvider.apple,
+      providerRecordType: 'HKQuantityTypeIdentifierOxygenSaturation',
+      startTime: now,
+      endTime: later,
+      capturedAt: now,
+      percentage: 98.5,
+    );
 
     BloodOxygenSample createFull() => BloodOxygenSample(
-          id: 'bo-2',
-          provider: DataProvider.garmin,
-          providerRecordType: 'spo2',
-          startTime: now,
-          endTime: later,
-          timezone: 'Europe/London',
-          capturedAt: now,
-          provenance: const Provenance(dataOrigin: DataOrigin.native_),
-          freshness: Freshness.cached,
-          extensions: const {'altitude': 1500},
-          percentage: 95,
-          supplementalOxygen: true,
-        );
+      id: 'bo-2',
+      provider: DataProvider.garmin,
+      providerRecordType: 'spo2',
+      startTime: now,
+      endTime: later,
+      timezone: 'Europe/London',
+      capturedAt: now,
+      provenance: const Provenance(dataOrigin: DataOrigin.native_),
+      freshness: Freshness.cached,
+      extensions: const {'altitude': 1500},
+      percentage: 95,
+      supplementalOxygen: true,
+    );
 
     test('constructs with required fields only', () {
       final record = createMinimal();

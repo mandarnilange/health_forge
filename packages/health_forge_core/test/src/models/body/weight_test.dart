@@ -9,29 +9,29 @@ void main() {
     final later = DateTime.utc(2026, 3, 17, 10, 1);
 
     Weight createMinimal() => Weight(
-          id: 'w-1',
-          provider: DataProvider.apple,
-          providerRecordType: 'HKQuantityTypeIdentifierBodyMass',
-          startTime: now,
-          endTime: later,
-          capturedAt: now,
-          kilograms: 75.5,
-        );
+      id: 'w-1',
+      provider: DataProvider.apple,
+      providerRecordType: 'HKQuantityTypeIdentifierBodyMass',
+      startTime: now,
+      endTime: later,
+      capturedAt: now,
+      kilograms: 75.5,
+    );
 
     Weight createFull() => Weight(
-          id: 'w-2',
-          provider: DataProvider.garmin,
-          providerRecordType: 'weight',
-          startTime: now,
-          endTime: later,
-          timezone: 'Asia/Tokyo',
-          capturedAt: now,
-          provenance: const Provenance(dataOrigin: DataOrigin.mapped),
-          freshness: Freshness.cached,
-          extensions: const {'scale': 'Withings'},
-          kilograms: 80.2,
-          bmi: 24.5,
-        );
+      id: 'w-2',
+      provider: DataProvider.garmin,
+      providerRecordType: 'weight',
+      startTime: now,
+      endTime: later,
+      timezone: 'Asia/Tokyo',
+      capturedAt: now,
+      provenance: const Provenance(dataOrigin: DataOrigin.mapped),
+      freshness: Freshness.cached,
+      extensions: const {'scale': 'Withings'},
+      kilograms: 80.2,
+      bmi: 24.5,
+    );
 
     test('constructs with required fields only', () {
       final record = createMinimal();

@@ -9,29 +9,29 @@ void main() {
     final later = DateTime.utc(2026, 3, 17, 11);
 
     CaloriesBurned createMinimal() => CaloriesBurned(
-          id: 'cb-1',
-          provider: DataProvider.apple,
-          providerRecordType: 'HKQuantityTypeIdentifierActiveEnergyBurned',
-          startTime: now,
-          endTime: later,
-          capturedAt: now,
-          totalCalories: 250,
-        );
+      id: 'cb-1',
+      provider: DataProvider.apple,
+      providerRecordType: 'HKQuantityTypeIdentifierActiveEnergyBurned',
+      startTime: now,
+      endTime: later,
+      capturedAt: now,
+      totalCalories: 250,
+    );
 
     CaloriesBurned createFull() => CaloriesBurned(
-          id: 'cb-2',
-          provider: DataProvider.garmin,
-          providerRecordType: 'caloriesData',
-          startTime: now,
-          endTime: later,
-          timezone: 'US/Pacific',
-          capturedAt: now,
-          provenance: const Provenance(dataOrigin: DataOrigin.native_),
-          freshness: Freshness.cached,
-          extensions: const {'type': 'active'},
-          totalCalories: 500,
-          activeCalories: 350,
-        );
+      id: 'cb-2',
+      provider: DataProvider.garmin,
+      providerRecordType: 'caloriesData',
+      startTime: now,
+      endTime: later,
+      timezone: 'US/Pacific',
+      capturedAt: now,
+      provenance: const Provenance(dataOrigin: DataOrigin.native_),
+      freshness: Freshness.cached,
+      extensions: const {'type': 'active'},
+      totalCalories: 500,
+      activeCalories: 350,
+    );
 
     test('constructs with required fields only', () {
       final record = createMinimal();

@@ -99,7 +99,8 @@ class MergeEngine {
             strategy: strategy,
             inputRecords: group,
             resolvedRecord: result.isNotEmpty ? result.first : null,
-            reason: 'Resolved ${group.length} overlapping records '
+            reason:
+                'Resolved ${group.length} overlapping records '
                 'using ${strategy.name}',
           ),
         );
@@ -179,8 +180,8 @@ class MergeEngine {
       'restingheartrate' || 'resting_heart_rate' => MetricType.restingHeartRate,
       'sleepscore' || 'sleep_score' => MetricType.sleepScore,
       _ => throw ArgumentError(
-          'Unknown providerRecordType: $type',
-        ),
+        'Unknown providerRecordType: $type',
+      ),
     };
   }
 }

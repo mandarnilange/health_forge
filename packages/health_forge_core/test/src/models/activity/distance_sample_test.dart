@@ -9,28 +9,28 @@ void main() {
     final later = DateTime.utc(2026, 3, 17, 11);
 
     DistanceSample createMinimal() => DistanceSample(
-          id: 'ds-1',
-          provider: DataProvider.strava,
-          providerRecordType: 'distance',
-          startTime: now,
-          endTime: later,
-          capturedAt: now,
-          distanceMeters: 5000,
-        );
+      id: 'ds-1',
+      provider: DataProvider.strava,
+      providerRecordType: 'distance',
+      startTime: now,
+      endTime: later,
+      capturedAt: now,
+      distanceMeters: 5000,
+    );
 
     DistanceSample createFull() => DistanceSample(
-          id: 'ds-2',
-          provider: DataProvider.apple,
-          providerRecordType: 'HKQuantityTypeIdentifierDistanceWalkingRunning',
-          startTime: now,
-          endTime: later,
-          timezone: 'Asia/Tokyo',
-          capturedAt: now,
-          provenance: const Provenance(dataOrigin: DataOrigin.native_),
-          freshness: Freshness.cached,
-          extensions: const {'unit': 'meters'},
-          distanceMeters: 10500.5,
-        );
+      id: 'ds-2',
+      provider: DataProvider.apple,
+      providerRecordType: 'HKQuantityTypeIdentifierDistanceWalkingRunning',
+      startTime: now,
+      endTime: later,
+      timezone: 'Asia/Tokyo',
+      capturedAt: now,
+      provenance: const Provenance(dataOrigin: DataOrigin.native_),
+      freshness: Freshness.cached,
+      extensions: const {'unit': 'meters'},
+      distanceMeters: 10500.5,
+    );
 
     test('constructs with required fields only', () {
       final record = createMinimal();

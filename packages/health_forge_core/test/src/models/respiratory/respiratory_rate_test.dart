@@ -9,28 +9,28 @@ void main() {
     final later = DateTime.utc(2026, 3, 17, 11);
 
     RespiratoryRate createMinimal() => RespiratoryRate(
-          id: 'rr-1',
-          provider: DataProvider.apple,
-          providerRecordType: 'HKQuantityTypeIdentifierRespiratoryRate',
-          startTime: now,
-          endTime: later,
-          capturedAt: now,
-          breathsPerMinute: 16,
-        );
+      id: 'rr-1',
+      provider: DataProvider.apple,
+      providerRecordType: 'HKQuantityTypeIdentifierRespiratoryRate',
+      startTime: now,
+      endTime: later,
+      capturedAt: now,
+      breathsPerMinute: 16,
+    );
 
     RespiratoryRate createFull() => RespiratoryRate(
-          id: 'rr-2',
-          provider: DataProvider.garmin,
-          providerRecordType: 'respiratoryRate',
-          startTime: now,
-          endTime: later,
-          timezone: 'America/New_York',
-          capturedAt: now,
-          provenance: const Provenance(dataOrigin: DataOrigin.mapped),
-          freshness: Freshness.cached,
-          extensions: const {'sensor': 'chest'},
-          breathsPerMinute: 18.5,
-        );
+      id: 'rr-2',
+      provider: DataProvider.garmin,
+      providerRecordType: 'respiratoryRate',
+      startTime: now,
+      endTime: later,
+      timezone: 'America/New_York',
+      capturedAt: now,
+      provenance: const Provenance(dataOrigin: DataOrigin.mapped),
+      freshness: Freshness.cached,
+      extensions: const {'sensor': 'chest'},
+      breathsPerMinute: 18.5,
+    );
 
     test('constructs with required fields only', () {
       final record = createMinimal();

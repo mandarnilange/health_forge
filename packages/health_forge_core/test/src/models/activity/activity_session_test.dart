@@ -9,34 +9,34 @@ void main() {
     final later = DateTime.utc(2026, 3, 17, 11);
 
     ActivitySession createMinimal() => ActivitySession(
-          id: 'as-1',
-          provider: DataProvider.apple,
-          providerRecordType: 'HKWorkout',
-          startTime: now,
-          endTime: later,
-          capturedAt: now,
-          activityType: MetricType.workout,
-        );
+      id: 'as-1',
+      provider: DataProvider.apple,
+      providerRecordType: 'HKWorkout',
+      startTime: now,
+      endTime: later,
+      capturedAt: now,
+      activityType: MetricType.workout,
+    );
 
     ActivitySession createFull() => ActivitySession(
-          id: 'as-2',
-          provider: DataProvider.strava,
-          providerRecordType: 'activity',
-          startTime: now,
-          endTime: later,
-          timezone: 'America/New_York',
-          capturedAt: now,
-          provenance: const Provenance(dataOrigin: DataOrigin.native_),
-          freshness: Freshness.cached,
-          extensions: const {'source': 'strava'},
-          activityType: MetricType.workout,
-          activityName: 'Morning Run',
-          totalCalories: 350,
-          activeCalories: 300,
-          distanceMeters: 5000,
-          averageHeartRate: 145,
-          maxHeartRate: 175,
-        );
+      id: 'as-2',
+      provider: DataProvider.strava,
+      providerRecordType: 'activity',
+      startTime: now,
+      endTime: later,
+      timezone: 'America/New_York',
+      capturedAt: now,
+      provenance: const Provenance(dataOrigin: DataOrigin.native_),
+      freshness: Freshness.cached,
+      extensions: const {'source': 'strava'},
+      activityType: MetricType.workout,
+      activityName: 'Morning Run',
+      totalCalories: 350,
+      activeCalories: 300,
+      distanceMeters: 5000,
+      averageHeartRate: 145,
+      maxHeartRate: 175,
+    );
 
     test('constructs with required fields only', () {
       final session = createMinimal();

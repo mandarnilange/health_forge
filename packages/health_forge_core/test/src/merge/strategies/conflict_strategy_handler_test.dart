@@ -3,12 +3,14 @@ import 'package:test/test.dart';
 
 void main() {
   group('ConflictStrategyHandler', () {
-    test('KeepAllWithAttributionStrategy implements ConflictStrategyHandler',
-        () {
-      final handler = KeepAllWithAttributionStrategy();
+    test(
+      'KeepAllWithAttributionStrategy implements ConflictStrategyHandler',
+      () {
+        final handler = KeepAllWithAttributionStrategy();
 
-      expect(handler, isA<ConflictStrategyHandler>());
-    });
+        expect(handler, isA<ConflictStrategyHandler>());
+      },
+    );
 
     test('PriorityBasedStrategy implements ConflictStrategyHandler', () {
       final handler = PriorityBasedStrategy();

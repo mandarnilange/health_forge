@@ -13,16 +13,15 @@ void main() {
       required DateTime start,
       required DateTime end,
       int bpm = 72,
-    }) =>
-        HeartRateSample(
-          id: id,
-          provider: provider,
-          providerRecordType: 'heartRate',
-          startTime: start,
-          endTime: end,
-          capturedAt: now,
-          beatsPerMinute: bpm,
-        );
+    }) => HeartRateSample(
+      id: id,
+      provider: provider,
+      providerRecordType: 'heartRate',
+      startTime: start,
+      endTime: end,
+      capturedAt: now,
+      beatsPerMinute: bpm,
+    );
 
     test('two HR samples overlapping are detected as overlap', () {
       final a = makeHR(

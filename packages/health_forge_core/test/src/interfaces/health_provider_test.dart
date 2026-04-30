@@ -58,16 +58,18 @@ void main() {
     });
 
     test('authorize returns success result', () async {
-      when(() => provider.authorize())
-          .thenAnswer((_) async => AuthResult.success());
+      when(
+        () => provider.authorize(),
+      ).thenAnswer((_) async => AuthResult.success());
       final result = await provider.authorize();
       expect(result.status, AuthStatus.connected);
       expect(result.isSuccess, isTrue);
     });
 
     test('authorize returns denied result', () async {
-      when(() => provider.authorize())
-          .thenAnswer((_) async => AuthResult.denied());
+      when(
+        () => provider.authorize(),
+      ).thenAnswer((_) async => AuthResult.denied());
       final result = await provider.authorize();
       expect(result.isSuccess, isFalse);
     });

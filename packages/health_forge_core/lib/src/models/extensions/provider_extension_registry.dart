@@ -4,7 +4,7 @@ import 'package:health_forge_core/health_forge_core.dart';
 /// polymorphic JSON deserialization.
 class ProviderExtensionRegistry {
   static final Map<String, ProviderExtension Function(Map<String, dynamic>)>
-      _factories = {};
+  _factories = {};
 
   /// Registers a factory for the given [typeKey].
   static void register(

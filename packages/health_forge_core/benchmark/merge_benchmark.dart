@@ -25,10 +25,12 @@ void _benchmarkMergeEngine() {
     final result = engine.merge(records);
     sw.stop();
 
-    print('$count records (2 providers): '
-        '${sw.elapsedMilliseconds}ms → '
-        '${result.resolved.length} resolved, '
-        '${result.conflicts.length} conflicts');
+    print(
+      '$count records (2 providers): '
+      '${sw.elapsedMilliseconds}ms → '
+      '${result.resolved.length} resolved, '
+      '${result.conflicts.length} conflicts',
+    );
   }
 
   print('');
@@ -45,10 +47,12 @@ void _benchmarkMergeEngine() {
     final result = engine.merge(records);
     sw.stop();
 
-    print('1000 records ($providerCount providers): '
-        '${sw.elapsedMilliseconds}ms → '
-        '${result.resolved.length} resolved, '
-        '${result.conflicts.length} conflicts');
+    print(
+      '1000 records ($providerCount providers): '
+      '${sw.elapsedMilliseconds}ms → '
+      '${result.resolved.length} resolved, '
+      '${result.conflicts.length} conflicts',
+    );
   }
 
   print('');
@@ -87,8 +91,10 @@ void _benchmarkDuplicateDetector() {
     final groups = detector.detectOverlaps(records);
     sw.stop();
 
-    print('$count records: ${sw.elapsedMilliseconds}ms → '
-        '${groups.length} groups');
+    print(
+      '$count records: ${sw.elapsedMilliseconds}ms → '
+      '${groups.length} groups',
+    );
   }
 }
 
