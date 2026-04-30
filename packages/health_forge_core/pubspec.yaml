@@ -1,9 +1,9 @@
 name: health_forge_core
 description: >-
-  Pure Dart core library for health_forge — unified health data models, enums,
-  provider interfaces, and a configurable conflict resolution engine for
-  multi-source health records.
-version: 0.1.0
+  Pure Dart core library for health_forge — unified models, enums, provider
+  interfaces, and a configurable conflict resolution engine for multi-source
+  health records.
+version: 0.1.1
 homepage: https://github.com/mandarnilange/health_forge
 repository: https://github.com/mandarnilange/health_forge/tree/main/packages/health_forge_core
 issue_tracker: https://github.com/mandarnilange/health_forge/issues

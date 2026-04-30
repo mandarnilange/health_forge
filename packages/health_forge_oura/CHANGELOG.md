@@ -1,3 +1,8 @@
+## 0.1.1
+
+- Added `example/example.dart` demonstrating OAuth 2.0 PKCE setup
+- Shortened pubspec description for cleaner pub.dev display
+
 ## 0.1.0
 
 - Initial release

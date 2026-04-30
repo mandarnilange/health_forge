@@ -1,3 +1,8 @@
+## 0.1.1
+
+- Added `example/example.dart` demonstrating typical usage
+- Shortened pubspec description for cleaner pub.dev display
+
 ## 0.1.0
 
 - Initial release

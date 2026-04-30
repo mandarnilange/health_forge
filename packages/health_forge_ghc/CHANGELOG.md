@@ -1,3 +1,7 @@
+## 0.1.1
+
+- Added `example/example.dart` demonstrating provider registration
+
 ## 0.1.0
 
 - Initial release

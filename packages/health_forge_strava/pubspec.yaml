@@ -1,9 +1,8 @@
 name: health_forge_strava
 description: >-
   Strava REST API adapter for health_forge — fetches workouts, heart rate,
-  calories, distance, and elevation data via OAuth 2.0 PKCE with page-based
-  pagination and dual rate limiting.
-version: 0.1.0
+  calories, distance, and elevation via OAuth 2.0 PKCE with rate limiting.
+version: 0.1.1
 homepage: https://github.com/mandarnilange/health_forge
 repository: https://github.com/mandarnilange/health_forge/tree/main/packages/health_forge_strava
 issue_tracker: https://github.com/mandarnilange/health_forge/issues

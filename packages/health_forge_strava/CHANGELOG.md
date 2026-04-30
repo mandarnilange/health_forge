@@ -1,3 +1,8 @@
+## 0.1.1
+
+- Added `example/example.dart` demonstrating OAuth 2.0 PKCE setup
+- Tightened pubspec description to satisfy pana length limit
+
 ## 0.1.0
 
 - Initial release
