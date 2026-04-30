@@ -20,6 +20,9 @@ jobs:
       - name: Install dependencies
         run: dart pub get
 
+      - name: Activate Melos on PATH
+        run: dart pub global activate melos
+
       - name: Bootstrap
         run: dart run melos bootstrap
 
