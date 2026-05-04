@@ -107,6 +107,32 @@ await forge.sync(
 );
 ```
 
+## Agent Skills
+
+Health Forge ships a set of [Agent Skills](https://skills.sh) so AI coding agents (Claude Code, Cursor, Codex, OpenCode, and 50+ others) can integrate the packages into a Flutter app on your behalf.
+
+```bash
+# Install all skills into the current project
+npx skills add mandarnilange/health_forge
+
+# Or install just the skill for the package you're using
+npx skills add mandarnilange/health_forge --skill integrate-health-forge-oura
+
+# List available skills
+npx skills add mandarnilange/health_forge --list
+```
+
+| Skill | When the agent triggers it |
+|---|---|
+| `integrate-health-forge` | Building a Flutter app aggregating multi-provider health data |
+| `integrate-health-forge-core` | Pure-Dart use (server, isolate, custom provider) |
+| `integrate-health-forge-apple` | Apple HealthKit on iOS |
+| `integrate-health-forge-ghc` | Google Health Connect on Android |
+| `integrate-health-forge-oura` | Oura Ring REST API |
+| `integrate-health-forge-strava` | Strava REST API |
+
+See [`skills/`](skills/) for the source recipes.
+
 ## Data Model
 
 ### Record Families

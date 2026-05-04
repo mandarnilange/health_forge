@@ -6,6 +6,7 @@ Health Forge is a federated Flutter toolkit that aggregates health data from mul
 
 - [How It Works](#how-it-works)
 - [Installation](#installation)
+- [Using an AI Coding Agent](#using-an-ai-coding-agent)
 - [Platform Setup](#platform-setup)
   - [iOS (HealthKit)](#ios-healthkit)
   - [Android (Health Connect)](#android-health-connect)
@@ -216,6 +217,25 @@ Then run:
 ```bash
 flutter pub get
 ```
+
+---
+
+## Using an AI Coding Agent
+
+If you're integrating Health Forge with help from Claude Code, Cursor, Codex, or any of the [50+ supported agents](https://skills.sh), install the matching [Agent Skills](https://skills.sh) so your agent has the integration recipes:
+
+```bash
+# All skills (one per package)
+npx skills add mandarnilange/health_forge
+
+# Or just the providers you use
+npx skills add mandarnilange/health_forge \
+  --skill integrate-health-forge \
+  --skill integrate-health-forge-apple \
+  --skill integrate-health-forge-oura
+```
+
+Each skill walks the agent through the platform setup, client wiring, and a minimal working snippet for one package. See [`skills/`](../skills/) in the repo for the recipes.
 
 ---
 

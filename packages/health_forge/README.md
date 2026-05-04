@@ -26,6 +26,11 @@ dependencies:
 
 Only add the provider packages you need — Health Forge is federated.
 
+> **Using an AI coding agent?** Install the matching skill so Claude Code, Cursor, Codex, or any of the [50+ supported agents](https://skills.sh) can wire this in for you:
+> ```bash
+> npx skills add mandarnilange/health_forge --skill integrate-health-forge
+> ```
+
 ## Usage
 
 ```dart

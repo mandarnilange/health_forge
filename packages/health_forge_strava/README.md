@@ -32,6 +32,11 @@ dependencies:
 
 Register a Strava app at [strava.com/settings/api](https://www.strava.com/settings/api) to get a client ID and secret. Strava requires a client secret even with PKCE — use a backend token-exchange proxy or accept the security tradeoff for personal apps. The adapter supports a pluggable `StravaTokenExchange` for backend exchange. See [docs/getting_started.md](https://github.com/mandarnilange/health_forge/blob/main/docs/getting_started.md).
 
+> **Using an AI coding agent?** Install the matching skill so Claude Code, Cursor, Codex, or any of the [50+ supported agents](https://skills.sh) can wire this in for you:
+> ```bash
+> npx skills add mandarnilange/health_forge --skill integrate-health-forge-strava
+> ```
+
 ## Usage
 
 ```dart
