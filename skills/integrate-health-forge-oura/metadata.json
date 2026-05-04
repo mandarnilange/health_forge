@@ -1,0 +1,12 @@
+{
+  "version": "0.1.1",
+  "organization": "Health Forge",
+  "date": "May 2026",
+  "abstract": "Integration recipe for `health_forge_oura` — the Oura Ring REST API adapter for Health Forge. 8 read-only metrics (sleep, readiness, stress, heart rate, activity, SpO2). Covers OAuth 2.0 PKCE setup, deep-link redirect handling, automatic pagination and rate limiting, and the OuraSleepExtension (readinessScore, temperatureDeviation, restingHeartRate). Note: code-complete with unit tests but not yet validated end-to-end against the live API.",
+  "references": [
+    "https://pub.dev/packages/health_forge_oura",
+    "https://github.com/mandarnilange/health_forge",
+    "https://cloud.ouraring.com/v2/docs",
+    "https://github.com/mandarnilange/health_forge/blob/main/design/adr/0007-rest-api-adapter-pattern.md"
+  ]
+}

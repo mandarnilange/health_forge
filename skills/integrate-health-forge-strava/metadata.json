@@ -1,0 +1,12 @@
+{
+  "version": "0.1.1",
+  "organization": "Health Forge",
+  "date": "May 2026",
+  "abstract": "Integration recipe for `health_forge_strava` — the Strava REST API adapter for Health Forge. 5 read-only metrics (workouts, heart rate streams, calories, distance, elevation). Covers OAuth 2.0 PKCE with client_secret, deep-link redirect handling, dual rate limiting (15-min + daily), kJ→kcal conversion, and the StravaWorkoutExtension (sufferScore, segmentEfforts, weightedAveragePower). Recommends a backend token-exchange proxy for production. Note: code-complete with unit tests but not yet validated end-to-end against the live API.",
+  "references": [
+    "https://pub.dev/packages/health_forge_strava",
+    "https://github.com/mandarnilange/health_forge",
+    "https://developers.strava.com/docs/reference/",
+    "https://github.com/mandarnilange/health_forge/blob/main/design/adr/0007-rest-api-adapter-pattern.md"
+  ]
+}
