@@ -1,0 +1,13 @@
+{
+  "version": "0.1.1",
+  "organization": "Health Forge",
+  "date": "May 2026",
+  "abstract": "Integration recipe for `health_forge` — the Flutter client that ties Health Forge together: provider registry, auth orchestrator, fluent query builder, sync manager, and cache (InMemory or Drift/SQLite). Pair with one or more adapter skills (apple, ghc, oura, strava) for actual data sources.",
+  "references": [
+    "https://pub.dev/packages/health_forge",
+    "https://github.com/mandarnilange/health_forge",
+    "https://github.com/mandarnilange/health_forge/blob/main/docs/getting_started.md",
+    "https://github.com/mandarnilange/health_forge/blob/main/design/adr/0001-federated-plugin-model.md",
+    "https://github.com/mandarnilange/health_forge/blob/main/design/adr/0006-cache-schema-design.md"
+  ]
+}

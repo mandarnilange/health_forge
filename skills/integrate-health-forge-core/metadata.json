@@ -1,0 +1,14 @@
+{
+  "version": "0.1.1",
+  "organization": "Health Forge",
+  "date": "May 2026",
+  "abstract": "Integration recipe for `health_forge_core` — the pure-Dart foundation of Health Forge: 21 unified record types across 6 families, the HealthRecordMixin envelope, the ProviderExtension type-map mechanism, and the isolate-safe MergeEngine with five conflict-resolution strategies. Use in server-side Dart, CLIs, isolates, or when implementing a custom HealthProvider.",
+  "references": [
+    "https://pub.dev/packages/health_forge_core",
+    "https://github.com/mandarnilange/health_forge",
+    "https://github.com/mandarnilange/health_forge/blob/main/design/adr/0002-record-envelope-design.md",
+    "https://github.com/mandarnilange/health_forge/blob/main/design/adr/0003-conflict-resolution-strategies.md",
+    "https://github.com/mandarnilange/health_forge/blob/main/design/adr/0004-pure-dart-core.md",
+    "https://github.com/mandarnilange/health_forge/blob/main/design/adr/0005-provider-extension-mechanism.md"
+  ]
+}

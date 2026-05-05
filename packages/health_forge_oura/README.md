@@ -34,6 +34,11 @@ dependencies:
 
 Register an Oura app at [cloud.ouraring.com](https://cloud.ouraring.com/oauth/applications) to get a client ID. Configure your OAuth redirect URI (e.g. `healthforge://oura/callback`). See [docs/getting_started.md](https://github.com/mandarnilange/health_forge/blob/main/docs/getting_started.md) for deep-link setup.
 
+> **Using an AI coding agent?** Install the matching skill so Claude Code, Cursor, Codex, or any of the [50+ supported agents](https://skills.sh) can wire this in for you:
+> ```bash
+> npx skills add mandarnilange/health_forge --skill integrate-health-forge-oura
+> ```
+
 ## Usage
 
 ```dart

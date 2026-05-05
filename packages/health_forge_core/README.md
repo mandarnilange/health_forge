@@ -23,6 +23,11 @@ dependencies:
 
 You typically won't depend on this package directly — use [`health_forge`](https://pub.dev/packages/health_forge) (Flutter client) plus the provider adapters you need.
 
+> **Using an AI coding agent?** Install the matching skill so Claude Code, Cursor, Codex, or any of the [50+ supported agents](https://skills.sh) can wire this in for you:
+> ```bash
+> npx skills add mandarnilange/health_forge --skill integrate-health-forge-core
+> ```
+
 ## Usage
 
 ```dart

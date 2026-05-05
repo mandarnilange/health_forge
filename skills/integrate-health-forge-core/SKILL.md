@@ -7,6 +7,10 @@ description: >
   (server-side Dart, CLI tools, isolates), or when implementing a custom
   `HealthProvider`. For Flutter apps that consume data from built-in adapters,
   prefer `integrate-health-forge` — it pulls this package in transitively.
+license: MIT
+metadata:
+  author: Health Forge
+  version: "0.1.1"
 ---
 
 # Integrate health_forge_core

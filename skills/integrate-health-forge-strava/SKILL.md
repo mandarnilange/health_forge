@@ -9,6 +9,10 @@ description: >
   secret; prefer a backend token-exchange proxy for production.
   Note: This adapter is code-complete with unit tests but has not yet been
   validated end-to-end against the live Strava API.
+license: MIT
+metadata:
+  author: Health Forge
+  version: "0.1.1"
 ---
 
 # Integrate health_forge_strava

@@ -26,6 +26,11 @@ dependencies:
 
 Add Health Connect read permissions to `android/app/src/main/AndroidManifest.xml`. See [docs/getting_started.md](https://github.com/mandarnilange/health_forge/blob/main/docs/getting_started.md) for full Android setup.
 
+> **Using an AI coding agent?** Install the matching skill so Claude Code, Cursor, Codex, or any of the [50+ supported agents](https://skills.sh) can wire this in for you:
+> ```bash
+> npx skills add mandarnilange/health_forge --skill integrate-health-forge-ghc
+> ```
+
 ## Usage
 
 ```dart

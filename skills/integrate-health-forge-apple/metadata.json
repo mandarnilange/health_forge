@@ -1,0 +1,11 @@
+{
+  "version": "0.1.1",
+  "organization": "Health Forge",
+  "date": "May 2026",
+  "abstract": "Integration recipe for `health_forge_apple` — the Apple HealthKit adapter for Health Forge. 14 read-only metric types mapped to the unified core model. Covers Info.plist setup, runtime authorization, and registering the provider with the Flutter client.",
+  "references": [
+    "https://pub.dev/packages/health_forge_apple",
+    "https://github.com/mandarnilange/health_forge",
+    "https://developer.apple.com/documentation/healthkit"
+  ]
+}

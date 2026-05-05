@@ -7,6 +7,10 @@ description: >
   SpO2, etc.). Requires the `health_forge` Flutter client — see related
   skill `integrate-health-forge` for client setup and
   `integrate-health-forge-core` for the pure-Dart foundation.
+license: MIT
+metadata:
+  author: Health Forge
+  version: "0.1.1"
 ---
 
 # Integrate health_forge_ghc

@@ -7,6 +7,10 @@ description: >
   Requires the `health_forge` Flutter client — see related skill
   `integrate-health-forge` for client setup and the pure-Dart foundation
   `integrate-health-forge-core`.
+license: MIT
+metadata:
+  author: Health Forge
+  version: "0.1.1"
 ---
 
 # Integrate health_forge_apple

@@ -7,6 +7,10 @@ description: >
   data from multiple providers in a Flutter app. Pair with one or more adapter
   skills (`integrate-health-forge-apple`, `-ghc`, `-oura`, `-strava`) for
   actual data sources.
+license: MIT
+metadata:
+  author: Health Forge
+  version: "0.1.1"
 ---
 
 # Integrate health_forge
