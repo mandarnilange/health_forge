@@ -11,7 +11,11 @@ part 'heart_rate_variability.g.dart';
 ///
 /// Providers report HRV using different metrics: Apple HealthKit provides SDNN,
 /// while Google Health Connect provides RMSSD. Both are therefore optional, but
-/// at least one must be present.
+/// at least one is expected: the built-in provider mappers each populate one.
+///
+/// This expectation is expressed as an `@Assert`, which is a debug/profile-only
+/// guard (Dart strips `assert`s from release builds). It catches misuse during
+/// development; it is not a runtime guarantee in production.
 @freezed
 abstract class HeartRateVariability
     with _$HeartRateVariability, HealthRecordMixin {
