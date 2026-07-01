@@ -23,12 +23,12 @@ class RecordListItem extends StatelessWidget {
       final StressScore r => 'Score: ${r.score}',
       final SleepScore r => 'Score: ${r.score}',
       final HeartRateVariability r => switch (r) {
-        HeartRateVariability(:final sdnnMilliseconds?) =>
-          'SDNN ${sdnnMilliseconds.toStringAsFixed(1)} ms',
-        HeartRateVariability(:final rmssdMilliseconds?) =>
-          'RMSSD ${rmssdMilliseconds.toStringAsFixed(1)} ms',
-        _ => '-- ms',
-      },
+          HeartRateVariability(:final sdnnMilliseconds?) =>
+            'SDNN ${sdnnMilliseconds.toStringAsFixed(1)} ms',
+          HeartRateVariability(:final rmssdMilliseconds?) =>
+            'RMSSD ${rmssdMilliseconds.toStringAsFixed(1)} ms',
+          _ => '-- ms',
+        },
       final RestingHeartRate r => '${r.beatsPerMinute} bpm',
       final RespiratoryRate r =>
         '${r.breathsPerMinute.toStringAsFixed(1)} br/min',
