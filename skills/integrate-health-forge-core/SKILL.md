@@ -10,7 +10,7 @@ description: >
 license: MIT
 metadata:
   author: Health Forge
-  version: "0.1.1"
+  version: "0.2.0"
 ---
 
 # Integrate health_forge_core
@@ -31,7 +31,7 @@ For Flutter apps that consume data from the official adapters (`health_forge_app
 
 ```yaml
 dependencies:
-  health_forge_core: ^0.1.1
+  health_forge_core: ^0.2.0
 ```
 
 Run `dart pub get` (or `flutter pub get`).

@@ -7,11 +7,19 @@ import 'package:health_forge_core/src/models/provenance.dart';
 part 'heart_rate_variability.freezed.dart';
 part 'heart_rate_variability.g.dart';
 
-/// A heart rate variability measurement (SDNN and optional RMSSD).
+/// A heart rate variability measurement.
+///
+/// Providers report HRV using different metrics: Apple HealthKit provides SDNN,
+/// while Google Health Connect provides RMSSD. Both are therefore optional, but
+/// at least one must be present.
 @freezed
 abstract class HeartRateVariability
     with _$HeartRateVariability, HealthRecordMixin {
   const HeartRateVariability._();
+  @Assert(
+    'sdnnMilliseconds != null || rmssdMilliseconds != null',
+    'HeartRateVariability requires at least one of SDNN or RMSSD.',
+  )
   const factory HeartRateVariability({
     required String id,
     required DataProvider provider,
@@ -19,7 +27,7 @@ abstract class HeartRateVariability
     required DateTime startTime,
     required DateTime endTime,
     required DateTime capturedAt,
-    required double sdnnMilliseconds,
+    double? sdnnMilliseconds,
     String? providerRecordId,
     String? timezone,
     Provenance? provenance,

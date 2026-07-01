@@ -30,7 +30,7 @@ class HeartRateMapper {
           beatsPerMinute: record.value.round(),
           provenance: provenance,
         ),
-      'HEART_RATE_VARIABILITY_SDNN' => HeartRateVariability(
+      'HEART_RATE_VARIABILITY_RMSSD' => HeartRateVariability(
           id: id,
           provider: DataProvider.googleHealthConnect,
           providerRecordType: record.type,
@@ -38,7 +38,8 @@ class HeartRateMapper {
           startTime: record.dateFrom,
           endTime: record.dateTo,
           capturedAt: capturedAt,
-          sdnnMilliseconds: record.value,
+          // Health Connect reports RMSSD, not SDNN.
+          rmssdMilliseconds: record.value,
           provenance: provenance,
         ),
       'RESTING_HEART_RATE' => RestingHeartRate(

@@ -1,3 +1,10 @@
+## 0.2.0
+
+- **Breaking:** `HeartRateVariability.sdnnMilliseconds` is now nullable
+  (`double?`). Not every provider reports SDNN — Google Health Connect reports
+  RMSSD instead. At least one of `sdnnMilliseconds` or `rmssdMilliseconds` must
+  be present (enforced by an assertion).
+
 ## 0.1.1
 
 - Added `example/example.dart` demonstrating the merge engine with two

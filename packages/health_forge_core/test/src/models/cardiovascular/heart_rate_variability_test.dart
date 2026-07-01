@@ -33,10 +33,48 @@ void main() {
       rmssdMilliseconds: 42.1,
     );
 
+    HeartRateVariability createRmssdOnly() => HeartRateVariability(
+      id: 'hrv-3',
+      provider: DataProvider.googleHealthConnect,
+      providerRecordType: 'HEART_RATE_VARIABILITY_RMSSD',
+      startTime: now,
+      endTime: later,
+      capturedAt: now,
+      rmssdMilliseconds: 42.1,
+    );
+
     test('constructs with required fields only', () {
       final record = createMinimal();
       expect(record.sdnnMilliseconds, 45.0);
       expect(record.rmssdMilliseconds, isNull);
+    });
+
+    test('constructs with rmssd only (SDNN null, e.g. Health Connect)', () {
+      final record = createRmssdOnly();
+      expect(record.sdnnMilliseconds, isNull);
+      expect(record.rmssdMilliseconds, 42.1);
+    });
+
+    test('rmssd-only record survives JSON round-trip', () {
+      final record = createRmssdOnly();
+      final restored = HeartRateVariability.fromJson(record.toJson());
+      expect(restored, equals(record));
+      expect(restored.sdnnMilliseconds, isNull);
+      expect(restored.rmssdMilliseconds, 42.1);
+    });
+
+    test('throws when neither SDNN nor RMSSD is provided', () {
+      expect(
+        () => HeartRateVariability(
+          id: 'hrv-invalid',
+          provider: DataProvider.googleHealthConnect,
+          providerRecordType: 'hrv',
+          startTime: now,
+          endTime: later,
+          capturedAt: now,
+        ),
+        throwsA(isA<AssertionError>()),
+      );
     });
 
     test('constructs with all fields including optionals', () {

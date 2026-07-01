@@ -1,3 +1,9 @@
+## 0.2.0
+
+- Bumped `health_forge_core` dependency to `^0.2.0`
+  (`HeartRateVariability.sdnnMilliseconds` is now nullable). Apple HealthKit
+  still reports SDNN, so the mapper is unchanged.
+
 ## 0.1.1
 
 - Added `example/example.dart` demonstrating `AppleHealthProvider`
