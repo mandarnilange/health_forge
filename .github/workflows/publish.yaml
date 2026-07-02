@@ -48,6 +48,11 @@ jobs:
   publish-core:
     name: Publish health_forge_core
     needs: verify
+    # Only publish from a version tag (normal release) or from the
+    # branch-protected default branch (manual recovery via workflow_dispatch).
+    # A workflow_dispatch on any other ref runs verify only and never reaches
+    # `dart pub publish`, closing the arbitrary-ref supply-chain surface.
+    if: startsWith(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     env:
       PKG: health_forge_core
@@ -95,6 +100,7 @@ jobs:
   publish-packages:
     name: Publish ${{ matrix.package }}
     needs: publish-core
+    if: startsWith(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 1
