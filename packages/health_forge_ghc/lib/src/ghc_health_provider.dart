@@ -20,7 +20,9 @@ class GhcHealthProvider implements HealthProvider {
 
   static const _metricToHealthTypes = <MetricType, List<HealthDataType>>{
     MetricType.heartRate: [HealthDataType.HEART_RATE],
-    MetricType.hrv: [HealthDataType.HEART_RATE_VARIABILITY_SDNN],
+    // Health Connect only supports RMSSD; SDNN is a HealthKit-only concept and
+    // requesting it aborts the entire permission request before the dialog.
+    MetricType.hrv: [HealthDataType.HEART_RATE_VARIABILITY_RMSSD],
     MetricType.restingHeartRate: [HealthDataType.RESTING_HEART_RATE],
     MetricType.steps: [HealthDataType.STEPS],
     MetricType.calories: [HealthDataType.TOTAL_CALORIES_BURNED],
@@ -184,7 +186,7 @@ class GhcHealthProvider implements HealthProvider {
 
   static const _heartRateTypes = {
     'HEART_RATE',
-    'HEART_RATE_VARIABILITY_SDNN',
+    'HEART_RATE_VARIABILITY_RMSSD',
     'RESTING_HEART_RATE',
   };
 

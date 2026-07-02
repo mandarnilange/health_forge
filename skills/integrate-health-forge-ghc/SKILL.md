@@ -10,7 +10,7 @@ description: >
 license: MIT
 metadata:
   author: Health Forge
-  version: "0.1.1"
+  version: "0.2.0"
 ---
 
 # Integrate health_forge_ghc
@@ -35,8 +35,8 @@ Read Google Health Connect data on Android. 14 read-only metric types, mapped to
 
 ```yaml
 dependencies:
-  health_forge: ^0.1.1
-  health_forge_ghc: ^0.1.1
+  health_forge: ^0.2.0
+  health_forge_ghc: ^0.2.0
 ```
 
 ### 2. Android — permissions

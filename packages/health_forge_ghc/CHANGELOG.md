@@ -1,3 +1,13 @@
+## 0.2.0
+
+- **Fixed:** map `MetricType.hrv` to `HEART_RATE_VARIABILITY_RMSSD` instead of
+  the HealthKit-only `HEART_RATE_VARIABILITY_SDNN`. Health Connect does not
+  support SDNN, which caused the native permission request to abort with
+  `success(false)` before the dialog appeared — blocking authorization for
+  every metric, not just HRV.
+- HRV records now populate `rmssdMilliseconds` (Health Connect reports RMSSD).
+- Bumped `health_forge_core` dependency to `^0.2.0`.
+
 ## 0.1.1
 
 - Added `example/example.dart` demonstrating `GhcHealthProvider`

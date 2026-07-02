@@ -82,10 +82,10 @@ void main() {
       });
     });
 
-    group('HEART_RATE_VARIABILITY_SDNN', () {
-      test('maps to HeartRateVariability', () {
+    group('HEART_RATE_VARIABILITY_RMSSD', () {
+      test('maps to HeartRateVariability with rmssd milliseconds', () {
         final record = HealthDataRecord(
-          type: 'HEART_RATE_VARIABILITY_SDNN',
+          type: 'HEART_RATE_VARIABILITY_RMSSD',
           value: 45.5,
           dateFrom: now,
           dateTo: later,
@@ -97,9 +97,11 @@ void main() {
 
         expect(result, isA<HeartRateVariability>());
         final hrv = result as HeartRateVariability;
-        expect(hrv.sdnnMilliseconds, 45.5);
+        // Health Connect provides RMSSD, not SDNN.
+        expect(hrv.rmssdMilliseconds, 45.5);
+        expect(hrv.sdnnMilliseconds, isNull);
         expect(hrv.provider, DataProvider.googleHealthConnect);
-        expect(hrv.providerRecordType, 'HEART_RATE_VARIABILITY_SDNN');
+        expect(hrv.providerRecordType, 'HEART_RATE_VARIABILITY_RMSSD');
       });
     });
 
