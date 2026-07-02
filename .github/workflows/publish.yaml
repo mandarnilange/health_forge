@@ -59,9 +59,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: dart-lang/setup-dart@v1
+      # Flutter SDK is required even for this pure-Dart package: the pub
+      # workspace root includes the Flutter `example`, so a Dart-only
+      # `pub get` fails version solving.
+      - uses: subosito/flutter-action@v2
         with:
-          sdk: stable
+          channel: stable
 
       - name: Install dependencies
         run: dart pub get
