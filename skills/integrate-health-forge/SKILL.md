@@ -169,7 +169,13 @@ final cached = await forge.cache.get(
 ```dart
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-final tokenStore = TokenStore(storage: const FlutterSecureStorage());
+// resetOnError: false stops Android from silently wiping all stored data
+// after a failed read or write; failures surface as PlatformException.
+final tokenStore = TokenStore(
+  storage: const FlutterSecureStorage(
+    aOptions: AndroidOptions(resetOnError: false),
+  ),
+);
 
 // Wire into the auth manager — see adapter skills for provider specifics.
 final ouraAuth = OuraAuthManager(

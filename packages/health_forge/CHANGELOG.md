@@ -10,6 +10,10 @@
   `"Data has been reset"` string. On Android, `flutter_secure_storage`
   returns that string after its `resetOnError` default wipes storage
   following a failure, and it was previously handed back as a token.
+- **Behaviour change:** `TokenStore.save` reads the token back after writing
+  and throws the new `TokenStoreException` if it wasn't stored. Previously a
+  failed Android write could complete normally with nothing saved. The README
+  now recommends `AndroidOptions(resetOnError: false)`.
 
 ## 0.2.0
 

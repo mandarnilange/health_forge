@@ -1,6 +1,19 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:health_forge_core/health_forge_core.dart';
 
+/// Thrown when [TokenStore.save] could not persist a token.
+class TokenStoreException implements Exception {
+  /// Creates an exception for a token that failed to save for [provider].
+  const TokenStoreException(this.provider);
+
+  /// The provider whose token could not be saved.
+  final DataProvider provider;
+
+  @override
+  String toString() =>
+      'TokenStoreException: token for ${provider.name} was not persisted';
+}
+
 /// Secure storage for provider authentication tokens.
 class TokenStore {
   /// Creates a [TokenStore] backed by the given secure [storage].
@@ -16,8 +29,16 @@ class TokenStore {
       'health_forge_token_${provider.name}';
 
   /// Saves a [token] for the given [provider].
-  Future<void> save(DataProvider provider, String token) =>
-      _storage.write(key: _key(provider), value: token);
+  ///
+  /// Reads the value back to confirm it was stored, and throws a
+  /// [TokenStoreException] if it wasn't. On Android, a failed write with
+  /// `resetOnError` enabled wipes storage but still completes normally.
+  Future<void> save(DataProvider provider, String token) async {
+    await _storage.write(key: _key(provider), value: token);
+    if (await _storage.read(key: _key(provider)) != token) {
+      throw TokenStoreException(provider);
+    }
+  }
 
   /// Reads the token for the given [provider], or null if not found.
   ///

@@ -67,6 +67,29 @@ for (final record in result.records) {
 
 See [docs/getting_started.md](https://github.com/mandarnilange/health_forge/blob/main/docs/getting_started.md) for iOS entitlements, Android manifest, and OAuth redirect setup.
 
+## Token storage on Android
+
+Create the `FlutterSecureStorage` you pass to `TokenStore` with
+`resetOnError` turned off. This needs `flutter_secure_storage` as a direct
+dependency of your app (`>=10.0.0 <12.0.0`):
+
+```dart
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:health_forge/health_forge.dart';
+
+final tokenStore = TokenStore(
+  storage: const FlutterSecureStorage(
+    aOptions: AndroidOptions(resetOnError: false),
+  ),
+);
+```
+
+With the default (`true`), a failed read or write on Android silently deletes
+everything in secure storage. `TokenStore` defends against this: `read`
+returns null instead of the plugin's reset message, and `save` throws a
+`TokenStoreException` if the token wasn't stored. Turning the option off means
+failures surface as a `PlatformException` instead of a wipe.
+
 ## Upgrading to 0.3.0
 
 `health_forge` now accepts `flutter_secure_storage` `>=10.0.0 <12.0.0`, so

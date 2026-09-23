@@ -110,7 +110,13 @@ import 'package:health_forge/health_forge.dart';
 import 'package:health_forge_oura/health_forge_oura.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-final tokenStore = TokenStore(storage: const FlutterSecureStorage());
+// resetOnError: false stops Android from silently wiping all stored data
+// after a failed read or write; failures surface as PlatformException.
+final tokenStore = TokenStore(
+  storage: const FlutterSecureStorage(
+    aOptions: AndroidOptions(resetOnError: false),
+  ),
+);
 
 Future<OuraHealthProvider> buildOuraProvider() async {
   // Restore persisted token (if any)
