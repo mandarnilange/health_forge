@@ -5,9 +5,11 @@ on:
     tags:
       - 'v*'
   workflow_dispatch:
-    # Manual trigger: publishes any pubspec version not yet on pub.dev.
-    # Use this when a tag was pushed via GITHUB_TOKEN (which doesn't fire
-    # downstream workflow events) or to re-run a stuck publish.
+    # Manual trigger runs the verify job only. pub.dev accepts automated
+    # publishing solely from workflows triggered by pushing a matching tag,
+    # so the publish jobs are limited to tag pushes. Push release tags with
+    # your own credentials: tags pushed with GITHUB_TOKEN don't trigger
+    # this workflow.
 
 # Publish requires the OIDC token for pub.dev authentication
 permissions:
@@ -48,11 +50,9 @@ jobs:
   publish-core:
     name: Publish health_forge_core
     needs: verify
-    # Only publish from a version tag (normal release) or from the
-    # branch-protected default branch (manual recovery via workflow_dispatch).
-    # A workflow_dispatch on any other ref runs verify only and never reaches
-    # `dart pub publish`, closing the arbitrary-ref supply-chain surface.
-    if: startsWith(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/main'
+    # pub.dev only accepts automated publishing from a tag push matching the
+    # package's tag pattern (v{{version}}), so never publish from other refs.
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
     env:
       PKG: health_forge_core
@@ -96,14 +96,30 @@ jobs:
         if: steps.check.outputs.skip == 'false'
         run: cd "packages/$PKG" && dart pub publish --dry-run
 
+      # setup-dart fetches the short-lived GitHub OIDC token for pub.dev and
+      # registers it with `dart pub token add`. Without it, `dart pub publish`
+      # waits forever for an interactive browser login. It runs right before
+      # publishing so the token is fresh.
+      - uses: dart-lang/setup-dart@v1
+        if: steps.check.outputs.skip == 'false'
+
+      # setup-dart puts a standalone Dart first on PATH; put Flutter's back in
+      # front so the workspace and Flutter packages publish with Flutter's SDK.
+      # The pub token registered above is shared between the two SDKs.
+      - name: Restore Flutter SDK on PATH
+        if: steps.check.outputs.skip == 'false'
+        run: dirname "$(command -v flutter)" >> "$GITHUB_PATH"
+
       - name: Publish
         if: steps.check.outputs.skip == 'false'
-        run: cd "packages/$PKG" && dart pub publish --force
+        run: |
+          dart --version
+          cd "packages/$PKG" && dart pub publish --force
 
   publish-packages:
     name: Publish ${{ matrix.package }}
     needs: publish-core
-    if: startsWith(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/main'
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 1
@@ -153,6 +169,22 @@ jobs:
         if: steps.check.outputs.skip == 'false'
         run: cd "packages/$PKG" && dart pub publish --dry-run
 
+      # setup-dart fetches the short-lived GitHub OIDC token for pub.dev and
+      # registers it with `dart pub token add`. Without it, `dart pub publish`
+      # waits forever for an interactive browser login. It runs right before
+      # publishing so the token is fresh.
+      - uses: dart-lang/setup-dart@v1
+        if: steps.check.outputs.skip == 'false'
+
+      # setup-dart puts a standalone Dart first on PATH; put Flutter's back in
+      # front so the workspace and Flutter packages publish with Flutter's SDK.
+      # The pub token registered above is shared between the two SDKs.
+      - name: Restore Flutter SDK on PATH
+        if: steps.check.outputs.skip == 'false'
+        run: dirname "$(command -v flutter)" >> "$GITHUB_PATH"
+
       - name: Publish
         if: steps.check.outputs.skip == 'false'
-        run: cd "packages/$PKG" && dart pub publish --force
+        run: |
+          dart --version
+          cd "packages/$PKG" && dart pub publish --force
