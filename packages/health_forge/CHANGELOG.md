@@ -6,6 +6,10 @@
   removed in v11 should read "Upgrading to 0.3.0" in the README.
 - Upgraded `drift` to `^2.35.0`.
 - Bumped `health_forge_core` dependency to `^0.3.0`.
+- **Fixed:** `TokenStore.read` now returns null instead of the
+  `"Data has been reset"` string. On Android, `flutter_secure_storage`
+  returns that string after its `resetOnError` default wipes storage
+  following a failure, and it was previously handed back as a token.
 
 ## 0.2.0
 

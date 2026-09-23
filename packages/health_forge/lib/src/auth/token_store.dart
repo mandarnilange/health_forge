@@ -8,6 +8,10 @@ class TokenStore {
 
   final FlutterSecureStorage _storage;
 
+  /// Value flutter_secure_storage returns on Android when `resetOnError`
+  /// (the default) wiped all data after a failed operation.
+  static const _resetSentinel = 'Data has been reset';
+
   static String _key(DataProvider provider) =>
       'health_forge_token_${provider.name}';
 
@@ -16,8 +20,13 @@ class TokenStore {
       _storage.write(key: _key(provider), value: token);
 
   /// Reads the token for the given [provider], or null if not found.
-  Future<String?> read(DataProvider provider) =>
-      _storage.read(key: _key(provider));
+  ///
+  /// Also returns null when the platform storage was reset after a failure,
+  /// so the reset message is never mistaken for a token.
+  Future<String?> read(DataProvider provider) async {
+    final value = await _storage.read(key: _key(provider));
+    return value == _resetSentinel ? null : value;
+  }
 
   /// Deletes the token for the given [provider].
   Future<void> delete(DataProvider provider) =>

@@ -115,6 +115,48 @@ void main() {
         final token = await authManager.authorize();
         expect(token, isNull);
       });
+
+      test('returns null when token exchange throws DioException', () async {
+        var callCount = 0;
+
+        final manager = OuraAuthManager(
+          clientId: 'test-client-id',
+          redirectUri: 'com.test.app://callback',
+          urlLauncher: (url) async {
+            final state = url.queryParameters['state'] ?? '';
+            final redirect = url.queryParameters['redirect_uri'];
+            return '$redirect?code=test-auth-code&state=$state';
+          },
+          dio: mockDio,
+          onTokenChanged: (_) => callCount++,
+        );
+
+        when(
+          () => mockDio.postUri<dynamic>(
+            any(),
+            data: any(named: 'data'),
+            options: any(named: 'options'),
+          ),
+        ).thenThrow(
+          DioException(
+            requestOptions: RequestOptions(),
+            type: DioExceptionType.badResponse,
+          ),
+        );
+
+        final token = await manager.authorize();
+
+        expect(token, isNull);
+        expect(manager.currentToken, isNull);
+        expect(callCount, 0);
+        verify(
+          () => mockDio.postUri<dynamic>(
+            any(),
+            data: any(named: 'data'),
+            options: any(named: 'options'),
+          ),
+        ).called(1);
+      });
     });
 
     group('refreshToken', () {

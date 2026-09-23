@@ -55,6 +55,22 @@ void main() {
       expect(token, isNull);
     });
 
+    test(
+      'read returns null when storage was reset after an Android failure',
+      () async {
+        // With resetOnError (the Android default), flutter_secure_storage
+        // wipes its data after a failure and returns this sentinel string as
+        // the value of the failed call.
+        when(
+          () => mockStorage.read(key: any(named: 'key')),
+        ).thenAnswer((_) async => 'Data has been reset');
+
+        final token = await tokenStore.read(DataProvider.oura);
+
+        expect(token, isNull);
+      },
+    );
+
     test('delete removes token from secure storage', () async {
       when(
         () => mockStorage.delete(key: any(named: 'key')),
