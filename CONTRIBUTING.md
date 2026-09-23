@@ -6,9 +6,14 @@ Thank you for your interest in contributing to Health Forge! This guide will hel
 
 ### Prerequisites
 
-- Dart SDK >= 3.6.0
-- Flutter >= 3.27.0
+- Dart SDK >= 3.13.0
+- Flutter >= 3.47.0
 - Melos (`dart pub global activate melos`)
+
+These are the requirements for developing in this repo, because the dev
+tooling (`freezed`, `very_good_analysis`, `melos`) needs a recent SDK. The
+published packages support older SDKs: Dart >= 3.10 and Flutter >= 3.38.1.
+See each package's `pubspec.yaml`.
 
 ### Getting Started
 
