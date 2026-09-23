@@ -14,14 +14,14 @@ topics:
   - rest-api
 
 environment:
-  sdk: ">=3.6.0 <4.0.0"
-  flutter: ">=3.27.0"
+  sdk: ">=3.10.0 <4.0.0"
+  flutter: ">=3.38.1"
 
 resolution: workspace
 
 dependencies:
-  crypto: ^3.0.6
-  dio: ^5.9.2
+  crypto: ^3.0.7
+  dio: ^5.11.1
   flutter:
     sdk: flutter
   health_forge_core: ^0.2.0
@@ -29,5 +29,5 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mocktail: ^1.0.4
-  very_good_analysis: ^10.2.0
+  mocktail: ^1.0.5
+  very_good_analysis: ^11.0.0

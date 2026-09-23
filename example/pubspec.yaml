@@ -4,11 +4,11 @@ publish_to: none
 resolution: workspace
 
 environment:
-  sdk: ">=3.6.0 <4.0.0"
-  flutter: ">=3.27.0"
+  sdk: ">=3.12.0 <4.0.0"
+  flutter: ">=3.44.0"
 
 dependencies:
-  app_links: ^7.0.0
+  app_links: ^7.2.1
   flutter:
     sdk: flutter
   health_forge:
@@ -23,10 +23,10 @@ dependencies:
     path: ../packages/health_forge_oura
   health_forge_strava:
     path: ../packages/health_forge_strava
-  intl: ^0.20.2
+  intl: ^0.20.3
   url_launcher: ^6.3.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  very_good_analysis: ^10.2.0
+  very_good_analysis: ^11.0.0
