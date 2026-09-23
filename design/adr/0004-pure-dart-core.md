@@ -15,7 +15,8 @@ The merge engine processes potentially thousands of health records and must run 
 - `meta` — annotations
 - `uuid` — record identifier generation
 - `collection` — advanced collection utilities
-- `equatable` — value equality
+- ~~`equatable` — value equality~~ (removed in 0.3.0: it was never
+  imported; freezed provides value equality)
 
 ### Enforcement
 

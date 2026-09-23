@@ -169,7 +169,7 @@ final cached = await forge.cache.get(
 ```dart
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-final tokenStore = TokenStore(const FlutterSecureStorage());
+final tokenStore = TokenStore(storage: const FlutterSecureStorage());
 
 // Wire into the auth manager — see adapter skills for provider specifics.
 final ouraAuth = OuraAuthManager(

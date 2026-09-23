@@ -69,7 +69,7 @@ dependencies:
   dio: ^5.4.0  # if using backend exchange
 ```
 
-> **Already on `flutter_secure_storage` v9 or earlier?** Ship a release on `^10.0.0` first so v10 can migrate stored Android data, then move to v11. Going straight from v9 to v11 leaves tokens saved with the old ciphers unreadable, and users have to sign in again.
+> **Already on `flutter_secure_storage` v9 or earlier?** Ship a release on `^10.0.0` first so v10 can migrate stored Android data, then move to v11. Going straight from v9 to v11 leaves tokens saved with the old ciphers unreadable, and users have to sign in again. This only affects apps that stored data with v9 themselves; `health_forge` has always required v10. If your app passes options removed in v11, see "Upgrading to 0.3.0" in the `health_forge` README.
 
 ### 4a. Backend token exchange (production)
 

@@ -74,14 +74,17 @@ a fresh `pub get` picks up v11. `TokenStore` only uses read, write, and delete,
 so the change doesn't affect it. Check how your app creates the
 `FlutterSecureStorage` you pass in:
 
-- **Default options:** nothing to do. v10 already migrated stored data to the
-  current ciphers.
+- **Default options:** nothing to do. Every earlier `health_forge` release
+  required `flutter_secure_storage` v10, so tokens were written with v10's
+  default ciphers, which v11 keeps.
 - **Options that v11 removed** (`encryptedSharedPreferences`,
   `sharedPreferencesName`, `RSA_ECB_PKCS1Padding`, `AES_CBC_PKCS7Padding`):
   switch to the v11 equivalents, such as `storageNamespace`. Tokens saved with
   the removed ciphers can't be read after the upgrade, so users have to sign
   in to Oura/Strava again. To defer this, keep `flutter_secure_storage` on
-  `^10.0.0` in your app; `health_forge` 0.3.0 still resolves with it.
+  `^10.0.0` in your app; `health_forge` 0.3.0 still resolves with it. On v11,
+  `FlutterSecureStorage.checkUpgradeStatus()` reports whether any data was
+  lost in the upgrade.
 
 ## Related packages
 

@@ -109,7 +109,7 @@ flutter_test (SDK) ─pins→ test_api 0.7.12
 | very_good_analysis 10 → 11 | 7 new lints. Formatter trailing-comma config. | **15 findings:** 13 × `async_return_with_no_await`, 2 × `unnecessary_ignore` (oura 8, core 2, health_forge 2, strava 2, example 1). `dart format` changes 16 files. |
 | melos 7 → 8 | Scripts can no longer combine `run:` with `exec:`; the command moves to `exec.command`. Build numbers kept on version. `analyze` defaults to `--fatal-infos`. `nullsafety` filter removed. | **Low, but config change needed.** 5 scripts in the root `pubspec.yaml` (`analyze`, `test`, `test:coverage`, `test:dart`, `generate`) moved to `exec.command`. |
 | flutter_secure_storage 10 → 11 | Deprecated v10 cipher options and `encryptedSharedPreferences` removed. Android minSdk 24. Data written with the removed ciphers can't be read. | **Consumer-facing.** `TokenStore` takes an injected `FlutterSecureStorage` and only uses read/write/delete, so our code is unaffected. Consumers who built storage with the removed v10 options lose stored OAuth tokens and must re-authenticate. The widened range `>=10.0.0 <12.0.0` lets them stay on 10 until they're ready. minSdk 24 is below `health`'s 26, so the floor doesn't change. |
-| health 13.3.1 → 13.3.2 | iOS minimum 15.0. iOS class renamed `SwiftHealthPlugin` → `HealthPlugin`. Write methods return a UUID. Android compile/target SDK 36. | **Low.** We only read (`getHealthDataFromTypes`, `requestAuthorization`, `hasPermissions`). HRV types (`HEART_RATE_VARIABILITY_SDNN` / `_RMSSD`) are unchanged. The example is already on iOS 16. Document the iOS 15 floor in the apple/ghc READMEs. |
+| health 13.3.1 → 13.3.2 | iOS minimum 14.0 → 15.0. iOS class renamed `SwiftHealthPlugin` → `HealthPlugin`. Write methods return a UUID. Android is unchanged (`minSdk` 26, compile/target SDK 36 since 13.2.0). | **Low.** We only read (`getHealthDataFromTypes`, `requestAuthorization`, `hasPermissions`). HRV types (`HEART_RATE_VARIABILITY_SDNN` / `_RMSSD`) are unchanged. The example is already on iOS 16. Document iOS 15 for apple and `minSdk` 26 / `compileSdk` 36 for ghc (Health Connect itself needs Android 9 / API 28+). |
 
 ### Unblocks #4 (Swift Package Manager)
 
@@ -147,16 +147,21 @@ Each step is its own commit. The workspace must pass
    `await`) must keep behaviour the same: existing tests are the guard, and
    tests are added first where a changed method isn't covered. Run
    `dart format` separately so the formatter churn is its own commit.
-5. **Widen `flutter_secure_storage` to `>=10.0.0 <12.0.0`.** Add a `TokenStore`
-   test that runs against both majors' public API (read/write/delete
-   round-trip via the mock). Document the consumer migration note.
+5. **Widen `flutter_secure_storage` to `>=10.0.0 <12.0.0`.** Existing
+   `TokenStore` tests already cover read/write/delete by key, and a mock
+   round-trip would only test the mock. The review instead found that
+   Android's `resetOnError` sentinel (`"Data has been reset"`) could be
+   returned as a token, so `TokenStore.read` now maps it to null (test
+   added). Document the consumer migration note.
 6. **Set SDK floors.** Set the published packages to the lowest SDK their
    runtime dependencies allow. drift 2.35 needs Dart ≥3.10, so the proposal is
    `sdk: ^3.10.0` and `flutter: ">=3.38.1"`. Flutter 3.38.0 shipped a
    beta Dart (`3.10.0-290.4.beta`), and 3.38.1 is the first release with
-   stable Dart 3.10.0. Confirm with a
-   `dart pub downgrade` + analyze + test pass. Dev tooling needs Dart 3.13;
-   note that in CONTRIBUTING.md.
+   stable Dart 3.10.0. These floors come from the dependency constraints
+   (drift 2.35, sqlite3, device_info_plus 13 need Dart 3.10 / Flutter
+   3.38.1). They can't be tested on that SDK: the workspace's dev tooling
+   needs Dart 3.13, noted in CONTRIBUTING.md. `dart pub downgrade` checks
+   the lowest allowed *dependency* versions on the current SDK.
 7. **Bump CI actions** as listed in [CI actions](#ci-actions).
 8. **Update docs and changelogs.** Per-package `CHANGELOG.md` entries,
    README minimum versions (iOS 15 / Android minSdk 26 for the health
@@ -166,7 +171,7 @@ Each step is its own commit. The workspace must pass
 ## Verification
 
 - **Scratch run (2026-09-23), target set:**
-  - resolves (workspace needs Dart ≥3.13 / Flutter ≥3.44)
+  - resolves (workspace needs Dart ≥3.13, which means Flutter ≥3.47)
   - `build_runner` succeeds for core and health_forge
   - analyze: 15 findings, all listed above
   - format: 16 files changed
@@ -175,14 +180,15 @@ Each step is its own commit. The workspace must pass
     example 34)
 - **On the branch:**
   - analyze and format clean
-  - tests: 914/914 pass
-  - coverage: 91.3–99.7% per package, all above the 90% gate
+  - tests: 938/938 pass. That's the 914 baseline plus 24 added during PR
+    review: 21 drift cache round-trip tests covering all 20 record types,
+    1 `TokenStore` reset-sentinel test, and 2 token-exchange failure tests
+    (oura, strava)
+  - coverage: 92.3–99.7% per package, all above the 90% gate
   - downgrade check: `dart pub downgrade` → analyze + tests pass at the
     lowest allowed versions (including `flutter_secure_storage` 10.0.0)
 - **Per commit:** analyze, format, tests and ≥90% per-package coverage
   (the existing CI gates).
-- **Downgrade check (step 6):** `dart pub downgrade` → analyze → test,
-  to prove the declared floors are true.
 - **Device check:** run the example app on an iOS device and an Android
   device through `docs/device_testing_checklist.md` before release. Health
   reads and Oura/Strava OAuth token persistence are the areas touched.
@@ -193,12 +199,12 @@ Each step is its own commit. The workspace must pass
   floor and allowing `flutter_secure_storage` 11 change what consumers
   resolve, and pre-1.0 convention puts that in a minor bump.
 - **Bump internal constraints too (done).** `health_forge`, `health_forge_apple`,
-  `health_forge_ghc`, `health_forge_oura` and `health_forge_strava` depend on
-  `health_forge_core: ^0.2.0`. Before 1.0, a caret range doesn't accept 0.3.0,
+  `health_forge_ghc`, `health_forge_oura` and `health_forge_strava` depended
+  on `health_forge_core: ^0.2.0`. Before 1.0, a caret range doesn't accept 0.3.0,
   so change those constraints to `^0.3.0` in the same release commit as the
   version bumps. Otherwise the adapters won't resolve against the new core.
-- **Must be released after #10:** automated publishing is fixed, so this
-  release doesn't need a manual publish.
+- **Publishing depends on #10:** release once automated publishing (#10) is
+  fixed; until then, the packages have to be published manually.
 
 ## Out of scope
 
@@ -208,7 +214,9 @@ Each step is its own commit. The workspace must pass
 - freezed 4.0.2 / test 1.32 / analyzer 14. They're blocked by the Flutter
   SDK's `test_api` pin and will come through `pub upgrade` automatically.
 - `health_forge_garmin` / `health_forge_labs` (unpublished, not in the
-  workspace list). They only get the `dio` bump.
+  workspace list). They only get constraint bumps: `very_good_analysis` 11
+  and Dart ≥3.13 in both; `dio`, `mocktail` and Flutter ≥3.47 in garmin;
+  `test` in labs.
 
 ## Decisions
 

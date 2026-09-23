@@ -24,7 +24,7 @@ dependencies:
   health_forge_ghc: ^0.3.0
 ```
 
-Requires **Android `minSdk` 26+** and **`compileSdk` 36+**.
+Requires **Android `minSdk` 26+** and **`compileSdk` 36+**. Health Connect itself runs on Android 9 (API 28) and later.
 
 Add Health Connect read permissions to `android/app/src/main/AndroidManifest.xml`. See [docs/getting_started.md](https://github.com/mandarnilange/health_forge/blob/main/docs/getting_started.md) for full Android setup.
 

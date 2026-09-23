@@ -64,7 +64,7 @@ Only include permissions for metrics you'll actually read — users are shown th
 
 ### 3. Android — Health Connect availability
 
-Health Connect ships pre-installed on Android 14+. On Android 13, the user must install the [Health Connect app](https://play.google.com/store/apps/details?id=com.google.android.apps.healthdata) from Play Store. Gracefully handle the unavailable case — your `authorize()` call will return a failure result if Health Connect is missing.
+Health Connect ships pre-installed on Android 14+. On Android 9–13, the user must install the [Health Connect app](https://play.google.com/store/apps/details?id=com.google.android.apps.healthdata) from Play Store; it isn't available below Android 9. Gracefully handle the unavailable case — your `authorize()` call will return a failure result if Health Connect is missing.
 
 ### 4. Register the provider
 
@@ -133,11 +133,11 @@ record.provenance?.sourceApp            // Package name, e.g. "com.samsung.andro
 
 ## Gotchas
 
-- **Android 13 split** — Health Connect is not guaranteed available. On Android 14+ it's pre-installed; on Android 13 users must install it. Detect via the adapter's `authorize()` return value.
+- **Android 14 split** — Health Connect is not guaranteed available. On Android 14+ it's pre-installed; on Android 9–13 users must install it. Detect via the adapter's `authorize()` return value.
 - **Write permissions — not supported** yet. All GHC adapter metrics are read-only.
 - **Sleep sessions** — Health Connect returns individual stage records (awake, light, deep, REM, out-of-bed) with minute durations. The adapter aggregates and deduplicates these into one `SleepSession` per night with `SleepStageSegment`s.
 - **Permissions UI** — Health Connect shows users a single system permissions screen. If they decline everything, `authorize()` returns failure; individual permissions aren't visible to the app.
-- **SDK levels** — the `health` plugin requires `minSdk` 26 or higher and `compileSdk` 36 or higher. Set these in `android/app/build.gradle(.kts)`. The example app uses `minSdk` 28.
+- **SDK levels** — the `health` plugin requires `minSdk` 26 or higher and `compileSdk` 36 or higher. Set these in `android/app/build.gradle(.kts)`. The app builds for API 26, but Health Connect itself needs Android 9 (API 28)+, so the example app uses `minSdk` 28.
 - **High-frequency metrics** (steps, HR) — if the user has both a phone and a watch reporting to Health Connect, expect overlap. Use `ConflictStrategy.keepAll` per-metric in `MergeConfig` if you want every sample preserved.
 
 ## Related skills

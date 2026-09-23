@@ -282,7 +282,9 @@ Open `ios/Runner.xcworkspace` in Xcode → select the Runner target → Signing 
 
 > **Android SDK levels:** `minSdk` 26 or higher and `compileSdk` 36 or
 > higher, required by the `health` plugin. Set them in
-> `android/app/build.gradle(.kts)`.
+> `android/app/build.gradle(.kts)`. The app builds for API 26, but Health
+> Connect itself only runs on Android 9 (API 28) and later, which is why the
+> example app uses `minSdk` 28.
 
 **1. Add permissions to `android/app/src/main/AndroidManifest.xml`**
 
@@ -301,7 +303,7 @@ Add more permissions as needed for the metrics you use (e.g., `READ_WEIGHT`, `RE
 
 **2. Ensure Health Connect is installed**
 
-Health Connect is pre-installed on Android 14+. On Android 13, users need to install the [Health Connect app](https://play.google.com/store/apps/details?id=com.google.android.apps.healthdata) from the Play Store.
+Health Connect is pre-installed on Android 14+. On Android 9–13, users need to install the [Health Connect app](https://play.google.com/store/apps/details?id=com.google.android.apps.healthdata) from the Play Store. It isn't available below Android 9.
 
 ### Oura Ring
 

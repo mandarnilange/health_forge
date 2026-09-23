@@ -11,7 +11,7 @@ Thank you for your interest in contributing to Health Forge! This guide will hel
 - Melos (`dart pub global activate melos`)
 
 These are the requirements for developing in this repo, because the dev
-tooling (`freezed`, `very_good_analysis`, `melos`) needs a recent SDK. The
+tooling (`freezed` 4, `very_good_analysis` 11) needs Dart 3.13. The
 published packages support older SDKs: Dart >= 3.10 and Flutter >= 3.38.1.
 See each package's `pubspec.yaml`.
 

@@ -2,8 +2,8 @@
 
 [![CI](https://img.shields.io/github/actions/workflow/status/mandarnilange/health_forge/ci.yaml?branch=main&label=CI)](https://github.com/mandarnilange/health_forge/actions/workflows/ci.yaml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Dart](https://img.shields.io/badge/dart-%3E%3D3.6.0-0175C2.svg)](https://dart.dev)
-[![Flutter](https://img.shields.io/badge/flutter-%3E%3D3.27.0-02569B.svg)](https://flutter.dev)
+[![Dart](https://img.shields.io/badge/dart-%3E%3D3.10.0-0175C2.svg)](https://dart.dev)
+[![Flutter](https://img.shields.io/badge/flutter-%3E%3D3.38.1-02569B.svg)](https://flutter.dev)
 [![style: very_good_analysis](https://img.shields.io/badge/style-very__good__analysis-B22C89.svg)](https://pub.dev/packages/very_good_analysis)
 [![melos](https://img.shields.io/badge/maintained%20with-melos-f700ff.svg)](https://github.com/invertase/melos)
 
@@ -212,9 +212,12 @@ See `design/adr/` for architectural decision records.
 
 ### Prerequisites
 
-- Dart SDK >= 3.6.0
-- Flutter >= 3.27.0 (for Flutter packages)
+- Dart SDK >= 3.13.0
+- Flutter >= 3.47.0
 - Melos (`dart pub global activate melos`)
+
+These are what you need to develop in this repo. The published packages
+work with Dart >= 3.10.0 and Flutter >= 3.38.1.
 
 ### Setup
 
