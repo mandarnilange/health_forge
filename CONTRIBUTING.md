@@ -104,6 +104,38 @@ packages/
 - **Platform-agnostic DTOs**: Adapter packages use `HealthDataRecord` for testability
 - **Mappers**: Each adapter has mapper classes converting DTOs to core models
 
+## Releasing (maintainers)
+
+The six published packages (`health_forge_core`, `health_forge`,
+`health_forge_apple`, `health_forge_ghc`, `health_forge_oura`,
+`health_forge_strava`) are released together at the same version.
+
+1. On a PR, bump every published package's `version:`, move the internal
+   `health_forge_core` constraint to the new version (before 1.0,
+   `^0.2.0` doesn't accept `0.3.0`), and add CHANGELOG entries. Merge once CI
+   is green.
+2. From an up-to-date `main`, push the tag **with your own credentials**:
+   ```bash
+   git tag vX.Y.Z && git push origin vX.Y.Z
+   ```
+   Tags pushed by a workflow using `GITHUB_TOKEN` don't trigger other
+   workflows, so the `Create Release` workflow can't start publishing.
+3. The tag triggers `.github/workflows/publish.yaml`: verify → publish
+   `health_forge_core` → the other five, one at a time. It uses pub.dev
+   automated publishing (GitHub OIDC via `dart-lang/setup-dart`), which only
+   accepts tag-push runs. Versions already on pub.dev are skipped, so a failed
+   run can be re-run.
+4. Create the GitHub release: `gh release create vX.Y.Z --generate-notes`.
+
+One-time setup: each package's pub.dev admin page must have automated
+publishing enabled for GitHub Actions, with repository
+`mandarnilange/health_forge` and tag pattern `v{{version}}`.
+
+If CI can't publish, publish by hand from an up-to-date checkout: run
+`dart run melos run generate --no-select` (generated files are gitignored but
+must ship), then `dart pub publish` in `packages/health_forge_core` first,
+followed by the other five.
+
 ## Reporting Issues
 
 - Use the issue templates for bug reports and feature requests
