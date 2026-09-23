@@ -46,8 +46,8 @@ class CachedRecords extends Table {
 
   @override
   List<Set<Column>> get uniqueKeys => [
-        {provider, metricType, startTime, endTime, sourceDeviceId},
-      ];
+    {provider, metricType, startTime, endTime, sourceDeviceId},
+  ];
 }
 
 /// Table for tracking sync metadata per provider/metric pair.

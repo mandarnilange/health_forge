@@ -16,11 +16,9 @@ class HealthForgeClient {
   /// final db = HealthCacheDatabase(NativeDatabase.createInBackground(file));
   /// final forge = HealthForgeClient(cache: DriftCacheManager(database: db));
   /// ```
-  HealthForgeClient({
-    MergeConfig? mergeConfig,
-    CacheManager? cache,
-  })  : _mergeConfig = mergeConfig ?? const MergeConfig(),
-        _cache = cache ?? InMemoryCacheManager() {
+  HealthForgeClient({MergeConfig? mergeConfig, CacheManager? cache})
+    : _mergeConfig = mergeConfig ?? const MergeConfig(),
+      _cache = cache ?? InMemoryCacheManager() {
     _mergeEngine = MergeEngine(config: _mergeConfig);
     _auth = AuthOrchestrator(registry: _registry);
     _syncManager = SyncManager(
@@ -60,11 +58,7 @@ class HealthForgeClient {
     required MetricType metric,
     required TimeRange range,
   }) {
-    return _syncManager.sync(
-      provider: provider,
-      metric: metric,
-      range: range,
-    );
+    return _syncManager.sync(provider: provider, metric: metric, range: range);
   }
 
   /// Disposes resources held by this client.

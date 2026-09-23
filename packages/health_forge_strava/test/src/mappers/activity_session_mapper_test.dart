@@ -101,14 +101,8 @@ void main() {
 
         final sessions = ActivitySessionMapper.mapFromList(response);
 
-        expect(
-          sessions.first.startTime,
-          DateTime.utc(2024, 1, 15, 7),
-        );
-        expect(
-          sessions.first.endTime,
-          DateTime.utc(2024, 1, 15, 8),
-        );
+        expect(sessions.first.startTime, DateTime.utc(2024, 1, 15, 7));
+        expect(sessions.first.endTime, DateTime.utc(2024, 1, 15, 8));
       });
 
       test('handles null kilojoules', () {

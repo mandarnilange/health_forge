@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Release version (e.g., 0.2.0)'
+        description: 'Release version (e.g., 0.3.0)'
         required: true
         type: string
       prerelease:
@@ -21,7 +21,7 @@ jobs:
     name: Create GitHub Release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Create and push tag
         env:
@@ -31,7 +31,7 @@ jobs:
           git push origin "v${RELEASE_VERSION}"
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           tag_name: "v${{ inputs.version }}"
           name: "v${{ inputs.version }}"

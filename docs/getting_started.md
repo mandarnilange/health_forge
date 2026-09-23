@@ -201,15 +201,15 @@ Add only the packages you need to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  health_forge: ^0.2.0
+  health_forge: ^0.3.0
 
   # Platform adapters (pick one or both)
-  health_forge_apple: ^0.2.0   # iOS — Apple HealthKit
-  health_forge_ghc: ^0.2.0     # Android — Google Health Connect
+  health_forge_apple: ^0.3.0   # iOS — Apple HealthKit
+  health_forge_ghc: ^0.3.0     # Android — Google Health Connect
 
   # REST API adapters (optional)
-  health_forge_oura: ^0.2.0    # Oura Ring
-  health_forge_strava: ^0.2.0  # Strava
+  health_forge_oura: ^0.3.0    # Oura Ring
+  health_forge_strava: ^0.3.0  # Strava
 ```
 
 Then run:
@@ -242,6 +242,10 @@ Each skill walks the agent through the platform setup, client wiring, and a mini
 ## Platform Setup
 
 ### iOS (HealthKit)
+
+> **Minimum iOS version: 15.0**, required by the `health` plugin. Set
+> `platform :ios, '15.0'` (or higher) in `ios/Podfile`, and set the Runner
+> target's deployment target to match in Xcode.
 
 **1. Add HealthKit entitlement**
 
@@ -276,6 +280,12 @@ Open `ios/Runner.xcworkspace` in Xcode → select the Runner target → Signing 
 
 ### Android (Health Connect)
 
+> **Android SDK levels:** `minSdk` 26 or higher and `compileSdk` 36 or
+> higher, required by the `health` plugin. Set them in
+> `android/app/build.gradle(.kts)`. The app builds for API 26, but Health
+> Connect itself only runs on Android 9 (API 28) and later, which is why the
+> example app uses `minSdk` 28.
+
 **1. Add permissions to `android/app/src/main/AndroidManifest.xml`**
 
 Add inside the `<manifest>` tag, before `<application>`:
@@ -293,7 +303,7 @@ Add more permissions as needed for the metrics you use (e.g., `READ_WEIGHT`, `RE
 
 **2. Ensure Health Connect is installed**
 
-Health Connect is pre-installed on Android 14+. On Android 13, users need to install the [Health Connect app](https://play.google.com/store/apps/details?id=com.google.android.apps.healthdata) from the Play Store.
+Health Connect is pre-installed on Android 14+. On Android 9–13, users need to install the [Health Connect app](https://play.google.com/store/apps/details?id=com.google.android.apps.healthdata) from the Play Store. It isn't available below Android 9.
 
 ### Oura Ring
 

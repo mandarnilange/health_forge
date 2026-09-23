@@ -9,10 +9,7 @@ void main() {
 
     setUp(() {
       now = DateTime(2026, 3, 17);
-      limiter = RateLimiter(
-        maxRequestsPerSecond: 3,
-        clock: () => now,
-      );
+      limiter = RateLimiter(maxRequestsPerSecond: 3, clock: () => now);
     });
 
     RequestOptions makeOptions() => RequestOptions(path: '/test');

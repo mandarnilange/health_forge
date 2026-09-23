@@ -147,8 +147,9 @@ void main() {
             queryParameters: any(named: 'queryParameters'),
           ),
         ).thenAnswer((invocation) async {
-          capturedParams = invocation.namedArguments[#queryParameters]
-              as Map<String, dynamic>;
+          capturedParams =
+              invocation.namedArguments[#queryParameters]
+                  as Map<String, dynamic>;
           return Response(
             data: <dynamic>[],
             statusCode: 200,
@@ -161,10 +162,7 @@ void main() {
 
         await apiClient.fetchActivities(after: after, before: before);
 
-        expect(
-          capturedParams!['after'],
-          after.millisecondsSinceEpoch ~/ 1000,
-        );
+        expect(capturedParams!['after'], after.millisecondsSinceEpoch ~/ 1000);
         expect(
           capturedParams!['before'],
           before.millisecondsSinceEpoch ~/ 1000,
@@ -177,9 +175,7 @@ void main() {
         final file = File('test/fixtures/activity_detail_response.json');
         final json = jsonDecode(file.readAsStringSync());
 
-        when(
-          () => mockDio.get<dynamic>(any()),
-        ).thenAnswer(
+        when(() => mockDio.get<dynamic>(any())).thenAnswer(
           (_) async => Response(
             data: json,
             statusCode: 200,
@@ -187,8 +183,9 @@ void main() {
           ),
         );
 
-        final response =
-            await apiClient.fetchActivityDetail(activityId: 12345678901);
+        final response = await apiClient.fetchActivityDetail(
+          activityId: 12345678901,
+        );
 
         expect(response.id, 12345678901);
         expect(response.name, 'Morning Run');
@@ -214,8 +211,9 @@ void main() {
           ),
         );
 
-        final response =
-            await apiClient.fetchActivityStreams(activityId: 12345678901);
+        final response = await apiClient.fetchActivityStreams(
+          activityId: 12345678901,
+        );
 
         expect(response.streams, hasLength(2));
         expect(response.dataForType('heartrate'), isNotNull);

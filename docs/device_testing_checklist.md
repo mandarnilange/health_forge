@@ -6,8 +6,8 @@
 |---|---|
 | Xcode | 16.0+ (macOS Sequoia recommended) |
 | Android Studio | Hedgehog (2023.1.1) or later |
-| Flutter SDK | 3.27.0+ |
-| Dart SDK | 3.6.0+ |
+| Flutter SDK | 3.47.0+ |
+| Dart SDK | 3.13.0+ |
 | Physical iOS device | Recommended — HealthKit not available in Simulator |
 | Physical Android device | Recommended — Health Connect has limited emulator support |
 | Oura developer account | Register at [cloud.ouraring.com](https://cloud.ouraring.com) |

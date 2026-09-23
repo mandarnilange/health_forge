@@ -1,3 +1,11 @@
+## 0.3.0
+
+- **Breaking:** minimum SDK raised to Dart 3.10 / Flutter 3.38.1.
+- Upgraded `health` to `^13.3.2`. Android requirements are unchanged from
+  0.2.0 (`minSdk` 26+, `compileSdk` 36+) and are now documented in the
+  README.
+- Bumped `health_forge_core` dependency to `^0.3.0`.
+
 ## 0.2.0
 
 - **Fixed:** map `MetricType.hrv` to `HEART_RATE_VARIABILITY_RMSSD` instead of

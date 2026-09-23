@@ -53,8 +53,9 @@ void main() {
       ),
     );
 
-    when(() => ghcProvider.providerType)
-        .thenReturn(DataProvider.googleHealthConnect);
+    when(
+      () => ghcProvider.providerType,
+    ).thenReturn(DataProvider.googleHealthConnect);
     when(() => ghcProvider.displayName).thenReturn('Google Health Connect');
     when(() => ghcProvider.capabilities).thenReturn(
       const ProviderCapabilities(
@@ -249,10 +250,7 @@ void main() {
         ..use(appleProvider);
 
       const mergeConfig = MergeConfig(
-        providerPriority: [
-          DataProvider.apple,
-          DataProvider.strava,
-        ],
+        providerPriority: [DataProvider.apple, DataProvider.strava],
       );
 
       final queryBuilder = client.query()
@@ -268,10 +266,7 @@ void main() {
 
       expect(result.records, hasLength(1));
       expect(result.records.first.provider, DataProvider.apple);
-      expect(
-        (result.records.first as HeartRateSample).beatsPerMinute,
-        142,
-      );
+      expect((result.records.first as HeartRateSample).beatsPerMinute, 142);
     });
 
     test('average strategy averages bpm from Strava and Apple', () async {
@@ -328,10 +323,7 @@ void main() {
 
       expect(result.records, hasLength(1));
       // (150 + 140) ~/ 2 = 145
-      expect(
-        (result.records.first as HeartRateSample).beatsPerMinute,
-        145,
-      );
+      expect((result.records.first as HeartRateSample).beatsPerMinute, 145);
     });
 
     test('keepAll strategy retains both heart rate samples', () async {
@@ -460,10 +452,7 @@ void main() {
       final result = await executor.execute(queryBuilder.build());
 
       expect(result.records, hasLength(1));
-      expect(
-        result.records.first.provider,
-        DataProvider.googleHealthConnect,
-      );
+      expect(result.records.first.provider, DataProvider.googleHealthConnect);
     });
 
     test('priority strategy keeps GHC calories over Strava', () async {
@@ -525,109 +514,103 @@ void main() {
       final result = await executor.execute(queryBuilder.build());
 
       expect(result.records, hasLength(1));
-      expect(
-        result.records.first.provider,
-        DataProvider.googleHealthConnect,
-      );
-      expect(
-        (result.records.first as CaloriesBurned).totalCalories,
-        495,
-      );
+      expect(result.records.first.provider, DataProvider.googleHealthConnect);
+      expect((result.records.first as CaloriesBurned).totalCalories, 495);
     });
 
-    test('per-metric strategy uses keepAll for workouts but priority for HR',
-        () async {
-      final stravaWorkout = ActivitySession(
-        id: 'strava-mixed-run',
-        provider: DataProvider.strava,
-        providerRecordType: 'workout',
-        startTime: now.subtract(const Duration(minutes: 90)),
-        endTime: now.subtract(const Duration(minutes: 45)),
-        capturedAt: now,
-        activityType: MetricType.workout,
-        activityName: 'Ride',
-        distanceMeters: 15000,
-      );
-      final ghcWorkout = ActivitySession(
-        id: 'ghc-mixed-run',
-        provider: DataProvider.googleHealthConnect,
-        providerRecordType: 'workout',
-        startTime: now.subtract(const Duration(minutes: 90)),
-        endTime: now.subtract(const Duration(minutes: 45)),
-        capturedAt: now,
-        activityType: MetricType.workout,
-        activityName: 'Cycling',
-        distanceMeters: 14800,
-      );
-      final stravaHr = HeartRateSample(
-        id: 'strava-mixed-hr',
-        provider: DataProvider.strava,
-        providerRecordType: 'heart_rate',
-        startTime: now.subtract(const Duration(minutes: 60)),
-        endTime: now.subtract(const Duration(minutes: 59)),
-        capturedAt: now,
-        beatsPerMinute: 155,
-      );
-      final ghcHr = HeartRateSample(
-        id: 'ghc-mixed-hr',
-        provider: DataProvider.googleHealthConnect,
-        providerRecordType: 'heart_rate',
-        startTime: now.subtract(const Duration(minutes: 60)),
-        endTime: now.subtract(const Duration(minutes: 59)),
-        capturedAt: now,
-        beatsPerMinute: 152,
-      );
+    test(
+      'per-metric strategy uses keepAll for workouts but priority for HR',
+      () async {
+        final stravaWorkout = ActivitySession(
+          id: 'strava-mixed-run',
+          provider: DataProvider.strava,
+          providerRecordType: 'workout',
+          startTime: now.subtract(const Duration(minutes: 90)),
+          endTime: now.subtract(const Duration(minutes: 45)),
+          capturedAt: now,
+          activityType: MetricType.workout,
+          activityName: 'Ride',
+          distanceMeters: 15000,
+        );
+        final ghcWorkout = ActivitySession(
+          id: 'ghc-mixed-run',
+          provider: DataProvider.googleHealthConnect,
+          providerRecordType: 'workout',
+          startTime: now.subtract(const Duration(minutes: 90)),
+          endTime: now.subtract(const Duration(minutes: 45)),
+          capturedAt: now,
+          activityType: MetricType.workout,
+          activityName: 'Cycling',
+          distanceMeters: 14800,
+        );
+        final stravaHr = HeartRateSample(
+          id: 'strava-mixed-hr',
+          provider: DataProvider.strava,
+          providerRecordType: 'heart_rate',
+          startTime: now.subtract(const Duration(minutes: 60)),
+          endTime: now.subtract(const Duration(minutes: 59)),
+          capturedAt: now,
+          beatsPerMinute: 155,
+        );
+        final ghcHr = HeartRateSample(
+          id: 'ghc-mixed-hr',
+          provider: DataProvider.googleHealthConnect,
+          providerRecordType: 'heart_rate',
+          startTime: now.subtract(const Duration(minutes: 60)),
+          endTime: now.subtract(const Duration(minutes: 59)),
+          capturedAt: now,
+          beatsPerMinute: 152,
+        );
 
-      // Return all records regardless of metric type — the MergeEngine
-      // groups by MetricType internally, so returning everything is safe.
-      when(
-        () => stravaProvider.fetchRecords(
-          metricType: any(named: 'metricType'),
-          timeRange: any(named: 'timeRange'),
-        ),
-      ).thenAnswer((_) async => [stravaWorkout, stravaHr]);
-      when(
-        () => ghcProvider.fetchRecords(
-          metricType: any(named: 'metricType'),
-          timeRange: any(named: 'timeRange'),
-        ),
-      ).thenAnswer((_) async => [ghcWorkout, ghcHr]);
+        // Return all records regardless of metric type — the MergeEngine
+        // groups by MetricType internally, so returning everything is safe.
+        when(
+          () => stravaProvider.fetchRecords(
+            metricType: any(named: 'metricType'),
+            timeRange: any(named: 'timeRange'),
+          ),
+        ).thenAnswer((_) async => [stravaWorkout, stravaHr]);
+        when(
+          () => ghcProvider.fetchRecords(
+            metricType: any(named: 'metricType'),
+            timeRange: any(named: 'timeRange'),
+          ),
+        ).thenAnswer((_) async => [ghcWorkout, ghcHr]);
 
-      client
-        ..use(stravaProvider)
-        ..use(ghcProvider);
+        client
+          ..use(stravaProvider)
+          ..use(ghcProvider);
 
-      const mergeConfig = MergeConfig(
-        providerPriority: [
-          DataProvider.googleHealthConnect,
-          DataProvider.strava,
-        ],
-        perMetricStrategy: {
-          MetricType.workout: ConflictStrategy.keepAll,
-        },
-      );
+        const mergeConfig = MergeConfig(
+          providerPriority: [
+            DataProvider.googleHealthConnect,
+            DataProvider.strava,
+          ],
+          perMetricStrategy: {MetricType.workout: ConflictStrategy.keepAll},
+        );
 
-      final queryBuilder = client.query()
-        ..forMetric(MetricType.workout)
-        ..forMetric(MetricType.heartRate)
-        ..inRange(range)
-        ..withMerge(mergeConfig);
+        final queryBuilder = client.query()
+          ..forMetric(MetricType.workout)
+          ..forMetric(MetricType.heartRate)
+          ..inRange(range)
+          ..withMerge(mergeConfig);
 
-      final executor = QueryExecutor(
-        registry: client.registry,
-        mergeEngine: MergeEngine(config: mergeConfig),
-      );
-      final result = await executor.execute(queryBuilder.build());
+        final executor = QueryExecutor(
+          registry: client.registry,
+          mergeEngine: MergeEngine(config: mergeConfig),
+        );
+        final result = await executor.execute(queryBuilder.build());
 
-      // Workouts: keepAll → both kept
-      final workouts = result.records.whereType<ActivitySession>().toList();
-      expect(workouts, hasLength(2));
+        // Workouts: keepAll → both kept
+        final workouts = result.records.whereType<ActivitySession>().toList();
+        expect(workouts, hasLength(2));
 
-      // Heart rate: priority → only GHC kept
-      final hrs = result.records.whereType<HeartRateSample>().toList();
-      expect(hrs, hasLength(1));
-      expect(hrs.first.provider, DataProvider.googleHealthConnect);
-    });
+        // Heart rate: priority → only GHC kept
+        final hrs = result.records.whereType<HeartRateSample>().toList();
+        expect(hrs, hasLength(1));
+        expect(hrs.first.provider, DataProvider.googleHealthConnect);
+      },
+    );
   });
 
   group('Multi-provider no overlap', () {
@@ -741,10 +724,7 @@ void main() {
       final queryBuilder = client.query()
         ..forMetric(MetricType.workout)
         ..inRange(
-          TimeRange(
-            start: now.subtract(const Duration(hours: 12)),
-            end: now,
-          ),
+          TimeRange(start: now.subtract(const Duration(hours: 12)), end: now),
         )
         ..withMerge(mergeConfig);
 
@@ -823,10 +803,7 @@ void main() {
       final queryBuilder = client.query()
         ..forMetric(MetricType.heartRate)
         ..inRange(
-          TimeRange(
-            start: now.subtract(const Duration(hours: 2)),
-            end: now,
-          ),
+          TimeRange(start: now.subtract(const Duration(hours: 2)), end: now),
         )
         ..withMerge(mergeConfig);
 

@@ -67,27 +67,18 @@ void main() {
           capturedAuthUrl!.toString(),
           startsWith(StravaApiEndpoints.authorizeUrl),
         );
-        expect(
-          capturedAuthUrl!.queryParameters['client_id'],
-          'test-client-id',
-        );
+        expect(capturedAuthUrl!.queryParameters['client_id'], 'test-client-id');
         expect(
           capturedAuthUrl!.queryParameters['redirect_uri'],
           'com.test.app://callback',
         );
         expect(capturedAuthUrl!.queryParameters['response_type'], 'code');
-        expect(
-          capturedAuthUrl!.queryParameters['scope'],
-          'activity:read_all',
-        );
+        expect(capturedAuthUrl!.queryParameters['scope'], 'activity:read_all');
         expect(
           capturedAuthUrl!.queryParameters['code_challenge_method'],
           'S256',
         );
-        expect(
-          capturedAuthUrl!.queryParameters['code_challenge'],
-          isNotEmpty,
-        );
+        expect(capturedAuthUrl!.queryParameters['code_challenge'], isNotEmpty);
       });
 
       test('exchanges code for token on success', () async {
@@ -157,6 +148,49 @@ void main() {
 
         final token = await authManager.authorize();
         expect(token, isNull);
+      });
+
+      test('returns null when token exchange throws DioException', () async {
+        var callCount = 0;
+
+        final manager = StravaAuthManager(
+          clientId: 'test-client-id',
+          clientSecret: 'test-client-secret',
+          redirectUri: 'com.test.app://callback',
+          urlLauncher: (url) async {
+            final state = url.queryParameters['state'] ?? '';
+            final redirect = url.queryParameters['redirect_uri'];
+            return '$redirect?code=test-auth-code&state=$state';
+          },
+          dio: mockDio,
+          onTokenChanged: (_) => callCount++,
+        );
+
+        when(
+          () => mockDio.postUri<dynamic>(
+            any(),
+            data: any(named: 'data'),
+            options: any(named: 'options'),
+          ),
+        ).thenThrow(
+          DioException(
+            requestOptions: RequestOptions(),
+            type: DioExceptionType.badResponse,
+          ),
+        );
+
+        final token = await manager.authorize();
+
+        expect(token, isNull);
+        expect(manager.currentToken, isNull);
+        expect(callCount, 0);
+        verify(
+          () => mockDio.postUri<dynamic>(
+            any(),
+            data: any(named: 'data'),
+            options: any(named: 'options'),
+          ),
+        ).called(1);
       });
     });
 
@@ -422,10 +456,7 @@ void main() {
         await authManager.authorize();
 
         expect(capturedAuthUrl, isNotNull);
-        expect(
-          capturedAuthUrl!.queryParameters['state'],
-          isNotEmpty,
-        );
+        expect(capturedAuthUrl!.queryParameters['state'], isNotEmpty);
       });
 
       test('returns null when state mismatch in redirect', () async {

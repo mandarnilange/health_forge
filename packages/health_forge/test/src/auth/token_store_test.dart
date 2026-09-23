@@ -23,6 +23,9 @@ void main() {
           value: any(named: 'value'),
         ),
       ).thenAnswer((_) async {});
+      when(
+        () => mockStorage.read(key: any(named: 'key')),
+      ).thenAnswer((_) async => 'test-token');
 
       await tokenStore.save(DataProvider.apple, 'test-token');
 
@@ -34,6 +37,34 @@ void main() {
       ).called(1);
     });
 
+    test(
+      'save throws TokenStoreException when the token was not persisted',
+      () async {
+        // On Android, a failed write with resetOnError wipes storage and
+        // still completes normally, so save must verify the write.
+        when(
+          () => mockStorage.write(
+            key: any(named: 'key'),
+            value: any(named: 'value'),
+          ),
+        ).thenAnswer((_) async {});
+        when(
+          () => mockStorage.read(key: any(named: 'key')),
+        ).thenAnswer((_) async => null);
+
+        await expectLater(
+          tokenStore.save(DataProvider.oura, 'test-token'),
+          throwsA(
+            isA<TokenStoreException>().having(
+              (e) => e.provider,
+              'provider',
+              DataProvider.oura,
+            ),
+          ),
+        );
+      },
+    );
+
     test('read returns token from secure storage', () async {
       when(
         () => mockStorage.read(key: any(named: 'key')),
@@ -42,11 +73,7 @@ void main() {
       final token = await tokenStore.read(DataProvider.oura);
 
       expect(token, 'stored-token');
-      verify(
-        () => mockStorage.read(
-          key: 'health_forge_token_oura',
-        ),
-      ).called(1);
+      verify(() => mockStorage.read(key: 'health_forge_token_oura')).called(1);
     });
 
     test('read returns null when no token exists', () async {
@@ -59,6 +86,22 @@ void main() {
       expect(token, isNull);
     });
 
+    test(
+      'read returns null when storage was reset after an Android failure',
+      () async {
+        // With resetOnError (the Android default), flutter_secure_storage
+        // wipes its data after a failure and returns this sentinel string as
+        // the value of the failed call.
+        when(
+          () => mockStorage.read(key: any(named: 'key')),
+        ).thenAnswer((_) async => 'Data has been reset');
+
+        final token = await tokenStore.read(DataProvider.oura);
+
+        expect(token, isNull);
+      },
+    );
+
     test('delete removes token from secure storage', () async {
       when(
         () => mockStorage.delete(key: any(named: 'key')),
@@ -67,9 +110,7 @@ void main() {
       await tokenStore.delete(DataProvider.garmin);
 
       verify(
-        () => mockStorage.delete(
-          key: 'health_forge_token_garmin',
-        ),
+        () => mockStorage.delete(key: 'health_forge_token_garmin'),
       ).called(1);
     });
 
@@ -83,9 +124,7 @@ void main() {
       // Should delete each provider key individually
       for (final provider in DataProvider.values) {
         verify(
-          () => mockStorage.delete(
-            key: 'health_forge_token_${provider.name}',
-          ),
+          () => mockStorage.delete(key: 'health_forge_token_${provider.name}'),
         ).called(1);
       }
 

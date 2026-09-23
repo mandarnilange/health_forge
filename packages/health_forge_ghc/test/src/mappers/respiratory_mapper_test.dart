@@ -35,10 +35,7 @@ void main() {
         expect(sample.provenance!.dataOrigin, DataOrigin.native_);
         expect(sample.provenance!.sourceDevice?.model, 'Pixel Watch 2');
         expect(sample.provenance!.sourceDevice?.manufacturer, 'Pixel Watch');
-        expect(
-          sample.provenance!.sourceApp,
-          'com.google.android.apps.fitness',
-        );
+        expect(sample.provenance!.sourceApp, 'com.google.android.apps.fitness');
       });
 
       test('uses uuid when provided', () {

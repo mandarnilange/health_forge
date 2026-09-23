@@ -143,10 +143,7 @@ void main() {
         sourceId: 'test',
       );
 
-      expect(
-        () => ActivityMapper.map(record),
-        throwsA(isA<ArgumentError>()),
-      );
+      expect(() => ActivityMapper.map(record), throwsA(isA<ArgumentError>()));
     });
   });
 }

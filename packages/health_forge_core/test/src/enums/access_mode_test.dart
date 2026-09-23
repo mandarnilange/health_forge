@@ -7,11 +7,7 @@ void main() {
       expect(AccessMode.values, hasLength(3));
       expect(
         AccessMode.values,
-        containsAll([
-          AccessMode.read,
-          AccessMode.write,
-          AccessMode.readWrite,
-        ]),
+        containsAll([AccessMode.read, AccessMode.write, AccessMode.readWrite]),
       );
     });
 

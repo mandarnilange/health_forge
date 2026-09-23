@@ -14,9 +14,7 @@ class ActivitySessionMapper {
   }
 
   /// Maps a detailed activity response to a single [ActivitySession].
-  static ActivitySession mapFromDetail(
-    StravaActivityDetailResponse detail,
-  ) {
+  static ActivitySession mapFromDetail(StravaActivityDetailResponse detail) {
     final startTime = DateTime.parse(detail.startDate);
     final endTime = startTime.add(Duration(seconds: detail.elapsedTime));
 
@@ -36,7 +34,8 @@ class ActivitySessionMapper {
       capturedAt: DateTime.now(),
       activityType: MetricType.workout,
       activityName: detail.name,
-      totalCalories: detail.calories ??
+      totalCalories:
+          detail.calories ??
           (detail.kilojoules != null ? detail.kilojoules! / 4.184 : null),
       distanceMeters: detail.distance,
       averageHeartRate: detail.averageHeartrate?.round(),
@@ -68,8 +67,9 @@ class ActivitySessionMapper {
       capturedAt: DateTime.now(),
       activityType: MetricType.workout,
       activityName: activity.name,
-      totalCalories:
-          activity.kilojoules != null ? activity.kilojoules! / 4.184 : null,
+      totalCalories: activity.kilojoules != null
+          ? activity.kilojoules! / 4.184
+          : null,
       distanceMeters: activity.distance,
       averageHeartRate: activity.averageHeartrate?.round(),
       maxHeartRate: activity.maxHeartrate,

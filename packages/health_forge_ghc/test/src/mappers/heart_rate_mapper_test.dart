@@ -136,10 +136,7 @@ void main() {
         sourceId: 'test',
       );
 
-      expect(
-        () => HeartRateMapper.map(record),
-        throwsA(isA<ArgumentError>()),
-      );
+      expect(() => HeartRateMapper.map(record), throwsA(isA<ArgumentError>()));
     });
   });
 }

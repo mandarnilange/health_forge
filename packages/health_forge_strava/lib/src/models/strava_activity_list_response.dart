@@ -59,8 +59,9 @@ class StravaActivitySummary {
         maxHeartrate: json['max_heartrate'] as int?,
         sufferScore: json['suffer_score'] as int?,
         hasHeartrate: json['has_heartrate'] as bool?,
-        mapSummaryPolyline: (json['map']
-            as Map<String, dynamic>?)?['summary_polyline'] as String?,
+        mapSummaryPolyline:
+            (json['map'] as Map<String, dynamic>?)?['summary_polyline']
+                as String?,
         timezone: json['timezone'] as String?,
       );
 

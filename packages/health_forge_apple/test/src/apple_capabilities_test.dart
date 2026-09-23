@@ -4,10 +4,7 @@ import 'package:health_forge_core/health_forge_core.dart';
 
 void main() {
   test('AppleCapabilities uses fullWindow sync', () {
-    expect(
-      AppleCapabilities.capabilities.syncModel,
-      SyncModel.fullWindow,
-    );
+    expect(AppleCapabilities.capabilities.syncModel, SyncModel.fullWindow);
   });
 
   test('AppleCapabilities exposes expected metrics', () {

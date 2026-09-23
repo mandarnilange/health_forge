@@ -36,9 +36,9 @@ class SyncManager {
     required ProviderRegistry registry,
     required CacheManager cache,
     required MergeEngine mergeEngine,
-  })  : _registry = registry,
-        _cache = cache,
-        _mergeEngine = mergeEngine;
+  }) : _registry = registry,
+       _cache = cache,
+       _mergeEngine = mergeEngine;
 
   final ProviderRegistry _registry;
   final CacheManager _cache;
@@ -82,11 +82,7 @@ class SyncManager {
 
       // Replace cached records only for this provider/metric/range.
       // Scoped invalidation prevents wiping records outside the sync window.
-      await _cache.invalidate(
-        provider: provider,
-        metric: metric,
-        range: range,
-      );
+      await _cache.invalidate(provider: provider, metric: metric, range: range);
       await _cache.put(mergeResult.resolved);
 
       await _cache.updateSyncMetadata(

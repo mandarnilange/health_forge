@@ -31,11 +31,7 @@ void main() {
     test('supports equality', () {
       final a = TimeRange(start: start, end: end);
       final b = TimeRange(start: start, end: end);
-      final c = TimeRange(
-        start: start,
-        end: end,
-        timezone: 'UTC',
-      );
+      final c = TimeRange(start: start, end: end, timezone: 'UTC');
 
       expect(a, equals(b));
       expect(a, isNot(equals(c)));

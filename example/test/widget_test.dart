@@ -21,10 +21,7 @@ void main() {
       final client = _createClient();
 
       await tester.pumpWidget(
-        HealthForgeExampleApp(
-          client: client,
-          authorizedProviders: const {},
-        ),
+        HealthForgeExampleApp(client: client, authorizedProviders: const {}),
       );
       await tester.pump();
 
@@ -36,10 +33,7 @@ void main() {
       final client = _createClient();
 
       await tester.pumpWidget(
-        HealthForgeExampleApp(
-          client: client,
-          authorizedProviders: const {},
-        ),
+        HealthForgeExampleApp(client: client, authorizedProviders: const {}),
       );
       await tester.pump();
 
@@ -50,10 +44,7 @@ void main() {
       final client = _createClient();
 
       await tester.pumpWidget(
-        HealthForgeExampleApp(
-          client: client,
-          authorizedProviders: const {},
-        ),
+        HealthForgeExampleApp(client: client, authorizedProviders: const {}),
       );
       await tester.pump();
 
@@ -72,10 +63,7 @@ void main() {
       final client = _createClient();
 
       await tester.pumpWidget(
-        HealthForgeExampleApp(
-          client: client,
-          authorizedProviders: const {},
-        ),
+        HealthForgeExampleApp(client: client, authorizedProviders: const {}),
       );
       await tester.pump();
 

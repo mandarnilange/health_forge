@@ -7,9 +7,7 @@ class OuraDailyStressResponse {
   factory OuraDailyStressResponse.fromJson(Map<String, dynamic> json) =>
       OuraDailyStressResponse(
         data: (json['data'] as List<dynamic>)
-            .map(
-              (e) => OuraDailyStressData.fromJson(e as Map<String, dynamic>),
-            )
+            .map((e) => OuraDailyStressData.fromJson(e as Map<String, dynamic>))
             .toList(),
         nextToken: json['next_token'] as String?,
       );

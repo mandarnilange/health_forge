@@ -66,10 +66,7 @@ void main() {
 
         final result = SleepMapper.map(record);
         expect(result, isA<SleepSession>());
-        expect(
-          (result as SleepSession).providerRecordType,
-          'SLEEP_AWAKE',
-        );
+        expect((result as SleepSession).providerRecordType, 'SLEEP_AWAKE');
       });
 
       test('maps SLEEP_DEEP to SleepSession', () {
@@ -84,10 +81,7 @@ void main() {
 
         final result = SleepMapper.map(record);
         expect(result, isA<SleepSession>());
-        expect(
-          (result as SleepSession).providerRecordType,
-          'SLEEP_DEEP',
-        );
+        expect((result as SleepSession).providerRecordType, 'SLEEP_DEEP');
       });
 
       test('maps SLEEP_LIGHT to SleepSession', () {
@@ -102,10 +96,7 @@ void main() {
 
         final result = SleepMapper.map(record);
         expect(result, isA<SleepSession>());
-        expect(
-          (result as SleepSession).providerRecordType,
-          'SLEEP_LIGHT',
-        );
+        expect((result as SleepSession).providerRecordType, 'SLEEP_LIGHT');
       });
 
       test('maps SLEEP_REM to SleepSession', () {
@@ -120,10 +111,7 @@ void main() {
 
         final result = SleepMapper.map(record);
         expect(result, isA<SleepSession>());
-        expect(
-          (result as SleepSession).providerRecordType,
-          'SLEEP_REM',
-        );
+        expect((result as SleepSession).providerRecordType, 'SLEEP_REM');
       });
 
       test('throws for unsupported type', () {
@@ -136,10 +124,7 @@ void main() {
           sourceId: 'test',
         );
 
-        expect(
-          () => SleepMapper.map(record),
-          throwsA(isA<ArgumentError>()),
-        );
+        expect(() => SleepMapper.map(record), throwsA(isA<ArgumentError>()));
       });
     });
 

@@ -28,11 +28,7 @@ void main() {
     });
 
     test('empty result has no records or conflicts', () {
-      const result = MergeResult(
-        resolved: [],
-        conflicts: [],
-        rawSources: [],
-      );
+      const result = MergeResult(resolved: [], conflicts: [], rawSources: []);
 
       expect(result.resolved, isEmpty);
       expect(result.conflicts, isEmpty);

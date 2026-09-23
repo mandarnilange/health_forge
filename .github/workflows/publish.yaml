@@ -18,7 +18,7 @@ jobs:
     name: Verify before publish
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - uses: subosito/flutter-action@v2
         with:
@@ -57,7 +57,7 @@ jobs:
     env:
       PKG: health_forge_core
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       # Flutter SDK is required even for this pure-Dart package: the pub
       # workspace root includes the Flutter `example`, so a Dart-only
@@ -117,7 +117,7 @@ jobs:
     env:
       PKG: ${{ matrix.package }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - uses: subosito/flutter-action@v2
         with:

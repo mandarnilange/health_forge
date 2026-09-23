@@ -14,7 +14,7 @@ class AppleHealthProvider implements HealthProvider {
   ///
   /// An optional [healthPlugin] can be injected for testing.
   AppleHealthProvider({Health? healthPlugin})
-      : _health = healthPlugin ?? Health();
+    : _health = healthPlugin ?? Health();
 
   final Health _health;
 
@@ -144,21 +144,17 @@ class AppleHealthProvider implements HealthProvider {
     return switch (metricType) {
       MetricType.heartRate ||
       MetricType.hrv ||
-      MetricType.restingHeartRate =>
-        HeartRateMapper.map(record),
+      MetricType.restingHeartRate => HeartRateMapper.map(record),
       MetricType.steps ||
       MetricType.calories ||
       MetricType.distance ||
-      MetricType.workout =>
-        ActivityMapper.map(record),
+      MetricType.workout => ActivityMapper.map(record),
       MetricType.sleepSession => SleepMapper.map(record),
       MetricType.weight ||
       MetricType.bodyFat ||
-      MetricType.bloodGlucose =>
-        BodyMapper.map(record),
+      MetricType.bloodGlucose => BodyMapper.map(record),
       MetricType.bloodOxygen ||
-      MetricType.respiratoryRate =>
-        RespiratoryMapper.map(record),
+      MetricType.respiratoryRate => RespiratoryMapper.map(record),
       _ => throw ArgumentError('Unsupported metric: $metricType'),
     };
   }

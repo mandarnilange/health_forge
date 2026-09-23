@@ -1,3 +1,20 @@
+## 0.3.0
+
+- **Breaking:** minimum SDK raised to Dart 3.10 / Flutter 3.38.1.
+- `flutter_secure_storage` constraint widened to `>=10.0.0 <12.0.0`, so
+  v11 is now supported. Apps that built `FlutterSecureStorage` with options
+  removed in v11 should read "Upgrading to 0.3.0" in the README.
+- Upgraded `drift` to `^2.35.0`.
+- Bumped `health_forge_core` dependency to `^0.3.0`.
+- **Fixed:** `TokenStore.read` now returns null instead of the
+  `"Data has been reset"` string. On Android, `flutter_secure_storage`
+  returns that string after its `resetOnError` default wipes storage
+  following a failure, and it was previously handed back as a token.
+- **Behaviour change:** `TokenStore.save` reads the token back after writing
+  and throws the new `TokenStoreException` if it wasn't stored. Previously a
+  failed Android write could complete normally with nothing saved. The README
+  now recommends `AndroidOptions(resetOnError: false)`.
+
 ## 0.2.0
 
 - Bumped `health_forge_core` dependency to `^0.2.0`

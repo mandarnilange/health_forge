@@ -20,9 +20,9 @@ MockHealthRecord _makeRecord({
   when(() => record.providerRecordType).thenReturn(recordType);
   when(() => record.startTime).thenReturn(start);
   when(() => record.endTime).thenReturn(end);
-  when(() => record.id).thenReturn(
-    '${provider.name}_${start.millisecondsSinceEpoch}',
-  );
+  when(
+    () => record.id,
+  ).thenReturn('${provider.name}_${start.millisecondsSinceEpoch}');
   return record;
 }
 
@@ -37,10 +37,7 @@ void main() {
   setUpAll(() {
     registerFallbackValue(MetricType.heartRate);
     registerFallbackValue(
-      TimeRange(
-        start: DateTime(2024),
-        end: DateTime(2024, 1, 2),
-      ),
+      TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 2)),
     );
   });
 
@@ -95,10 +92,7 @@ void main() {
         ),
       ).thenAnswer((_) async => [record]);
 
-      final range = TimeRange(
-        start: DateTime(2024),
-        end: DateTime(2024, 1, 2),
-      );
+      final range = TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 2));
       final result = await syncManager.sync(
         provider: DataProvider.apple,
         metric: MetricType.heartRate,
@@ -128,10 +122,7 @@ void main() {
       await syncManager.sync(
         provider: DataProvider.apple,
         metric: MetricType.heartRate,
-        range: TimeRange(
-          start: DateTime(2024),
-          end: DateTime(2024, 1, 2),
-        ),
+        range: TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 2)),
       );
 
       final lastSync = await cache.lastSyncTime(
@@ -153,10 +144,7 @@ void main() {
       final result = await syncManager.sync(
         provider: DataProvider.apple,
         metric: MetricType.heartRate,
-        range: TimeRange(
-          start: DateTime(2024),
-          end: DateTime(2024, 1, 2),
-        ),
+        range: TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 2)),
       );
 
       expect(result.error, isNotNull);
@@ -167,10 +155,7 @@ void main() {
       final result = await syncManager.sync(
         provider: DataProvider.apple,
         metric: MetricType.heartRate,
-        range: TimeRange(
-          start: DateTime(2024),
-          end: DateTime(2024, 1, 2),
-        ),
+        range: TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 2)),
       );
 
       expect(result.error, isNotNull);
@@ -210,22 +195,13 @@ void main() {
 
       final results = await syncManager.syncAll(
         metrics: [MetricType.heartRate],
-        range: TimeRange(
-          start: DateTime(2024),
-          end: DateTime(2024, 1, 2),
-        ),
+        range: TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 2)),
       );
 
       expect(results, contains(DataProvider.apple));
       expect(results, contains(DataProvider.oura));
-      expect(
-        results[DataProvider.apple]!.recordsFetched,
-        1,
-      );
-      expect(
-        results[DataProvider.oura]!.recordsFetched,
-        1,
-      );
+      expect(results[DataProvider.apple]!.recordsFetched, 1);
+      expect(results[DataProvider.oura]!.recordsFetched, 1);
     });
 
     test(
@@ -270,10 +246,7 @@ void main() {
 
         final results = await syncManager.syncAll(
           metrics: [MetricType.heartRate, MetricType.steps],
-          range: TimeRange(
-            start: DateTime(2024),
-            end: DateTime(2024, 1, 2),
-          ),
+          range: TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 2)),
         );
 
         final apple = results[DataProvider.apple]!;
@@ -296,18 +269,12 @@ void main() {
 
       final results = await syncManager.syncAll(
         metrics: [MetricType.sleepSession],
-        range: TimeRange(
-          start: DateTime(2024),
-          end: DateTime(2024, 1, 2),
-        ),
+        range: TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 2)),
       );
 
       // Only oura supports sleepSession
       expect(results, contains(DataProvider.oura));
-      expect(
-        results.containsKey(DataProvider.apple),
-        isFalse,
-      );
+      expect(results.containsKey(DataProvider.apple), isFalse);
     });
 
     test('sync narrow range does not wipe records outside range', () async {
@@ -348,10 +315,7 @@ void main() {
       // Early record (Jan 2) should still be in cache
       final earlyResults = await cache.get(
         metric: MetricType.heartRate,
-        range: TimeRange(
-          start: DateTime(2024),
-          end: DateTime(2024, 1, 4),
-        ),
+        range: TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 4)),
       );
       expect(earlyResults, hasLength(1));
     });
@@ -368,10 +332,7 @@ void main() {
       final result = await syncManager.sync(
         provider: DataProvider.apple,
         metric: MetricType.heartRate,
-        range: TimeRange(
-          start: DateTime(2024),
-          end: DateTime(2024, 1, 2),
-        ),
+        range: TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 2)),
       );
 
       expect(result.duration, isA<Duration>());

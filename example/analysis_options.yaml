@@ -4,7 +4,13 @@ analyzer:
   exclude:
     - "**/*.g.dart"
     - "**/*.freezed.dart"
+    - build/**
+    - android/**
+    - ios/**
 
 linter:
   rules:
     public_member_api_docs: false
+    # Keep example code copy-pasteable into apps on the published floor
+    # (Dart 3.10), which doesn't have Dart 3.13's constructor syntax.
+    unnecessary_type_name_in_constructor: false

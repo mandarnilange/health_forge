@@ -45,10 +45,7 @@ void main() {
         stressQualifier: 'low',
       );
 
-      expect(ext.toJson(), {
-        'bodyBatteryChange': 45,
-        'stressQualifier': 'low',
-      });
+      expect(ext.toJson(), {'bodyBatteryChange': 45, 'stressQualifier': 'low'});
     });
 
     test('is a ProviderExtension', () {

@@ -86,12 +86,11 @@ void main() async {
     // Auto-authorize the platform health provider (shows the system
     // permission prompt on first launch). Oura/Strava require explicit
     // user-initiated OAuth so they stay manual via the Providers screen.
-    final platformProvider =
-        Platform.isIOS ? DataProvider.apple : DataProvider.googleHealthConnect;
+    final platformProvider = Platform.isIOS
+        ? DataProvider.apple
+        : DataProvider.googleHealthConnect;
     final authResult = await client.auth.authorize(platformProvider);
-    authorizedProviders = {
-      if (authResult.isSuccess) platformProvider,
-    };
+    authorizedProviders = {if (authResult.isSuccess) platformProvider};
   } else {
     // Desktop, web, or simulator fallback — use mocks.
     client
@@ -141,10 +140,7 @@ class _HealthForgeExampleAppState extends State<HealthForgeExampleApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Health Forge Example',
-      theme: ThemeData(
-        colorSchemeSeed: Colors.teal,
-        useMaterial3: true,
-      ),
+      theme: ThemeData(colorSchemeSeed: Colors.teal, useMaterial3: true),
       home: _MainScaffold(
         client: widget.client,
         authorizedProviders: widget.authorizedProviders,
@@ -188,14 +184,8 @@ class _MainScaffoldState extends State<_MainScaffold> {
             icon: Icon(Icons.dashboard),
             label: 'Dashboard',
           ),
-          NavigationDestination(
-            icon: Icon(Icons.devices),
-            label: 'Providers',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.search),
-            label: 'Browse',
-          ),
+          NavigationDestination(icon: Icon(Icons.devices), label: 'Providers'),
+          NavigationDestination(icon: Icon(Icons.search), label: 'Browse'),
         ],
       ),
     );

@@ -8,9 +8,7 @@ class Spo2Mapper {
   /// Converts daily SpO2 data to [BloodOxygenSample] records.
   static List<BloodOxygenSample> map(OuraDailySpo2Response response) {
     return response.data
-        .where(
-          (d) => d.spo2Percentage?.average != null,
-        )
+        .where((d) => d.spo2Percentage?.average != null)
         .map(_mapOne)
         .toList();
   }

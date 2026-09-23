@@ -40,10 +40,7 @@ void main() {
 
       expect(samples[0].startTime, start);
       expect(samples[1].startTime, start.add(const Duration(seconds: 60)));
-      expect(
-        samples[2].startTime,
-        start.add(const Duration(seconds: 120)),
-      );
+      expect(samples[2].startTime, start.add(const Duration(seconds: 120)));
     });
 
     test('sets provider to strava', () {

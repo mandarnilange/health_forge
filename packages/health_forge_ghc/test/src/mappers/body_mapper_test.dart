@@ -35,10 +35,7 @@ void main() {
         expect(weight.provenance!.dataOrigin, DataOrigin.native_);
         expect(weight.provenance!.sourceDevice?.model, 'Pixel Scale');
         expect(weight.provenance!.sourceDevice?.manufacturer, 'Google Fit');
-        expect(
-          weight.provenance!.sourceApp,
-          'com.google.android.apps.fitness',
-        );
+        expect(weight.provenance!.sourceApp, 'com.google.android.apps.fitness');
       });
 
       test('uses uuid when provided', () {
@@ -131,10 +128,7 @@ void main() {
         sourceId: 'test',
       );
 
-      expect(
-        () => BodyMapper.map(record),
-        throwsA(isA<ArgumentError>()),
-      );
+      expect(() => BodyMapper.map(record), throwsA(isA<ArgumentError>()));
     });
   });
 }

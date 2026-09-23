@@ -7,9 +7,7 @@ class OuraSleepResponse {
   factory OuraSleepResponse.fromJson(Map<String, dynamic> json) =>
       OuraSleepResponse(
         data: (json['data'] as List<dynamic>)
-            .map(
-              (e) => OuraSleepData.fromJson(e as Map<String, dynamic>),
-            )
+            .map((e) => OuraSleepData.fromJson(e as Map<String, dynamic>))
             .toList(),
         nextToken: json['next_token'] as String?,
       );
@@ -49,30 +47,29 @@ class OuraSleepData {
 
   /// Deserializes from the Oura API JSON response.
   factory OuraSleepData.fromJson(Map<String, dynamic> json) => OuraSleepData(
-        id: json['id'] as String,
-        averageBreath: (json['average_breath'] as num?)?.toDouble(),
-        averageHeartRate: (json['average_heart_rate'] as num?)?.toDouble(),
-        averageHrv: json['average_hrv'] as int?,
-        bedtimeStart: json['bedtime_start'] as String,
-        bedtimeEnd: json['bedtime_end'] as String,
-        deepSleepDuration: json['deep_sleep_duration'] as int?,
-        efficiency: json['efficiency'] as int?,
-        hr5Min: (json['hr_5_min'] as List<dynamic>?)
-            ?.map((e) => (e as num).toInt())
-            .toList(),
-        latency: json['latency'] as int?,
-        lightSleepDuration: json['light_sleep_duration'] as int?,
-        lowBatteryAlert: json['low_battery_alert'] as bool?,
-        period: json['period'] as int?,
-        readinessScoreDelta:
-            (json['readiness_score_delta'] as num?)?.toDouble(),
-        remSleepDuration: json['rem_sleep_duration'] as int?,
-        restlessPeriods: json['restless_periods'] as int?,
-        sleepPhase5Min: json['sleep_phase_5_min'] as String?,
-        timeInBed: json['time_in_bed'] as int?,
-        totalSleepDuration: json['total_sleep_duration'] as int?,
-        type: json['type'] as String?,
-      );
+    id: json['id'] as String,
+    averageBreath: (json['average_breath'] as num?)?.toDouble(),
+    averageHeartRate: (json['average_heart_rate'] as num?)?.toDouble(),
+    averageHrv: json['average_hrv'] as int?,
+    bedtimeStart: json['bedtime_start'] as String,
+    bedtimeEnd: json['bedtime_end'] as String,
+    deepSleepDuration: json['deep_sleep_duration'] as int?,
+    efficiency: json['efficiency'] as int?,
+    hr5Min: (json['hr_5_min'] as List<dynamic>?)
+        ?.map((e) => (e as num).toInt())
+        .toList(),
+    latency: json['latency'] as int?,
+    lightSleepDuration: json['light_sleep_duration'] as int?,
+    lowBatteryAlert: json['low_battery_alert'] as bool?,
+    period: json['period'] as int?,
+    readinessScoreDelta: (json['readiness_score_delta'] as num?)?.toDouble(),
+    remSleepDuration: json['rem_sleep_duration'] as int?,
+    restlessPeriods: json['restless_periods'] as int?,
+    sleepPhase5Min: json['sleep_phase_5_min'] as String?,
+    timeInBed: json['time_in_bed'] as int?,
+    totalSleepDuration: json['total_sleep_duration'] as int?,
+    type: json['type'] as String?,
+  );
 
   /// Unique identifier for this sleep period.
   final String id;

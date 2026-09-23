@@ -14,8 +14,8 @@ class StravaHealthProvider implements HealthProvider {
   StravaHealthProvider({
     required StravaAuthManager authManager,
     required StravaApiClient apiClient,
-  })  : _authManager = authManager,
-        _apiClient = apiClient;
+  }) : _authManager = authManager,
+       _apiClient = apiClient;
 
   final StravaAuthManager _authManager;
   final StravaApiClient _apiClient;
@@ -52,27 +52,27 @@ class StravaHealthProvider implements HealthProvider {
     required MetricType metricType,
     required TimeRange timeRange,
   }) async {
-    return switch (metricType) {
+    return await switch (metricType) {
       MetricType.workout => _fetchWorkouts(timeRange),
       MetricType.heartRate => _fetchHeartRate(timeRange),
       MetricType.calories => CaloriesMapper.map(
-          await _apiClient.fetchActivities(
-            after: timeRange.start,
-            before: timeRange.end,
-          ),
+        await _apiClient.fetchActivities(
+          after: timeRange.start,
+          before: timeRange.end,
         ),
+      ),
       MetricType.distance => DistanceMapper.map(
-          await _apiClient.fetchActivities(
-            after: timeRange.start,
-            before: timeRange.end,
-          ),
+        await _apiClient.fetchActivities(
+          after: timeRange.start,
+          before: timeRange.end,
         ),
+      ),
       MetricType.elevation => ElevationMapper.map(
-          await _apiClient.fetchActivities(
-            after: timeRange.start,
-            before: timeRange.end,
-          ),
+        await _apiClient.fetchActivities(
+          after: timeRange.start,
+          before: timeRange.end,
         ),
+      ),
       _ => const [],
     };
   }

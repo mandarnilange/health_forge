@@ -13,9 +13,9 @@ class OAuthHelper {
   /// scheme, host, port, and path match one of these registered URIs will
   /// complete the pending OAuth wait (others are ignored).
   OAuthHelper({Iterable<String>? allowedRedirectUris})
-      : _allowedRedirects = allowedRedirectUris == null
-            ? const []
-            : allowedRedirectUris.map(Uri.parse).toList(growable: false) {
+    : _allowedRedirects = allowedRedirectUris == null
+          ? const []
+          : allowedRedirectUris.map(Uri.parse).toList(growable: false) {
     _appLinks = AppLinks();
     _subscription = _appLinks.uriLinkStream.listen(_onDeepLink);
   }
@@ -46,7 +46,7 @@ class OAuthHelper {
     );
     if (!launched) return null;
 
-    return _pendingAuth!.future.timeout(
+    return await _pendingAuth!.future.timeout(
       const Duration(minutes: 5),
       onTimeout: () => null,
     );

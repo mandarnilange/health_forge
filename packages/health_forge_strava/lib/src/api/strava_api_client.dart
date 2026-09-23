@@ -17,13 +17,10 @@ class StravaApiClient {
     required StravaAuthManager authManager,
     Dio? dio,
     int perPage = 50,
-  })  : _dio = dio ?? Dio(BaseOptions(baseUrl: StravaApiEndpoints.baseUrl)),
-        _perPage = perPage {
+  }) : _dio = dio ?? Dio(BaseOptions(baseUrl: StravaApiEndpoints.baseUrl)),
+       _perPage = perPage {
     if (dio == null) {
-      _dio.interceptors.addAll([
-        _AuthInterceptor(authManager),
-        RateLimiter(),
-      ]);
+      _dio.interceptors.addAll([_AuthInterceptor(authManager), RateLimiter()]);
     }
   }
 
@@ -81,10 +78,7 @@ class StravaApiClient {
   }) async {
     final response = await _dio.get<dynamic>(
       StravaApiEndpoints.activityStreams(activityId),
-      queryParameters: {
-        'keys': 'heartrate,time',
-        'key_type': 'value',
-      },
+      queryParameters: {'keys': 'heartrate,time', 'key_type': 'value'},
     );
 
     return StravaStreamsResponse.fromJson(response.data as List<dynamic>);

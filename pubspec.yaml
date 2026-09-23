@@ -2,12 +2,11 @@ name: health_forge_workspace
 publish_to: none
 
 environment:
-  sdk: ">=3.6.0 <4.0.0"
+  sdk: ">=3.13.0 <4.0.0"
 
 dev_dependencies:
-  dlcov: ^4.2.1
   lcov_parser: ^0.1.3
-  melos: ^7.4.1
+  melos: ^8.9.0
 
 workspace:
   - packages/health_forge_core
@@ -27,8 +26,8 @@ melos:
 
   scripts:
     analyze:
-      run: dart analyze --fatal-infos
       exec:
+        command: dart analyze --fatal-infos
         concurrency: 1
       description: Run dart analyze across all packages
       packageFilters:
@@ -39,8 +38,8 @@ melos:
       description: Check formatting across all packages
 
     test:
-      run: flutter test
       exec:
+        command: flutter test
         concurrency: 1
         failFast: true
       description: Run tests across all packages
@@ -48,8 +47,8 @@ melos:
         dirExists: test
 
     test:coverage:
-      run: flutter test --coverage
       exec:
+        command: flutter test --coverage
         concurrency: 1
         failFast: true
       description: Run tests with coverage (writes coverage/lcov.info per package)
@@ -59,8 +58,8 @@ melos:
           - health_forge_example
 
     test:dart:
-      run: dart test
       exec:
+        command: dart test
         concurrency: 1
         failFast: true
       description: Run tests for pure Dart packages only
@@ -69,8 +68,8 @@ melos:
         noDependsOn: flutter
 
     generate:
-      run: dart run build_runner build --delete-conflicting-outputs
       exec:
+        command: dart run build_runner build --delete-conflicting-outputs
         concurrency: 1
       description: Run code generation
       packageFilters:

@@ -1,3 +1,10 @@
+## 0.3.0
+
+- **Breaking:** minimum SDK raised to Dart 3.10 / Flutter 3.38.1.
+- **Breaking:** upgraded `health` to `^13.3.2`, which requires **iOS 15.0**
+  or later.
+- Bumped `health_forge_core` dependency to `^0.3.0`.
+
 ## 0.2.0
 
 - Bumped `health_forge_core` dependency to `^0.2.0`

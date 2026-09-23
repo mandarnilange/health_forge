@@ -10,22 +10,15 @@ import 'package:lcov_parser/lcov_parser.dart';
 
 const _defaultMinPercent = 90.0;
 
-final _excludeSuffixes = <String>[
-  '.g.dart',
-  '.freezed.dart',
-  '.part.dart',
-];
+final _excludeSuffixes = <String>['.g.dart', '.freezed.dart', '.part.dart'];
 
 /// Declarative Drift table/schema definitions (column getters are not executed
 /// as regular statements the way application logic is).
-final _excludePathSuffixes = <String>[
-  '/health_cache_database.dart',
-];
+final _excludePathSuffixes = <String>['/health_cache_database.dart'];
 
 Future<void> main() async {
-  final minPercent = double.tryParse(
-        Platform.environment['COVERAGE_MIN_PERCENT'] ?? '',
-      ) ??
+  final minPercent =
+      double.tryParse(Platform.environment['COVERAGE_MIN_PERCENT'] ?? '') ??
       _defaultMinPercent;
 
   final root = Directory.current;

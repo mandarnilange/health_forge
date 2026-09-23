@@ -40,10 +40,8 @@ class MergeEngine {
   /// Creates a [MergeEngine] with the given [config].
   ///
   /// Pass a [customStrategy] when using [ConflictStrategy.custom].
-  MergeEngine({
-    required this.config,
-    CustomStrategy? customStrategy,
-  }) : _customStrategy = customStrategy;
+  MergeEngine({required this.config, CustomStrategy? customStrategy})
+    : _customStrategy = customStrategy;
 
   /// The merge configuration controlling strategies and thresholds.
   final MergeConfig config;
@@ -179,9 +177,7 @@ class MergeEngine {
       'respiratoryrate' || 'respiratory_rate' => MetricType.respiratoryRate,
       'restingheartrate' || 'resting_heart_rate' => MetricType.restingHeartRate,
       'sleepscore' || 'sleep_score' => MetricType.sleepScore,
-      _ => throw ArgumentError(
-        'Unknown providerRecordType: $type',
-      ),
+      _ => throw ArgumentError('Unknown providerRecordType: $type'),
     };
   }
 }

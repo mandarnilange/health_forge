@@ -10,7 +10,7 @@ description: >
 license: MIT
 metadata:
   author: Health Forge
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Integrate health_forge
@@ -25,12 +25,12 @@ This skill is the **foundation** — invoke alongside one or more adapter skills
 
 ```yaml
 dependencies:
-  health_forge: ^0.2.0
+  health_forge: ^0.3.0
   # Add each adapter the user needs — see related skills:
-  health_forge_apple: ^0.2.0     # iOS HealthKit
-  health_forge_ghc: ^0.2.0       # Android Health Connect
-  health_forge_oura: ^0.2.0      # Oura Ring
-  health_forge_strava: ^0.2.0    # Strava
+  health_forge_apple: ^0.3.0     # iOS HealthKit
+  health_forge_ghc: ^0.3.0       # Android Health Connect
+  health_forge_oura: ^0.3.0      # Oura Ring
+  health_forge_strava: ^0.3.0    # Strava
 ```
 
 Run `flutter pub get`.
@@ -169,7 +169,13 @@ final cached = await forge.cache.get(
 ```dart
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-final tokenStore = TokenStore(const FlutterSecureStorage());
+// resetOnError: false stops Android from silently wiping all stored data
+// after a failed read or write; failures surface as PlatformException.
+final tokenStore = TokenStore(
+  storage: const FlutterSecureStorage(
+    aOptions: AndroidOptions(resetOnError: false),
+  ),
+);
 
 // Wire into the auth manager — see adapter skills for provider specifics.
 final ouraAuth = OuraAuthManager(

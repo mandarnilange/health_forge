@@ -5,13 +5,7 @@ void main() {
   group('Freshness', () {
     test('has all expected values', () {
       expect(Freshness.values, hasLength(2));
-      expect(
-        Freshness.values,
-        containsAll([
-          Freshness.live,
-          Freshness.cached,
-        ]),
-      );
+      expect(Freshness.values, containsAll([Freshness.live, Freshness.cached]));
     });
 
     test('toString includes value name', () {

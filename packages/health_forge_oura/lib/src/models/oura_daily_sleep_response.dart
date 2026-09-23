@@ -7,9 +7,7 @@ class OuraDailySleepResponse {
   factory OuraDailySleepResponse.fromJson(Map<String, dynamic> json) =>
       OuraDailySleepResponse(
         data: (json['data'] as List<dynamic>)
-            .map(
-              (e) => OuraDailySleepData.fromJson(e as Map<String, dynamic>),
-            )
+            .map((e) => OuraDailySleepData.fromJson(e as Map<String, dynamic>))
             .toList(),
         nextToken: json['next_token'] as String?,
       );

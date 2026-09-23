@@ -18,8 +18,8 @@ class RateLimiter extends Interceptor {
     this.maxRequestsPerDay = 1000,
     DateTime Function()? clock,
     Future<void> Function(Duration)? delay,
-  })  : _clock = clock ?? DateTime.now,
-        _delay = delay ?? Future<void>.delayed;
+  }) : _clock = clock ?? DateTime.now,
+       _delay = delay ?? Future<void>.delayed;
 
   /// Maximum allowed requests within a 15-minute sliding window.
   final int maxRequestsPer15Min;
@@ -45,8 +45,9 @@ class RateLimiter extends Interceptor {
 
     final now = _clock();
     final fifteenMinAgo = now.subtract(const Duration(minutes: 15));
-    final recentCount =
-        _timestamps.where((t) => t.isAfter(fifteenMinAgo)).length;
+    final recentCount = _timestamps
+        .where((t) => t.isAfter(fifteenMinAgo))
+        .length;
 
     if (recentCount >= maxRequestsPer15Min) {
       final oldest = _timestamps.where((t) => t.isAfter(fifteenMinAgo)).first;

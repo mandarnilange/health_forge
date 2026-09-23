@@ -66,14 +66,16 @@ class SleepMapper {
     final seen = <String>{};
     final deduped = <HealthDataRecord>[];
     for (final r in records) {
-      final key = '${r.type}|${r.dateFrom.millisecondsSinceEpoch}'
+      final key =
+          '${r.type}|${r.dateFrom.millisecondsSinceEpoch}'
           '|${r.dateTo.millisecondsSinceEpoch}';
       if (seen.add(key)) deduped.add(r);
     }
 
     // Separate stage segments from meta records (ASLEEP).
-    final stageRecords =
-        deduped.where((r) => !_metaTypes.contains(r.type)).toList();
+    final stageRecords = deduped
+        .where((r) => !_metaTypes.contains(r.type))
+        .toList();
 
     // Build stage segments from non-meta records.
     final stages = stageRecords.map((r) {
@@ -82,8 +84,7 @@ class SleepMapper {
         startTime: r.dateFrom,
         endTime: r.dateTo,
       );
-    }).toList()
-      ..sort((a, b) => a.startTime.compareTo(b.startTime));
+    }).toList()..sort((a, b) => a.startTime.compareTo(b.startTime));
 
     // Session envelope: use all records (including meta) for time range.
     var earliest = deduped.first.dateFrom;

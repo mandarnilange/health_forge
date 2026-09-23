@@ -7,9 +7,7 @@ class OuraDailySpo2Response {
   factory OuraDailySpo2Response.fromJson(Map<String, dynamic> json) =>
       OuraDailySpo2Response(
         data: (json['data'] as List<dynamic>)
-            .map(
-              (e) => OuraDailySpo2Data.fromJson(e as Map<String, dynamic>),
-            )
+            .map((e) => OuraDailySpo2Data.fromJson(e as Map<String, dynamic>))
             .toList(),
         nextToken: json['next_token'] as String?,
       );
@@ -42,8 +40,8 @@ class OuraDailySpo2Data {
                 json['spo2_percentage'] as Map<String, dynamic>,
               )
             : null,
-        breathingDisturbanceIndex:
-            (json['breathing_disturbance_index'] as num?)?.toDouble(),
+        breathingDisturbanceIndex: (json['breathing_disturbance_index'] as num?)
+            ?.toDouble(),
         timestamp: json['timestamp'] as String?,
       );
 
@@ -70,9 +68,7 @@ class OuraSpo2Percentage {
 
   /// Deserializes from the Oura API JSON response.
   factory OuraSpo2Percentage.fromJson(Map<String, dynamic> json) =>
-      OuraSpo2Percentage(
-        average: (json['average'] as num?)?.toDouble(),
-      );
+      OuraSpo2Percentage(average: (json['average'] as num?)?.toDouble());
 
   /// The average SpO2 percentage for the day.
   final double? average;

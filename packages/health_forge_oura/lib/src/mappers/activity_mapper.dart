@@ -19,9 +19,7 @@ class ActivityMapper {
   }
 
   /// Converts daily activity data to [CaloriesBurned] records.
-  static List<CaloriesBurned> mapCalories(
-    OuraDailyActivityResponse response,
-  ) {
+  static List<CaloriesBurned> mapCalories(OuraDailyActivityResponse response) {
     return response.data
         .where((d) => d.totalCalories != null)
         .map(_mapCalories)

@@ -11,7 +11,7 @@ description: >
 license: MIT
 metadata:
   author: Health Forge
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Integrate health_forge_oura
@@ -72,12 +72,14 @@ Go to [cloud.ouraring.com/oauth/applications](https://cloud.ouraring.com/oauth/a
 
 ```yaml
 dependencies:
-  health_forge: ^0.2.0
-  health_forge_oura: ^0.2.0
+  health_forge: ^0.3.0
+  health_forge_oura: ^0.3.0
   url_launcher: ^6.2.0   # to launch the OAuth URL
   app_links: ^6.0.0      # to capture the redirect
-  flutter_secure_storage: ^9.0.0  # for token persistence
+  flutter_secure_storage: ^11.2.0  # for token persistence
 ```
+
+> **Already on `flutter_secure_storage` v9 or earlier?** Ship a release on `^10.0.0` first so v10 can migrate stored Android data, then move to v11. Going straight from v9 to v11 leaves tokens saved with the old ciphers unreadable, and users have to sign in again. This only affects apps that stored data with v9 themselves; `health_forge` has always required v10. If your app passes options removed in v11, see "Upgrading to 0.3.0" in the `health_forge` README.
 
 ### 4. Implement the URL launcher callback
 
@@ -108,11 +110,17 @@ import 'package:health_forge/health_forge.dart';
 import 'package:health_forge_oura/health_forge_oura.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-final tokenStore = TokenStore(const FlutterSecureStorage());
+// resetOnError: false stops Android from silently wiping all stored data
+// after a failed read or write; failures surface as PlatformException.
+final tokenStore = TokenStore(
+  storage: const FlutterSecureStorage(
+    aOptions: AndroidOptions(resetOnError: false),
+  ),
+);
 
 Future<OuraHealthProvider> buildOuraProvider() async {
   // Restore persisted token (if any)
-  final savedJson = await tokenStore.load(DataProvider.oura);
+  final savedJson = await tokenStore.read(DataProvider.oura);
   final initialToken = savedJson != null
       ? OuraToken.fromJson(jsonDecode(savedJson) as Map<String, dynamic>)
       : null;

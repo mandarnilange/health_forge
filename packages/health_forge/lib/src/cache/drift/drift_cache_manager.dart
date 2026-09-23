@@ -7,9 +7,8 @@ import 'package:health_forge/src/cache/drift/health_cache_database.dart';
 import 'package:health_forge_core/health_forge_core.dart';
 
 /// A function that deserializes a JSON map into a [HealthRecordMixin].
-typedef RecordDeserializer = HealthRecordMixin Function(
-  Map<String, dynamic> json,
-);
+typedef RecordDeserializer =
+    HealthRecordMixin Function(Map<String, dynamic> json);
 
 /// Persistent [CacheManager] implementation backed by a Drift database.
 ///
@@ -248,7 +247,9 @@ class DriftCacheManager implements CacheManager {
     DateTime? lastSync,
     String? cursor,
   }) async {
-    await _db.into(_db.syncMetadata).insertOnConflictUpdate(
+    await _db
+        .into(_db.syncMetadata)
+        .insertOnConflictUpdate(
           SyncMetadataCompanion.insert(
             provider: provider.name,
             metricType: metric.name,

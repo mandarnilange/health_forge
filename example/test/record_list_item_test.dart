@@ -5,15 +5,15 @@ import 'package:health_forge_example/widgets/record_list_item.dart';
 
 class _UnknownRecord with HealthRecordMixin {
   _UnknownRecord()
-      : id = 'u1',
-        provider = DataProvider.apple,
-        providerRecordType = 'custom.type',
-        providerRecordId = null,
-        startTime = DateTime.utc(2024, 1, 1, 8),
-        endTime = DateTime.utc(2024, 1, 1, 9),
-        timezone = null,
-        capturedAt = DateTime.utc(2024, 1, 1, 9),
-        provenance = null;
+    : id = 'u1',
+      provider = DataProvider.apple,
+      providerRecordType = 'custom.type',
+      providerRecordId = null,
+      startTime = DateTime.utc(2024, 1, 1, 8),
+      endTime = DateTime.utc(2024, 1, 1, 9),
+      timezone = null,
+      capturedAt = DateTime.utc(2024, 1, 1, 9),
+      provenance = null;
 
   @override
   final String id;
@@ -55,9 +55,7 @@ void main() {
 
   Widget wrap(HealthRecordMixin r) {
     return MaterialApp(
-      home: Scaffold(
-        body: RecordListItem(record: r),
-      ),
+      home: Scaffold(body: RecordListItem(record: r)),
     );
   }
 
@@ -320,8 +318,9 @@ void main() {
     expect(find.textContaining('Run'), findsOneWidget);
   });
 
-  testWidgets('renders unknown record type as providerRecordType',
-      (tester) async {
+  testWidgets('renders unknown record type as providerRecordType', (
+    tester,
+  ) async {
     await tester.pumpWidget(wrap(_UnknownRecord()));
     // Title and trailing both use providerRecordType for unknown mixins.
     expect(find.text('custom.type'), findsNWidgets(2));
