@@ -1,6 +1,6 @@
 # 0004. Pure Dart Core Package with Zero Flutter Dependencies
 
-**Status:** Accepted
+**Status:** Accepted. The dependency list is superseded in part by ADR 0008.
 **Date:** 2026-03-17
 
 ## Context
@@ -15,8 +15,7 @@ The merge engine processes potentially thousands of health records and must run 
 - `meta` — annotations
 - `uuid` — record identifier generation
 - `collection` — advanced collection utilities
-- ~~`equatable` — value equality~~ (removed in 0.3.0: it was never
-  imported; freezed provides value equality)
+- `equatable` — value equality (removed in 0.3.0, see ADR 0008)
 
 ### Enforcement
 

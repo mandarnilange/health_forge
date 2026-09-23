@@ -59,3 +59,53 @@ jobs:
         with:
           name: coverage-lcov-packages
           path: coverage/lcov.info
+
+  # Full test suite at the lowest dependency versions the pubspecs allow
+  # (e.g. flutter_secure_storage 10.x), so widened ranges can't rot.
+  lowest-deps:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Resolve lowest allowed versions
+        run: dart pub downgrade
+
+      - name: Generate
+        run: dart run melos run generate --no-select
+
+      - name: Analyze
+        run: dart run melos run analyze --no-select
+
+      - name: Test
+        run: dart run melos run test --no-select
+
+  # The published packages declare Dart >=3.10.0 / Flutter >=3.38.1, below the
+  # contributor toolchain. Check they resolve and compile on that floor
+  # (see design/adr/0008-dependency-and-sdk-support-policy.md).
+  sdk-floor:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Generate code with the contributor toolchain
+        run: |
+          dart pub get
+          dart run melos run generate --no-select
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.38.1
+
+      - name: Resolve and analyze published packages on Flutter 3.38.1
+        run: bash tool/check_min_sdk.sh

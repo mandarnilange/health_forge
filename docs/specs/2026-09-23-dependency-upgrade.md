@@ -159,9 +159,14 @@ Each step is its own commit. The workspace must pass
    beta Dart (`3.10.0-290.4.beta`), and 3.38.1 is the first release with
    stable Dart 3.10.0. These floors come from the dependency constraints
    (drift 2.35, sqlite3, device_info_plus 13 need Dart 3.10 / Flutter
-   3.38.1). They can't be tested on that SDK: the workspace's dev tooling
-   needs Dart 3.13, noted in CONTRIBUTING.md. `dart pub downgrade` checks
-   the lowest allowed *dependency* versions on the current SDK.
+   3.38.1). The workspace's dev tooling needs Dart 3.13 (noted in
+   CONTRIBUTING.md), so the floor can't run the test suite. Instead, the CI
+   job `sdk-floor` pins Flutter 3.38.1 and runs `tool/check_min_sdk.sh`,
+   which copies the published packages out of the workspace without their
+   dev dependencies, then resolves and analyzes each one at the latest and
+   lowest allowed versions. A second job, `lowest-deps`, runs the full suite
+   after `dart pub downgrade` on the current toolchain. The policy is
+   recorded in ADR 0008.
 7. **Bump CI actions** as listed in [CI actions](#ci-actions).
 8. **Update docs and changelogs.** Per-package `CHANGELOG.md` entries,
    README minimum versions (iOS 15 / Android minSdk 26 for the health
