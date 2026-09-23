@@ -17,11 +17,11 @@ Built on [`health_forge_core`](https://pub.dev/packages/health_forge_core) (pure
 
 ```yaml
 dependencies:
-  health_forge: ^0.2.0
-  health_forge_apple: ^0.2.0   # iOS — HealthKit
-  health_forge_ghc: ^0.2.0     # Android — Health Connect
-  health_forge_oura: ^0.2.0    # Oura Ring
-  health_forge_strava: ^0.2.0  # Strava
+  health_forge: ^0.3.0
+  health_forge_apple: ^0.3.0   # iOS — HealthKit
+  health_forge_ghc: ^0.3.0     # Android — Health Connect
+  health_forge_oura: ^0.3.0    # Oura Ring
+  health_forge_strava: ^0.3.0  # Strava
 ```
 
 Only add the provider packages you need — Health Forge is federated.
@@ -66,6 +66,22 @@ for (final record in result.records) {
 ## Platform setup
 
 See [docs/getting_started.md](https://github.com/mandarnilange/health_forge/blob/main/docs/getting_started.md) for iOS entitlements, Android manifest, and OAuth redirect setup.
+
+## Upgrading to 0.3.0
+
+`health_forge` now accepts `flutter_secure_storage` `>=10.0.0 <12.0.0`, so
+a fresh `pub get` picks up v11. `TokenStore` only uses read, write, and delete,
+so the change doesn't affect it. Check how your app creates the
+`FlutterSecureStorage` you pass in:
+
+- **Default options:** nothing to do. v10 already migrated stored data to the
+  current ciphers.
+- **Options that v11 removed** (`encryptedSharedPreferences`,
+  `sharedPreferencesName`, `RSA_ECB_PKCS1Padding`, `AES_CBC_PKCS7Padding`):
+  switch to the v11 equivalents, such as `storageNamespace`. Tokens saved with
+  the removed ciphers can't be read after the upgrade, so users have to sign
+  in to Oura/Strava again. To defer this, keep `flutter_secure_storage` on
+  `^10.0.0` in your app; `health_forge` 0.3.0 still resolves with it.
 
 ## Related packages
 

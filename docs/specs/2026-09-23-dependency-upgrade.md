@@ -1,8 +1,8 @@
 # Spec: Dependency upgrade (September 2026)
 
-- **Status:** Implemented on `chore/dependency-upgrade-2026-09` (release version and changelogs pending)
+- **Status:** Implemented on `chore/dependency-upgrade-2026-09` (PR #11), including the 0.3.0 release prep
 - **Date:** 2026-09-23
-- **Target release:** 0.3.0 (see [Release impact](#release-impact))
+- **Target release:** 0.3.0, decided (see [Release impact](#release-impact))
 - **Related:** #4 (Swift Package Manager migration), #10 (release automation)
 
 ## Summary
@@ -189,10 +189,10 @@ Each step is its own commit. The workspace must pass
 
 ## Release impact
 
-- **Proposed version: 0.3.0** for all published packages. Raising the SDK
+- **Version: 0.3.0** for all published packages (decided). Raising the SDK
   floor and allowing `flutter_secure_storage` 11 change what consumers
   resolve, and pre-1.0 convention puts that in a minor bump.
-- **Bump internal constraints too.** `health_forge`, `health_forge_apple`,
+- **Bump internal constraints too (done).** `health_forge`, `health_forge_apple`,
   `health_forge_ghc`, `health_forge_oura` and `health_forge_strava` depend on
   `health_forge_core: ^0.2.0`. Before 1.0, a caret range doesn't accept 0.3.0,
   so change those constraints to `^0.3.0` in the same release commit as the
@@ -210,9 +210,11 @@ Each step is its own commit. The workspace must pass
 - `health_forge_garmin` / `health_forge_labs` (unpublished, not in the
   workspace list). They only get the `dio` bump.
 
-## Open questions
+## Decisions
 
-1. Is 0.3.0 the right version, or would you rather ship 0.2.1 and leave the
-   SDK floors as they are?
-2. Should `flutter_secure_storage` stay at `>=10.0.0 <12.0.0`, or move to
-   `^11.2.0` and force consumers through the v11 migration now?
+1. **Version: 0.3.0** for all six published packages. The internal
+   `health_forge_core` constraints moved to `^0.3.0` in the same change.
+2. **`flutter_secure_storage` stays at `>=10.0.0 <12.0.0`.** Fresh installs
+   get v11. Apps that pin v10 through other dependencies still resolve. The
+   migration note is in the `health_forge` README ("Upgrading to 0.3.0") and
+   CHANGELOG.

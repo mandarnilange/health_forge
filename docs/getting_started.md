@@ -201,15 +201,15 @@ Add only the packages you need to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  health_forge: ^0.2.0
+  health_forge: ^0.3.0
 
   # Platform adapters (pick one or both)
-  health_forge_apple: ^0.2.0   # iOS — Apple HealthKit
-  health_forge_ghc: ^0.2.0     # Android — Google Health Connect
+  health_forge_apple: ^0.3.0   # iOS — Apple HealthKit
+  health_forge_ghc: ^0.3.0     # Android — Google Health Connect
 
   # REST API adapters (optional)
-  health_forge_oura: ^0.2.0    # Oura Ring
-  health_forge_strava: ^0.2.0  # Strava
+  health_forge_oura: ^0.3.0    # Oura Ring
+  health_forge_strava: ^0.3.0  # Strava
 ```
 
 Then run:
@@ -243,6 +243,10 @@ Each skill walks the agent through the platform setup, client wiring, and a mini
 
 ### iOS (HealthKit)
 
+> **Minimum iOS version: 15.0**, required by the `health` plugin. Set
+> `platform :ios, '15.0'` (or higher) in `ios/Podfile`, and set the Runner
+> target's deployment target to match in Xcode.
+
 **1. Add HealthKit entitlement**
 
 Create or update `ios/Runner/Runner.entitlements`:
@@ -275,6 +279,10 @@ Create or update `ios/Runner/Runner.entitlements`:
 Open `ios/Runner.xcworkspace` in Xcode → select the Runner target → Signing & Capabilities → click "+ Capability" → add "HealthKit".
 
 ### Android (Health Connect)
+
+> **Android SDK levels:** `minSdk` 26 or higher and `compileSdk` 36 or
+> higher, required by the `health` plugin. Set them in
+> `android/app/build.gradle(.kts)`.
 
 **1. Add permissions to `android/app/src/main/AndroidManifest.xml`**
 

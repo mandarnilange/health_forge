@@ -10,7 +10,7 @@ description: >
 license: MIT
 metadata:
   author: Health Forge
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Integrate health_forge_apple
@@ -35,8 +35,8 @@ Read Apple HealthKit data on iOS. 14 read-only metric types, mapped to the unifi
 
 ```yaml
 dependencies:
-  health_forge: ^0.2.0
-  health_forge_apple: ^0.2.0
+  health_forge: ^0.3.0
+  health_forge_apple: ^0.3.0
 ```
 
 ### 2. iOS — entitlements
@@ -141,6 +141,7 @@ Use `sourceApp` to deduplicate across iPhone vs. Apple Watch when both log the s
 
 ## Gotchas
 
+- **Minimum iOS 15.0** — the `health` plugin requires it. Set `platform :ios, '15.0'` (or higher) in `ios/Podfile` and match the Runner deployment target in Xcode.
 - **`hasPermissions` is unreliable on iOS** — after a successful `authorize()`, track auth state locally rather than polling `isAuthorized()`. iOS intentionally doesn't reveal denied read permissions.
 - **Write permissions — not supported** yet. All Apple adapter metrics are read-only.
 - **Sleep sessions** — HealthKit returns 6 individual stage samples (awake, core, deep, REM, inBed, asleep) with time-interval-encoded durations. The adapter aggregates and deduplicates these into one `SleepSession` per night with `SleepStageSegment`s. Your code sees one session, not six raw samples.

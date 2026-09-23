@@ -1,3 +1,12 @@
+## 0.3.0
+
+- **Breaking:** minimum SDK raised to Dart 3.10 / Flutter 3.38.1.
+- `flutter_secure_storage` constraint widened to `>=10.0.0 <12.0.0`, so
+  v11 is now supported. Apps that built `FlutterSecureStorage` with options
+  removed in v11 should read "Upgrading to 0.3.0" in the README.
+- Upgraded `drift` to `^2.35.0`.
+- Bumped `health_forge_core` dependency to `^0.3.0`.
+
 ## 0.2.0
 
 - Bumped `health_forge_core` dependency to `^0.2.0`

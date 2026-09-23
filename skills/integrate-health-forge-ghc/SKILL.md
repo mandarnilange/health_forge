@@ -10,7 +10,7 @@ description: >
 license: MIT
 metadata:
   author: Health Forge
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Integrate health_forge_ghc
@@ -35,8 +35,8 @@ Read Google Health Connect data on Android. 14 read-only metric types, mapped to
 
 ```yaml
 dependencies:
-  health_forge: ^0.2.0
-  health_forge_ghc: ^0.2.0
+  health_forge: ^0.3.0
+  health_forge_ghc: ^0.3.0
 ```
 
 ### 2. Android — permissions
@@ -137,7 +137,7 @@ record.provenance?.sourceApp            // Package name, e.g. "com.samsung.andro
 - **Write permissions — not supported** yet. All GHC adapter metrics are read-only.
 - **Sleep sessions** — Health Connect returns individual stage records (awake, light, deep, REM, out-of-bed) with minute durations. The adapter aggregates and deduplicates these into one `SleepSession` per night with `SleepStageSegment`s.
 - **Permissions UI** — Health Connect shows users a single system permissions screen. If they decline everything, `authorize()` returns failure; individual permissions aren't visible to the app.
-- **MinSdkVersion** — Health Connect requires `minSdkVersion 28` (Android 9). Set this in `android/app/build.gradle`.
+- **SDK levels** — the `health` plugin requires `minSdk` 26 or higher and `compileSdk` 36 or higher. Set these in `android/app/build.gradle(.kts)`. The example app uses `minSdk` 28.
 - **High-frequency metrics** (steps, HR) — if the user has both a phone and a watch reporting to Health Connect, expect overlap. Use `ConflictStrategy.keepAll` per-metric in `MergeConfig` if you want every sample preserved.
 
 ## Related skills

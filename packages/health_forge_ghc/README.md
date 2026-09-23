@@ -20,9 +20,11 @@ Activity (4), Cardiovascular (3), Sleep (1 session with stages), Body (4), Respi
 
 ```yaml
 dependencies:
-  health_forge: ^0.2.0
-  health_forge_ghc: ^0.2.0
+  health_forge: ^0.3.0
+  health_forge_ghc: ^0.3.0
 ```
+
+Requires **Android `minSdk` 26+** and **`compileSdk` 36+**.
 
 Add Health Connect read permissions to `android/app/src/main/AndroidManifest.xml`. See [docs/getting_started.md](https://github.com/mandarnilange/health_forge/blob/main/docs/getting_started.md) for full Android setup.
 

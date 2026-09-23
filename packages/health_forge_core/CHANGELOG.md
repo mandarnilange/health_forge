@@ -1,3 +1,11 @@
+## 0.3.0
+
+- **Breaking:** minimum SDK raised to Dart 3.10.
+- Upgraded `uuid` to `^4.6.0` and `json_annotation` to `^4.12.0`.
+- Removed the unused `equatable` dependency.
+- Regenerated models with `freezed` 4 and `json_serializable` 6.14. No
+  public API changes.
+
 ## 0.2.0
 
 - **Breaking:** `HeartRateVariability.sdnnMilliseconds` is now nullable

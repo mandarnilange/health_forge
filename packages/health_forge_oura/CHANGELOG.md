@@ -1,3 +1,9 @@
+## 0.3.0
+
+- **Breaking:** minimum SDK raised to Dart 3.10 / Flutter 3.38.1.
+- Upgraded `dio` to `^5.11.1` and `crypto` to `^3.0.7`.
+- Bumped `health_forge_core` dependency to `^0.3.0`.
+
 ## 0.2.0
 
 - Bumped `health_forge_core` dependency to `^0.2.0`
