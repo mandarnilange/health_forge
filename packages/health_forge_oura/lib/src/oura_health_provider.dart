@@ -17,8 +17,8 @@ class OuraHealthProvider implements HealthProvider {
   OuraHealthProvider({
     required OuraAuthManager authManager,
     required OuraApiClient apiClient,
-  })  : _authManager = authManager,
-        _apiClient = apiClient;
+  }) : _authManager = authManager,
+       _apiClient = apiClient;
 
   final OuraAuthManager _authManager;
   final OuraApiClient _apiClient;
@@ -60,53 +60,44 @@ class OuraHealthProvider implements HealthProvider {
 
     return switch (metricType) {
       MetricType.sleepSession => SleepMapper.map(
-          await _apiClient.fetchSleep(
-            startDate: startDate,
-            endDate: endDate,
-          ),
-        ),
+        await _apiClient.fetchSleep(startDate: startDate, endDate: endDate),
+      ),
       MetricType.sleepScore => SleepScoreMapper.map(
-          await _apiClient.fetchDailySleep(
-            startDate: startDate,
-            endDate: endDate,
-          ),
+        await _apiClient.fetchDailySleep(
+          startDate: startDate,
+          endDate: endDate,
         ),
+      ),
       MetricType.heartRate => HeartRateMapper.map(
-          await _apiClient.fetchHeartRate(
-            startDate: startDate,
-            endDate: endDate,
-          ),
-        ),
+        await _apiClient.fetchHeartRate(startDate: startDate, endDate: endDate),
+      ),
       MetricType.steps => ActivityMapper.mapSteps(
-          await _apiClient.fetchDailyActivity(
-            startDate: startDate,
-            endDate: endDate,
-          ),
+        await _apiClient.fetchDailyActivity(
+          startDate: startDate,
+          endDate: endDate,
         ),
+      ),
       MetricType.calories => ActivityMapper.mapCalories(
-          await _apiClient.fetchDailyActivity(
-            startDate: startDate,
-            endDate: endDate,
-          ),
+        await _apiClient.fetchDailyActivity(
+          startDate: startDate,
+          endDate: endDate,
         ),
+      ),
       MetricType.readiness => ReadinessMapper.map(
-          await _apiClient.fetchDailyReadiness(
-            startDate: startDate,
-            endDate: endDate,
-          ),
+        await _apiClient.fetchDailyReadiness(
+          startDate: startDate,
+          endDate: endDate,
         ),
+      ),
       MetricType.stress => StressMapper.map(
-          await _apiClient.fetchDailyStress(
-            startDate: startDate,
-            endDate: endDate,
-          ),
+        await _apiClient.fetchDailyStress(
+          startDate: startDate,
+          endDate: endDate,
         ),
+      ),
       MetricType.bloodOxygen => Spo2Mapper.map(
-          await _apiClient.fetchDailySpo2(
-            startDate: startDate,
-            endDate: endDate,
-          ),
-        ),
+        await _apiClient.fetchDailySpo2(startDate: startDate, endDate: endDate),
+      ),
       _ => const [],
     };
   }

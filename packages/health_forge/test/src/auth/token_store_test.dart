@@ -42,11 +42,7 @@ void main() {
       final token = await tokenStore.read(DataProvider.oura);
 
       expect(token, 'stored-token');
-      verify(
-        () => mockStorage.read(
-          key: 'health_forge_token_oura',
-        ),
-      ).called(1);
+      verify(() => mockStorage.read(key: 'health_forge_token_oura')).called(1);
     });
 
     test('read returns null when no token exists', () async {
@@ -67,9 +63,7 @@ void main() {
       await tokenStore.delete(DataProvider.garmin);
 
       verify(
-        () => mockStorage.delete(
-          key: 'health_forge_token_garmin',
-        ),
+        () => mockStorage.delete(key: 'health_forge_token_garmin'),
       ).called(1);
     });
 
@@ -83,9 +77,7 @@ void main() {
       // Should delete each provider key individually
       for (final provider in DataProvider.values) {
         verify(
-          () => mockStorage.delete(
-            key: 'health_forge_token_${provider.name}',
-          ),
+          () => mockStorage.delete(key: 'health_forge_token_${provider.name}'),
         ).called(1);
       }
 

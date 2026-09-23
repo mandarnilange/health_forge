@@ -37,8 +37,9 @@ void main() {
       ),
     );
 
-    when(() => ghcProvider.providerType)
-        .thenReturn(DataProvider.googleHealthConnect);
+    when(
+      () => ghcProvider.providerType,
+    ).thenReturn(DataProvider.googleHealthConnect);
     when(() => ghcProvider.displayName).thenReturn('Google Health Connect');
     when(() => ghcProvider.capabilities).thenReturn(
       const ProviderCapabilities(
@@ -54,142 +55,145 @@ void main() {
   });
 
   group('Full Pipeline', () {
-    test('register → authorize → query → returns records from both providers',
-        () async {
-      final appleRecord = HeartRateSample(
-        id: 'apple-hr-1',
-        provider: DataProvider.apple,
-        providerRecordType: 'heart_rate',
-        startTime: now.subtract(const Duration(minutes: 5)),
-        endTime: now.subtract(const Duration(minutes: 4)),
-        capturedAt: now,
-        beatsPerMinute: 72,
-      );
-      final ghcRecord = HeartRateSample(
-        id: 'ghc-hr-1',
-        provider: DataProvider.googleHealthConnect,
-        providerRecordType: 'heart_rate',
-        startTime: now.subtract(const Duration(minutes: 10)),
-        endTime: now.subtract(const Duration(minutes: 9)),
-        capturedAt: now,
-        beatsPerMinute: 75,
-      );
+    test(
+      'register → authorize → query → returns records from both providers',
+      () async {
+        final appleRecord = HeartRateSample(
+          id: 'apple-hr-1',
+          provider: DataProvider.apple,
+          providerRecordType: 'heart_rate',
+          startTime: now.subtract(const Duration(minutes: 5)),
+          endTime: now.subtract(const Duration(minutes: 4)),
+          capturedAt: now,
+          beatsPerMinute: 72,
+        );
+        final ghcRecord = HeartRateSample(
+          id: 'ghc-hr-1',
+          provider: DataProvider.googleHealthConnect,
+          providerRecordType: 'heart_rate',
+          startTime: now.subtract(const Duration(minutes: 10)),
+          endTime: now.subtract(const Duration(minutes: 9)),
+          capturedAt: now,
+          beatsPerMinute: 75,
+        );
 
-      when(() => appleProvider.authorize())
-          .thenAnswer((_) async => AuthResult.success());
-      when(() => ghcProvider.authorize())
-          .thenAnswer((_) async => AuthResult.success());
-      when(
-        () => appleProvider.fetchRecords(
-          metricType: any(named: 'metricType'),
-          timeRange: any(named: 'timeRange'),
-        ),
-      ).thenAnswer((_) async => [appleRecord]);
-      when(
-        () => ghcProvider.fetchRecords(
-          metricType: any(named: 'metricType'),
-          timeRange: any(named: 'timeRange'),
-        ),
-      ).thenAnswer((_) async => [ghcRecord]);
+        when(
+          () => appleProvider.authorize(),
+        ).thenAnswer((_) async => AuthResult.success());
+        when(
+          () => ghcProvider.authorize(),
+        ).thenAnswer((_) async => AuthResult.success());
+        when(
+          () => appleProvider.fetchRecords(
+            metricType: any(named: 'metricType'),
+            timeRange: any(named: 'timeRange'),
+          ),
+        ).thenAnswer((_) async => [appleRecord]);
+        when(
+          () => ghcProvider.fetchRecords(
+            metricType: any(named: 'metricType'),
+            timeRange: any(named: 'timeRange'),
+          ),
+        ).thenAnswer((_) async => [ghcRecord]);
 
-      // Register
-      client
-        ..use(appleProvider)
-        ..use(ghcProvider);
-      expect(client.registry.all, hasLength(2));
+        // Register
+        client
+          ..use(appleProvider)
+          ..use(ghcProvider);
+        expect(client.registry.all, hasLength(2));
 
-      // Authorize
-      final authResults = await client.auth.authorizeAll();
-      expect(authResults[DataProvider.apple]!.isSuccess, isTrue);
-      expect(
-        authResults[DataProvider.googleHealthConnect]!.isSuccess,
-        isTrue,
-      );
+        // Authorize
+        final authResults = await client.auth.authorizeAll();
+        expect(authResults[DataProvider.apple]!.isSuccess, isTrue);
+        expect(
+          authResults[DataProvider.googleHealthConnect]!.isSuccess,
+          isTrue,
+        );
 
-      // Query
-      final queryBuilder = client.query()
-        ..forMetric(MetricType.heartRate)
-        ..inRange(range);
-      final query = queryBuilder.build();
+        // Query
+        final queryBuilder = client.query()
+          ..forMetric(MetricType.heartRate)
+          ..inRange(range);
+        final query = queryBuilder.build();
 
-      final executor = QueryExecutor(
-        registry: client.registry,
-        mergeEngine: MergeEngine(config: const MergeConfig()),
-      );
-      final result = await executor.execute(query);
+        final executor = QueryExecutor(
+          registry: client.registry,
+          mergeEngine: MergeEngine(config: const MergeConfig()),
+        );
+        final result = await executor.execute(query);
 
-      expect(result.records, hasLength(2));
-      expect(result.errors, isEmpty);
-      expect(result.fetchDuration, greaterThan(Duration.zero));
-    });
+        expect(result.records, hasLength(2));
+        expect(result.errors, isEmpty);
+        expect(result.fetchDuration, greaterThan(Duration.zero));
+      },
+    );
 
-    test('register → query with merge → deduplicates overlapping records',
-        () async {
-      // Two providers return overlapping heart rate at same time
-      final appleRecord = HeartRateSample(
-        id: 'apple-hr-overlap',
-        provider: DataProvider.apple,
-        providerRecordType: 'heart_rate',
-        startTime: now.subtract(const Duration(minutes: 5)),
-        endTime: now.subtract(const Duration(minutes: 4)),
-        capturedAt: now,
-        beatsPerMinute: 72,
-      );
-      final ghcRecord = HeartRateSample(
-        id: 'ghc-hr-overlap',
-        provider: DataProvider.googleHealthConnect,
-        providerRecordType: 'heart_rate',
-        startTime: now.subtract(const Duration(minutes: 5)),
-        endTime: now.subtract(const Duration(minutes: 4)),
-        capturedAt: now,
-        beatsPerMinute: 73,
-      );
+    test(
+      'register → query with merge → deduplicates overlapping records',
+      () async {
+        // Two providers return overlapping heart rate at same time
+        final appleRecord = HeartRateSample(
+          id: 'apple-hr-overlap',
+          provider: DataProvider.apple,
+          providerRecordType: 'heart_rate',
+          startTime: now.subtract(const Duration(minutes: 5)),
+          endTime: now.subtract(const Duration(minutes: 4)),
+          capturedAt: now,
+          beatsPerMinute: 72,
+        );
+        final ghcRecord = HeartRateSample(
+          id: 'ghc-hr-overlap',
+          provider: DataProvider.googleHealthConnect,
+          providerRecordType: 'heart_rate',
+          startTime: now.subtract(const Duration(minutes: 5)),
+          endTime: now.subtract(const Duration(minutes: 4)),
+          capturedAt: now,
+          beatsPerMinute: 73,
+        );
 
-      when(
-        () => appleProvider.fetchRecords(
-          metricType: any(named: 'metricType'),
-          timeRange: any(named: 'timeRange'),
-        ),
-      ).thenAnswer((_) async => [appleRecord]);
-      when(
-        () => ghcProvider.fetchRecords(
-          metricType: any(named: 'metricType'),
-          timeRange: any(named: 'timeRange'),
-        ),
-      ).thenAnswer((_) async => [ghcRecord]);
+        when(
+          () => appleProvider.fetchRecords(
+            metricType: any(named: 'metricType'),
+            timeRange: any(named: 'timeRange'),
+          ),
+        ).thenAnswer((_) async => [appleRecord]);
+        when(
+          () => ghcProvider.fetchRecords(
+            metricType: any(named: 'metricType'),
+            timeRange: any(named: 'timeRange'),
+          ),
+        ).thenAnswer((_) async => [ghcRecord]);
 
-      client
-        ..use(appleProvider)
-        ..use(ghcProvider);
+        client
+          ..use(appleProvider)
+          ..use(ghcProvider);
 
-      const mergeConfig = MergeConfig(
-        providerPriority: [
-          DataProvider.apple,
-          DataProvider.googleHealthConnect,
-        ],
-      );
+        const mergeConfig = MergeConfig(
+          providerPriority: [
+            DataProvider.apple,
+            DataProvider.googleHealthConnect,
+          ],
+        );
 
-      final queryBuilder = client.query()
-        ..forMetric(MetricType.heartRate)
-        ..inRange(range)
-        ..withMerge(mergeConfig);
-      final query = queryBuilder.build();
+        final queryBuilder = client.query()
+          ..forMetric(MetricType.heartRate)
+          ..inRange(range)
+          ..withMerge(mergeConfig);
+        final query = queryBuilder.build();
 
-      final executor = QueryExecutor(
-        registry: client.registry,
-        mergeEngine: MergeEngine(config: mergeConfig),
-      );
-      final result = await executor.execute(query);
+        final executor = QueryExecutor(
+          registry: client.registry,
+          mergeEngine: MergeEngine(config: mergeConfig),
+        );
+        final result = await executor.execute(query);
 
-      // With priority-based merge, overlapping records should be resolved
-      expect(result.mergeResult, isNotNull);
-      expect(result.mergeResult!.conflicts, isNotEmpty);
-      // The resolved set should have fewer records than raw input
-      expect(
-        result.records.length,
-        lessThanOrEqualTo(2),
-      );
-    });
+        // With priority-based merge, overlapping records should be resolved
+        expect(result.mergeResult, isNotNull);
+        expect(result.mergeResult!.conflicts, isNotEmpty);
+        // The resolved set should have fewer records than raw input
+        expect(result.records.length, lessThanOrEqualTo(2));
+      },
+    );
 
     test('sync → cache → query from cache returns cached records', () async {
       final records = [

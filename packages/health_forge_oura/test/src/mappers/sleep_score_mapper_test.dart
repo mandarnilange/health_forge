@@ -14,10 +14,7 @@ void main() {
             id: 'ds_001',
             day: '2024-01-15',
             score: 85,
-            contributors: {
-              'deep_sleep': 90,
-              'efficiency': 88,
-            },
+            contributors: {'deep_sleep': 90, 'efficiency': 88},
             timestamp: '2024-01-15T00:00:00+00:00',
           ),
         ],

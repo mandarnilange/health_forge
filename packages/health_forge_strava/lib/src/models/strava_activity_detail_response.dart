@@ -24,31 +24,31 @@ class StravaActivityDetailResponse {
   });
 
   /// Deserializes from the Strava API JSON response.
-  factory StravaActivityDetailResponse.fromJson(Map<String, dynamic> json) =>
-      StravaActivityDetailResponse(
-        id: json['id'] as int,
-        name: json['name'] as String,
-        type: json['type'] as String,
-        sportType: json['sport_type'] as String,
-        startDate: json['start_date'] as String,
-        elapsedTime: json['elapsed_time'] as int,
-        movingTime: json['moving_time'] as int,
-        distance: (json['distance'] as num?)?.toDouble(),
-        totalElevationGain: (json['total_elevation_gain'] as num?)?.toDouble(),
-        kilojoules: (json['kilojoules'] as num?)?.toDouble(),
-        calories: (json['calories'] as num?)?.toDouble(),
-        averageHeartrate: (json['average_heartrate'] as num?)?.toDouble(),
-        maxHeartrate: json['max_heartrate'] as int?,
-        sufferScore: json['suffer_score'] as int?,
-        hasHeartrate: json['has_heartrate'] as bool?,
-        segmentEfforts: (json['segment_efforts'] as List<dynamic>?)
-            ?.cast<Map<String, dynamic>>(),
-        mapPolyline:
-            (json['map'] as Map<String, dynamic>?)?['polyline'] as String?,
-        mapSummaryPolyline: (json['map']
-            as Map<String, dynamic>?)?['summary_polyline'] as String?,
-        timezone: json['timezone'] as String?,
-      );
+  factory StravaActivityDetailResponse.fromJson(
+    Map<String, dynamic> json,
+  ) => StravaActivityDetailResponse(
+    id: json['id'] as int,
+    name: json['name'] as String,
+    type: json['type'] as String,
+    sportType: json['sport_type'] as String,
+    startDate: json['start_date'] as String,
+    elapsedTime: json['elapsed_time'] as int,
+    movingTime: json['moving_time'] as int,
+    distance: (json['distance'] as num?)?.toDouble(),
+    totalElevationGain: (json['total_elevation_gain'] as num?)?.toDouble(),
+    kilojoules: (json['kilojoules'] as num?)?.toDouble(),
+    calories: (json['calories'] as num?)?.toDouble(),
+    averageHeartrate: (json['average_heartrate'] as num?)?.toDouble(),
+    maxHeartrate: json['max_heartrate'] as int?,
+    sufferScore: json['suffer_score'] as int?,
+    hasHeartrate: json['has_heartrate'] as bool?,
+    segmentEfforts: (json['segment_efforts'] as List<dynamic>?)
+        ?.cast<Map<String, dynamic>>(),
+    mapPolyline: (json['map'] as Map<String, dynamic>?)?['polyline'] as String?,
+    mapSummaryPolyline:
+        (json['map'] as Map<String, dynamic>?)?['summary_polyline'] as String?,
+    timezone: json['timezone'] as String?,
+  );
 
   /// Unique Strava activity identifier.
   final int id;

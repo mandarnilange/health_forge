@@ -35,17 +35,11 @@ void main() {
 
     group('accessMode', () {
       test('returns correct mode for supported metric', () {
-        expect(
-          capabilities.accessMode(MetricType.heartRate),
-          AccessMode.read,
-        );
+        expect(capabilities.accessMode(MetricType.heartRate), AccessMode.read);
       });
 
       test('returns readWrite for metric with that mode', () {
-        expect(
-          capabilities.accessMode(MetricType.steps),
-          AccessMode.readWrite,
-        );
+        expect(capabilities.accessMode(MetricType.steps), AccessMode.readWrite);
       });
 
       test('returns null for unsupported metric', () {

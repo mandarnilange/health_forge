@@ -9,10 +9,10 @@ class OuraToken {
 
   /// Deserializes from JSON.
   factory OuraToken.fromJson(Map<String, dynamic> json) => OuraToken(
-        accessToken: json['accessToken'] as String,
-        refreshToken: json['refreshToken'] as String,
-        expiresAt: DateTime.parse(json['expiresAt'] as String),
-      );
+    accessToken: json['accessToken'] as String,
+    refreshToken: json['refreshToken'] as String,
+    expiresAt: DateTime.parse(json['expiresAt'] as String),
+  );
 
   /// The OAuth 2.0 access token for API requests.
   final String accessToken;
@@ -28,8 +28,8 @@ class OuraToken {
 
   /// Serializes to JSON.
   Map<String, dynamic> toJson() => {
-        'accessToken': accessToken,
-        'refreshToken': refreshToken,
-        'expiresAt': expiresAt.toIso8601String(),
-      };
+    'accessToken': accessToken,
+    'refreshToken': refreshToken,
+    'expiresAt': expiresAt.toIso8601String(),
+  };
 }

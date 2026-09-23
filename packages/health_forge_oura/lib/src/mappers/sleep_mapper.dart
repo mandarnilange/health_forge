@@ -25,10 +25,12 @@ class SleepMapper {
       totalSleepMinutes: data.totalSleepDuration != null
           ? data.totalSleepDuration! ~/ 60
           : null,
-      remMinutes:
-          data.remSleepDuration != null ? data.remSleepDuration! ~/ 60 : null,
-      deepMinutes:
-          data.deepSleepDuration != null ? data.deepSleepDuration! ~/ 60 : null,
+      remMinutes: data.remSleepDuration != null
+          ? data.remSleepDuration! ~/ 60
+          : null,
+      deepMinutes: data.deepSleepDuration != null
+          ? data.deepSleepDuration! ~/ 60
+          : null,
       lightMinutes: data.lightSleepDuration != null
           ? data.lightSleepDuration! ~/ 60
           : null,

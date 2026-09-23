@@ -36,10 +36,7 @@ void main() {
         expect(session.totalSleepMinutes, 480);
         expect(session.provenance, isNotNull);
         expect(session.provenance!.dataOrigin, DataOrigin.native_);
-        expect(
-          session.provenance!.sourceDevice?.model,
-          'Apple Watch Series 9',
-        );
+        expect(session.provenance!.sourceDevice?.model, 'Apple Watch Series 9');
         expect(session.provenance!.sourceDevice?.manufacturer, 'Apple Watch');
         expect(session.provenance!.sourceApp, 'com.apple.health');
       });
@@ -429,33 +426,35 @@ void main() {
         expect(sessions.first.provenance!.sourceApp, 'com.apple.health');
       });
 
-      test('sets providerRecordType to SLEEP_SESSION for aggregated records',
-          () {
-        final records = [
-          HealthDataRecord(
-            type: 'SLEEP_DEEP',
-            value: 0,
-            dateFrom: DateTime(2024, 6, 15, 23),
-            dateTo: DateTime(2024, 6, 15, 23, 45),
-            sourceName: 'Apple Watch',
-            sourceId: 'com.apple.health',
-            uuid: 'deep-1',
-          ),
-          HealthDataRecord(
-            type: 'SLEEP_LIGHT',
-            value: 0,
-            dateFrom: DateTime(2024, 6, 15, 23, 45),
-            dateTo: DateTime(2024, 6, 16, 0, 15),
-            sourceName: 'Apple Watch',
-            sourceId: 'com.apple.health',
-            uuid: 'light-1',
-          ),
-        ];
+      test(
+        'sets providerRecordType to SLEEP_SESSION for aggregated records',
+        () {
+          final records = [
+            HealthDataRecord(
+              type: 'SLEEP_DEEP',
+              value: 0,
+              dateFrom: DateTime(2024, 6, 15, 23),
+              dateTo: DateTime(2024, 6, 15, 23, 45),
+              sourceName: 'Apple Watch',
+              sourceId: 'com.apple.health',
+              uuid: 'deep-1',
+            ),
+            HealthDataRecord(
+              type: 'SLEEP_LIGHT',
+              value: 0,
+              dateFrom: DateTime(2024, 6, 15, 23, 45),
+              dateTo: DateTime(2024, 6, 16, 0, 15),
+              sourceName: 'Apple Watch',
+              sourceId: 'com.apple.health',
+              uuid: 'light-1',
+            ),
+          ];
 
-        final sessions = SleepMapper.mapAll(records);
+          final sessions = SleepMapper.mapAll(records);
 
-        expect(sessions.first.providerRecordType, 'SLEEP_SESSION');
-      });
+          expect(sessions.first.providerRecordType, 'SLEEP_SESSION');
+        },
+      );
     });
   });
 }

@@ -19,10 +19,7 @@ void main() {
     });
 
     test('tokenUrl points to Oura API OAuth token', () {
-      expect(
-        OuraApiEndpoints.tokenUrl,
-        'https://api.ouraring.com/oauth/token',
-      );
+      expect(OuraApiEndpoints.tokenUrl, 'https://api.ouraring.com/oauth/token');
     });
 
     test('sleep endpoint', () {

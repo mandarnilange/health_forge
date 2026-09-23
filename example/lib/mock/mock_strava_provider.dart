@@ -16,15 +16,15 @@ class MockStravaProvider implements HealthProvider {
 
   @override
   ProviderCapabilities get capabilities => const ProviderCapabilities(
-        supportedMetrics: {
-          MetricType.workout: AccessMode.read,
-          MetricType.heartRate: AccessMode.read,
-          MetricType.calories: AccessMode.read,
-          MetricType.distance: AccessMode.read,
-          MetricType.elevation: AccessMode.read,
-        },
-        syncModel: SyncModel.fullWindow,
-      );
+    supportedMetrics: {
+      MetricType.workout: AccessMode.read,
+      MetricType.heartRate: AccessMode.read,
+      MetricType.calories: AccessMode.read,
+      MetricType.distance: AccessMode.read,
+      MetricType.elevation: AccessMode.read,
+    },
+    syncModel: SyncModel.fullWindow,
+  );
 
   @override
   Future<bool> isAuthorized() async => _authorized;

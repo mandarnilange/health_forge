@@ -14,10 +14,8 @@ class RateLimiter extends Interceptor {
   /// Creates a rate limiter with the given [maxRequestsPerSecond].
   ///
   /// An optional [clock] function can be injected for testing.
-  RateLimiter({
-    this.maxRequestsPerSecond = 5,
-    DateTime Function()? clock,
-  }) : _clock = clock ?? DateTime.now;
+  RateLimiter({this.maxRequestsPerSecond = 5, DateTime Function()? clock})
+    : _clock = clock ?? DateTime.now;
 
   /// Maximum allowed requests within a one-second sliding window.
   final int maxRequestsPerSecond;

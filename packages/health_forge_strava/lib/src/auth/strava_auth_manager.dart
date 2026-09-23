@@ -33,12 +33,12 @@ class StravaAuthManager {
     Dio? dio,
     StravaToken? initialToken,
     void Function(StravaToken?)? onTokenChanged,
-  })  : _clientSecret = clientSecret,
-        _tokenExchange = tokenExchange,
-        _urlLauncher = urlLauncher,
-        _dio = tokenExchange == null ? (dio ?? Dio()) : dio,
-        _currentToken = initialToken,
-        _onTokenChanged = onTokenChanged {
+  }) : _clientSecret = clientSecret,
+       _tokenExchange = tokenExchange,
+       _urlLauncher = urlLauncher,
+       _dio = tokenExchange == null ? (dio ?? Dio()) : dio,
+       _currentToken = initialToken,
+       _onTokenChanged = onTokenChanged {
     if (!((tokenExchange != null) ^
         (clientSecret != null && clientSecret.isNotEmpty))) {
       throw ArgumentError(
@@ -102,7 +102,7 @@ class StravaAuthManager {
     final code = redirectedUri.queryParameters['code'];
     if (code == null) return null;
 
-    return _exchangeCodeForToken(code, codeVerifier);
+    return await _exchangeCodeForToken(code, codeVerifier);
   }
 
   /// Refreshes an expired token using its refresh token.

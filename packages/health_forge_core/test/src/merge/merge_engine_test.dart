@@ -167,9 +167,7 @@ void main() {
 
     test('average strategy averages numeric values', () {
       final engine = MergeEngine(
-        config: const MergeConfig(
-          defaultStrategy: ConflictStrategy.average,
-        ),
+        config: const MergeConfig(defaultStrategy: ConflictStrategy.average),
       );
 
       final result = engine.merge([
@@ -324,9 +322,7 @@ void main() {
     test('custom strategy used via per-metric config', () {
       final engine = MergeEngine(
         config: const MergeConfig(
-          perMetricStrategy: {
-            MetricType.heartRate: ConflictStrategy.custom,
-          },
+          perMetricStrategy: {MetricType.heartRate: ConflictStrategy.custom},
         ),
         customStrategy: CustomStrategy(
           resolver: (records, metricType) => [records.last], // always pick last
@@ -357,9 +353,7 @@ void main() {
     test('ConflictStrategy.custom without CustomStrategy throws', () {
       final engine = MergeEngine(
         config: const MergeConfig(
-          perMetricStrategy: {
-            MetricType.heartRate: ConflictStrategy.custom,
-          },
+          perMetricStrategy: {MetricType.heartRate: ConflictStrategy.custom},
         ),
       );
 
@@ -465,9 +459,7 @@ void main() {
           startTime: t,
           endTime: t.add(const Duration(minutes: 30)),
           capturedAt: t,
-          points: const [
-            RoutePoint(latitude: 1, longitude: 2),
-          ],
+          points: const [RoutePoint(latitude: 1, longitude: 2)],
         ),
         RecoveryMetric(
           id: 'rec',

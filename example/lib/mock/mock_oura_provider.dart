@@ -16,18 +16,18 @@ class MockOuraProvider implements HealthProvider {
 
   @override
   ProviderCapabilities get capabilities => const ProviderCapabilities(
-        supportedMetrics: {
-          MetricType.sleepSession: AccessMode.read,
-          MetricType.sleepScore: AccessMode.read,
-          MetricType.heartRate: AccessMode.read,
-          MetricType.readiness: AccessMode.read,
-          MetricType.stress: AccessMode.read,
-          MetricType.bloodOxygen: AccessMode.read,
-          MetricType.steps: AccessMode.read,
-          MetricType.calories: AccessMode.read,
-        },
-        syncModel: SyncModel.incrementalCursor,
-      );
+    supportedMetrics: {
+      MetricType.sleepSession: AccessMode.read,
+      MetricType.sleepScore: AccessMode.read,
+      MetricType.heartRate: AccessMode.read,
+      MetricType.readiness: AccessMode.read,
+      MetricType.stress: AccessMode.read,
+      MetricType.bloodOxygen: AccessMode.read,
+      MetricType.steps: AccessMode.read,
+      MetricType.calories: AccessMode.read,
+    },
+    syncModel: SyncModel.incrementalCursor,
+  );
 
   @override
   Future<bool> isAuthorized() async => _authorized;

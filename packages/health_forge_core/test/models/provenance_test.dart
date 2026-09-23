@@ -24,9 +24,7 @@ void main() {
     });
 
     test('creates with minimal fields', () {
-      const provenance = Provenance(
-        dataOrigin: DataOrigin.mapped,
-      );
+      const provenance = Provenance(dataOrigin: DataOrigin.mapped);
 
       expect(provenance.sourceDevice, isNull);
       expect(provenance.sourceApp, isNull);

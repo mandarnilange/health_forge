@@ -16,7 +16,5 @@ abstract class StravaTokenExchange {
   });
 
   /// Refreshes tokens using Strava's refresh_token grant.
-  Future<StravaToken> refreshAccessToken({
-    required String refreshToken,
-  });
+  Future<StravaToken> refreshAccessToken({required String refreshToken});
 }

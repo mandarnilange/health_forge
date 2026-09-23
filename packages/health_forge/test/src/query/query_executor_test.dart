@@ -9,10 +9,7 @@ class MockHealthProvider extends Mock implements HealthProvider {}
 
 class MockHealthRecord extends Mock implements HealthRecordMixin {}
 
-final _range = TimeRange(
-  start: DateTime(2024),
-  end: DateTime(2024, 1, 2),
-);
+final _range = TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 2));
 
 void main() {
   late QueryExecutor executor;
@@ -29,10 +26,7 @@ void main() {
   setUp(() {
     registry = ProviderRegistry();
     mergeEngine = MergeEngine(config: const MergeConfig());
-    executor = QueryExecutor(
-      registry: registry,
-      mergeEngine: mergeEngine,
-    );
+    executor = QueryExecutor(registry: registry, mergeEngine: mergeEngine);
 
     appleProvider = MockHealthProvider();
     when(() => appleProvider.providerType).thenReturn(DataProvider.apple);
@@ -81,41 +75,38 @@ void main() {
       expect(result.errors, isEmpty);
     });
 
-    test(
-      'fetches from all supporting providers '
-      'when no provider specified',
-      () async {
-        registry
-          ..register(appleProvider)
-          ..register(ouraProvider);
+    test('fetches from all supporting providers '
+        'when no provider specified', () async {
+      registry
+        ..register(appleProvider)
+        ..register(ouraProvider);
 
-        final appleRecord = MockHealthRecord();
-        final ouraRecord = MockHealthRecord();
+      final appleRecord = MockHealthRecord();
+      final ouraRecord = MockHealthRecord();
 
-        when(
-          () => appleProvider.fetchRecords(
-            metricType: any(named: 'metricType'),
-            timeRange: any(named: 'timeRange'),
-          ),
-        ).thenAnswer((_) async => [appleRecord]);
-        when(
-          () => ouraProvider.fetchRecords(
-            metricType: any(named: 'metricType'),
-            timeRange: any(named: 'timeRange'),
-          ),
-        ).thenAnswer((_) async => [ouraRecord]);
+      when(
+        () => appleProvider.fetchRecords(
+          metricType: any(named: 'metricType'),
+          timeRange: any(named: 'timeRange'),
+        ),
+      ).thenAnswer((_) async => [appleRecord]);
+      when(
+        () => ouraProvider.fetchRecords(
+          metricType: any(named: 'metricType'),
+          timeRange: any(named: 'timeRange'),
+        ),
+      ).thenAnswer((_) async => [ouraRecord]);
 
-        final query = QueryBuilder()
-          ..forMetric(MetricType.heartRate)
-          ..fromAll()
-          ..inRange(_range);
+      final query = QueryBuilder()
+        ..forMetric(MetricType.heartRate)
+        ..fromAll()
+        ..inRange(_range);
 
-        final result = await executor.execute(query.build());
+      final result = await executor.execute(query.build());
 
-        expect(result.records, hasLength(2));
-        expect(result.errors, isEmpty);
-      },
-    );
+      expect(result.records, hasLength(2));
+      expect(result.errors, isEmpty);
+    });
 
     test('captures errors without failing', () async {
       registry.register(appleProvider);
@@ -134,10 +125,7 @@ void main() {
       final result = await executor.execute(query.build());
 
       expect(result.records, isEmpty);
-      expect(
-        result.errors,
-        contains(DataProvider.apple),
-      );
+      expect(result.errors, contains(DataProvider.apple));
     });
 
     test('captures Error subclasses without failing', () async {

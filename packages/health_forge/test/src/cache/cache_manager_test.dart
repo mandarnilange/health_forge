@@ -16,9 +16,9 @@ MockHealthRecord _makeRecord({
   when(() => record.providerRecordType).thenReturn(recordType);
   when(() => record.startTime).thenReturn(start);
   when(() => record.endTime).thenReturn(end);
-  when(() => record.id).thenReturn(
-    '${provider.name}_${start.millisecondsSinceEpoch}',
-  );
+  when(
+    () => record.id,
+  ).thenReturn('${provider.name}_${start.millisecondsSinceEpoch}');
   return record;
 }
 
@@ -42,10 +42,7 @@ void main() {
 
       final results = await cache.get(
         metric: MetricType.heartRate,
-        range: TimeRange(
-          start: DateTime(2024),
-          end: DateTime(2024, 1, 2),
-        ),
+        range: TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 2)),
       );
 
       expect(results, [record]);
@@ -69,10 +66,7 @@ void main() {
 
       final results = await cache.get(
         metric: MetricType.heartRate,
-        range: TimeRange(
-          start: DateTime(2024),
-          end: DateTime(2024, 1, 2),
-        ),
+        range: TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 2)),
       );
 
       expect(results, [hrRecord]);
@@ -96,10 +90,7 @@ void main() {
 
       final results = await cache.get(
         metric: MetricType.heartRate,
-        range: TimeRange(
-          start: DateTime(2024),
-          end: DateTime(2024, 1, 31),
-        ),
+        range: TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 31)),
       );
 
       expect(results, [inRange]);
@@ -123,47 +114,38 @@ void main() {
 
       final results = await cache.get(
         metric: MetricType.heartRate,
-        range: TimeRange(
-          start: DateTime(2024),
-          end: DateTime(2024, 1, 2),
-        ),
+        range: TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 2)),
         provider: DataProvider.apple,
       );
 
       expect(results, [appleRecord]);
     });
 
-    test(
-      'invalidate by provider removes only that providers '
-      'records',
-      () async {
-        final appleRecord = _makeRecord(
-          provider: DataProvider.apple,
-          recordType: 'heart_rate',
-          start: DateTime(2024),
-          end: DateTime(2024, 1, 1, 0, 5),
-        );
-        final ouraRecord = _makeRecord(
-          provider: DataProvider.oura,
-          recordType: 'heart_rate',
-          start: DateTime(2024),
-          end: DateTime(2024, 1, 1, 0, 5),
-        );
+    test('invalidate by provider removes only that providers '
+        'records', () async {
+      final appleRecord = _makeRecord(
+        provider: DataProvider.apple,
+        recordType: 'heart_rate',
+        start: DateTime(2024),
+        end: DateTime(2024, 1, 1, 0, 5),
+      );
+      final ouraRecord = _makeRecord(
+        provider: DataProvider.oura,
+        recordType: 'heart_rate',
+        start: DateTime(2024),
+        end: DateTime(2024, 1, 1, 0, 5),
+      );
 
-        await cache.put([appleRecord, ouraRecord]);
-        await cache.invalidate(provider: DataProvider.apple);
+      await cache.put([appleRecord, ouraRecord]);
+      await cache.invalidate(provider: DataProvider.apple);
 
-        final results = await cache.get(
-          metric: MetricType.heartRate,
-          range: TimeRange(
-            start: DateTime(2024),
-            end: DateTime(2024, 1, 2),
-          ),
-        );
+      final results = await cache.get(
+        metric: MetricType.heartRate,
+        range: TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 2)),
+      );
 
-        expect(results, [ouraRecord]);
-      },
-    );
+      expect(results, [ouraRecord]);
+    });
 
     test('invalidate by metric removes matching records', () async {
       final hrRecord = _makeRecord(
@@ -184,17 +166,11 @@ void main() {
 
       final hrResults = await cache.get(
         metric: MetricType.heartRate,
-        range: TimeRange(
-          start: DateTime(2024),
-          end: DateTime(2024, 1, 2),
-        ),
+        range: TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 2)),
       );
       final stepsResults = await cache.get(
         metric: MetricType.steps,
-        range: TimeRange(
-          start: DateTime(2024),
-          end: DateTime(2024, 1, 2),
-        ),
+        range: TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 2)),
       );
 
       expect(hrResults, isEmpty);
@@ -214,10 +190,7 @@ void main() {
 
       final results = await cache.get(
         metric: MetricType.heartRate,
-        range: TimeRange(
-          start: DateTime(2024),
-          end: DateTime(2024, 1, 2),
-        ),
+        range: TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 2)),
       );
 
       expect(results, isEmpty);

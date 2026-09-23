@@ -29,21 +29,18 @@ void main() {
     when(() => appleProvider.displayName).thenReturn('Apple HealthKit');
     when(() => appleProvider.capabilities).thenReturn(
       const ProviderCapabilities(
-        supportedMetrics: {
-          MetricType.heartRate: AccessMode.read,
-        },
+        supportedMetrics: {MetricType.heartRate: AccessMode.read},
         syncModel: SyncModel.fullWindow,
       ),
     );
 
-    when(() => ghcProvider.providerType)
-        .thenReturn(DataProvider.googleHealthConnect);
+    when(
+      () => ghcProvider.providerType,
+    ).thenReturn(DataProvider.googleHealthConnect);
     when(() => ghcProvider.displayName).thenReturn('Google Health Connect');
     when(() => ghcProvider.capabilities).thenReturn(
       const ProviderCapabilities(
-        supportedMetrics: {
-          MetricType.heartRate: AccessMode.read,
-        },
+        supportedMetrics: {MetricType.heartRate: AccessMode.read},
         syncModel: SyncModel.fullWindow,
       ),
     );
@@ -93,10 +90,7 @@ void main() {
 
       // GHC records should still be returned
       expect(result.records, hasLength(1));
-      expect(
-        (result.records.first as HeartRateSample).beatsPerMinute,
-        70,
-      );
+      expect((result.records.first as HeartRateSample).beatsPerMinute, 70);
 
       // Apple error should be captured
       expect(result.errors, contains(DataProvider.apple));
@@ -139,8 +133,10 @@ void main() {
 
       expect(cached, hasLength(2));
 
-      final bpms =
-          cached.cast<HeartRateSample>().map((r) => r.beatsPerMinute).toSet();
+      final bpms = cached
+          .cast<HeartRateSample>()
+          .map((r) => r.beatsPerMinute)
+          .toSet();
       expect(bpms, containsAll([65, 72]));
     });
 

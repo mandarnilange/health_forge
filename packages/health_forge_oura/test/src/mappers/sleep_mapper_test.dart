@@ -70,9 +70,7 @@ void main() {
     });
 
     test('handles empty response', () {
-      final sessions = SleepMapper.map(
-        const OuraSleepResponse(data: []),
-      );
+      final sessions = SleepMapper.map(const OuraSleepResponse(data: []));
       expect(sessions, isEmpty);
     });
 

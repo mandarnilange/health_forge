@@ -17,15 +17,10 @@ class OuraApiClient {
   /// Creates an API client with the given [authManager].
   ///
   /// An optional [dio] instance can be injected for testing.
-  OuraApiClient({
-    required OuraAuthManager authManager,
-    Dio? dio,
-  }) : _dio = dio ?? Dio(BaseOptions(baseUrl: OuraApiEndpoints.baseUrl)) {
+  OuraApiClient({required OuraAuthManager authManager, Dio? dio})
+    : _dio = dio ?? Dio(BaseOptions(baseUrl: OuraApiEndpoints.baseUrl)) {
     if (dio == null) {
-      _dio.interceptors.addAll([
-        _AuthInterceptor(authManager),
-        RateLimiter(),
-      ]);
+      _dio.interceptors.addAll([_AuthInterceptor(authManager), RateLimiter()]);
     }
   }
 
@@ -36,14 +31,13 @@ class OuraApiClient {
     required String startDate,
     required String endDate,
   }) async {
-    return _fetchPaginated(
+    return await _fetchPaginated(
       endpoint: OuraApiEndpoints.sleep,
       startDate: startDate,
       endDate: endDate,
       parse: OuraSleepResponse.fromJson,
-      mergeData: (pages) => OuraSleepResponse(
-        data: pages.expand((p) => p.data).toList(),
-      ),
+      mergeData: (pages) =>
+          OuraSleepResponse(data: pages.expand((p) => p.data).toList()),
       getNextToken: (r) => r.nextToken,
     );
   }
@@ -53,14 +47,13 @@ class OuraApiClient {
     required String startDate,
     required String endDate,
   }) async {
-    return _fetchPaginated(
+    return await _fetchPaginated(
       endpoint: OuraApiEndpoints.dailySleep,
       startDate: startDate,
       endDate: endDate,
       parse: OuraDailySleepResponse.fromJson,
-      mergeData: (pages) => OuraDailySleepResponse(
-        data: pages.expand((p) => p.data).toList(),
-      ),
+      mergeData: (pages) =>
+          OuraDailySleepResponse(data: pages.expand((p) => p.data).toList()),
       getNextToken: (r) => r.nextToken,
     );
   }
@@ -70,14 +63,13 @@ class OuraApiClient {
     required String startDate,
     required String endDate,
   }) async {
-    return _fetchPaginated(
+    return await _fetchPaginated(
       endpoint: OuraApiEndpoints.dailyActivity,
       startDate: startDate,
       endDate: endDate,
       parse: OuraDailyActivityResponse.fromJson,
-      mergeData: (pages) => OuraDailyActivityResponse(
-        data: pages.expand((p) => p.data).toList(),
-      ),
+      mergeData: (pages) =>
+          OuraDailyActivityResponse(data: pages.expand((p) => p.data).toList()),
       getNextToken: (r) => r.nextToken,
     );
   }
@@ -87,14 +79,13 @@ class OuraApiClient {
     required String startDate,
     required String endDate,
   }) async {
-    return _fetchPaginated(
+    return await _fetchPaginated(
       endpoint: OuraApiEndpoints.heartRate,
       startDate: startDate,
       endDate: endDate,
       parse: OuraHeartRateResponse.fromJson,
-      mergeData: (pages) => OuraHeartRateResponse(
-        data: pages.expand((p) => p.data).toList(),
-      ),
+      mergeData: (pages) =>
+          OuraHeartRateResponse(data: pages.expand((p) => p.data).toList()),
       getNextToken: (r) => r.nextToken,
     );
   }
@@ -104,7 +95,7 @@ class OuraApiClient {
     required String startDate,
     required String endDate,
   }) async {
-    return _fetchPaginated(
+    return await _fetchPaginated(
       endpoint: OuraApiEndpoints.dailyReadiness,
       startDate: startDate,
       endDate: endDate,
@@ -121,14 +112,13 @@ class OuraApiClient {
     required String startDate,
     required String endDate,
   }) async {
-    return _fetchPaginated(
+    return await _fetchPaginated(
       endpoint: OuraApiEndpoints.dailyStress,
       startDate: startDate,
       endDate: endDate,
       parse: OuraDailyStressResponse.fromJson,
-      mergeData: (pages) => OuraDailyStressResponse(
-        data: pages.expand((p) => p.data).toList(),
-      ),
+      mergeData: (pages) =>
+          OuraDailyStressResponse(data: pages.expand((p) => p.data).toList()),
       getNextToken: (r) => r.nextToken,
     );
   }
@@ -138,14 +128,13 @@ class OuraApiClient {
     required String startDate,
     required String endDate,
   }) async {
-    return _fetchPaginated(
+    return await _fetchPaginated(
       endpoint: OuraApiEndpoints.dailySpo2,
       startDate: startDate,
       endDate: endDate,
       parse: OuraDailySpo2Response.fromJson,
-      mergeData: (pages) => OuraDailySpo2Response(
-        data: pages.expand((p) => p.data).toList(),
-      ),
+      mergeData: (pages) =>
+          OuraDailySpo2Response(data: pages.expand((p) => p.data).toList()),
       getNextToken: (r) => r.nextToken,
     );
   }

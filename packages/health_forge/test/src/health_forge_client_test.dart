@@ -16,10 +16,7 @@ void main() {
   setUpAll(() {
     registerFallbackValue(MetricType.heartRate);
     registerFallbackValue(
-      TimeRange(
-        start: DateTime(2024),
-        end: DateTime(2024, 1, 2),
-      ),
+      TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 2)),
     );
   });
 
@@ -43,10 +40,7 @@ void main() {
     test('use registers provider', () {
       client.use(appleProvider);
 
-      expect(
-        client.registry.isRegistered(DataProvider.apple),
-        isTrue,
-      );
+      expect(client.registry.isRegistered(DataProvider.apple), isTrue);
     });
 
     test('query returns a QueryBuilder', () {
@@ -64,9 +58,7 @@ void main() {
     });
 
     test('accepts custom merge config', () {
-      const config = MergeConfig(
-        defaultStrategy: ConflictStrategy.keepAll,
-      );
+      const config = MergeConfig(defaultStrategy: ConflictStrategy.keepAll);
       final customClient = HealthForgeClient(mergeConfig: config);
 
       expect(customClient, isNotNull);
@@ -101,10 +93,7 @@ void main() {
       final result = await client.sync(
         provider: DataProvider.apple,
         metric: MetricType.heartRate,
-        range: TimeRange(
-          start: DateTime(2024),
-          end: DateTime(2024, 1, 2),
-        ),
+        range: TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 2)),
       );
 
       expect(result.recordsFetched, 1);

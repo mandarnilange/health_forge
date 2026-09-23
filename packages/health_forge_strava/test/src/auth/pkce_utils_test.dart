@@ -16,10 +16,7 @@ void main() {
 
       test('only contains unreserved characters', () {
         final verifier = PkceUtils.generateCodeVerifier();
-        expect(
-          verifier,
-          matches(RegExp(r'^[A-Za-z0-9\-._~]+$')),
-        );
+        expect(verifier, matches(RegExp(r'^[A-Za-z0-9\-._~]+$')));
       });
 
       test('generates unique verifiers', () {

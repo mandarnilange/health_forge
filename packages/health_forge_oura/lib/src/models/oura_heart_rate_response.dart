@@ -7,9 +7,7 @@ class OuraHeartRateResponse {
   factory OuraHeartRateResponse.fromJson(Map<String, dynamic> json) =>
       OuraHeartRateResponse(
         data: (json['data'] as List<dynamic>)
-            .map(
-              (e) => OuraHeartRateData.fromJson(e as Map<String, dynamic>),
-            )
+            .map((e) => OuraHeartRateData.fromJson(e as Map<String, dynamic>))
             .toList(),
         nextToken: json['next_token'] as String?,
       );

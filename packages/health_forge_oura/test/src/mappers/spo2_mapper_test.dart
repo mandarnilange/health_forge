@@ -31,12 +31,7 @@ void main() {
 
     test('skips entries with null spo2_percentage', () {
       response = const OuraDailySpo2Response(
-        data: [
-          OuraDailySpo2Data(
-            id: 'spo2_002',
-            day: '2024-01-15',
-          ),
-        ],
+        data: [OuraDailySpo2Data(id: 'spo2_002', day: '2024-01-15')],
       );
       final samples = Spo2Mapper.map(response);
       expect(samples, isEmpty);
@@ -57,9 +52,7 @@ void main() {
     });
 
     test('handles empty response', () {
-      final samples = Spo2Mapper.map(
-        const OuraDailySpo2Response(data: []),
-      );
+      final samples = Spo2Mapper.map(const OuraDailySpo2Response(data: []));
       expect(samples, isEmpty);
     });
   });

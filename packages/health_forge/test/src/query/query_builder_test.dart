@@ -7,10 +7,7 @@ void main() {
     late TimeRange range;
 
     setUp(() {
-      range = TimeRange(
-        start: DateTime(2024),
-        end: DateTime(2024, 1, 2),
-      );
+      range = TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 2));
     });
 
     test('builds query for single metric', () {
@@ -31,10 +28,7 @@ void main() {
         ..forMetrics([MetricType.heartRate, MetricType.steps])
         ..inRange(range);
 
-      expect(query.build().metrics, [
-        MetricType.heartRate,
-        MetricType.steps,
-      ]);
+      expect(query.build().metrics, [MetricType.heartRate, MetricType.steps]);
     });
 
     test('builds query from specific provider', () {
@@ -52,10 +46,7 @@ void main() {
         ..fromProviders([DataProvider.apple, DataProvider.oura])
         ..inRange(range);
 
-      expect(query.build().providers, [
-        DataProvider.apple,
-        DataProvider.oura,
-      ]);
+      expect(query.build().providers, [DataProvider.apple, DataProvider.oura]);
     });
 
     test('builds query from all providers', () {

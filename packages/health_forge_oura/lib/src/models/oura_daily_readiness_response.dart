@@ -8,9 +8,7 @@ class OuraDailyReadinessResponse {
       OuraDailyReadinessResponse(
         data: (json['data'] as List<dynamic>)
             .map(
-              (e) => OuraDailyReadinessData.fromJson(
-                e as Map<String, dynamic>,
-              ),
+              (e) => OuraDailyReadinessData.fromJson(e as Map<String, dynamic>),
             )
             .toList(),
         nextToken: json['next_token'] as String?,
@@ -45,10 +43,10 @@ class OuraDailyReadinessData {
         contributors: (json['contributors'] as Map<String, dynamic>?)?.map(
           (k, v) => MapEntry(k, (v as num).toInt()),
         ),
-        temperatureDeviation:
-            (json['temperature_deviation'] as num?)?.toDouble(),
-        temperatureTrendDeviation:
-            (json['temperature_trend_deviation'] as num?)?.toDouble(),
+        temperatureDeviation: (json['temperature_deviation'] as num?)
+            ?.toDouble(),
+        temperatureTrendDeviation: (json['temperature_trend_deviation'] as num?)
+            ?.toDouble(),
         timestamp: json['timestamp'] as String?,
       );
 

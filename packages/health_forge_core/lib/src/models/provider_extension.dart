@@ -1,6 +1,3 @@
-// ProviderExtension is a type hierarchy base, not a single-use abstraction.
-// ignore_for_file: one_member_abstracts
-
 /// Base class for provider-specific extension data attached to
 /// health records.
 ///

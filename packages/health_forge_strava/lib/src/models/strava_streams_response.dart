@@ -37,12 +37,12 @@ class StravaStream {
 
   /// Deserializes from the Strava API JSON response.
   factory StravaStream.fromJson(Map<String, dynamic> json) => StravaStream(
-        type: json['type'] as String,
-        data: (json['data'] as List<dynamic>).cast<int>(),
-        seriesType: json['series_type'] as String?,
-        originalSize: json['original_size'] as int?,
-        resolution: json['resolution'] as String?,
-      );
+    type: json['type'] as String,
+    data: (json['data'] as List<dynamic>).cast<int>(),
+    seriesType: json['series_type'] as String?,
+    originalSize: json['original_size'] as int?,
+    resolution: json['resolution'] as String?,
+  );
 
   /// The stream type key (e.g. `heartrate`, `time`).
   final String type;

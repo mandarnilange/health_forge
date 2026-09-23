@@ -33,9 +33,7 @@ void main() {
     });
 
     test('handles empty response', () {
-      final scores = StressMapper.map(
-        const OuraDailyStressResponse(data: []),
-      );
+      final scores = StressMapper.map(const OuraDailyStressResponse(data: []));
       expect(scores, isEmpty);
     });
   });

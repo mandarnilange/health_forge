@@ -83,9 +83,7 @@ void main() {
       });
 
       test('returns denied when auth manager returns null', () async {
-        when(() => mockAuthManager.authorize()).thenAnswer(
-          (_) async => null,
-        );
+        when(() => mockAuthManager.authorize()).thenAnswer((_) async => null);
 
         final result = await provider.authorize();
         expect(result.isSuccess, isFalse);

@@ -12,11 +12,9 @@ class AuthOrchestrator {
   Future<AuthResult> authorize(DataProvider provider) async {
     final p = _registry.provider(provider);
     if (p == null) {
-      return AuthResult.error(
-        'Provider ${provider.name} is not registered',
-      );
+      return AuthResult.error('Provider ${provider.name} is not registered');
     }
-    return p.authorize();
+    return await p.authorize();
   }
 
   /// Deauthorizes a single [provider]. No-op if not registered.
@@ -49,6 +47,6 @@ class AuthOrchestrator {
   Future<bool> isAuthorized(DataProvider provider) async {
     final p = _registry.provider(provider);
     if (p == null) return false;
-    return p.isAuthorized();
+    return await p.isAuthorized();
   }
 }

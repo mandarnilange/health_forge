@@ -14,10 +14,7 @@ void main() {
             id: 'r_001',
             day: '2024-01-15',
             score: 82,
-            contributors: {
-              'activity_balance': 85,
-              'resting_heart_rate': 92,
-            },
+            contributors: {'activity_balance': 85, 'resting_heart_rate': 92},
           ),
         ],
       );
@@ -48,12 +45,7 @@ void main() {
 
     test('skips entries with null score', () {
       response = const OuraDailyReadinessResponse(
-        data: [
-          OuraDailyReadinessData(
-            id: 'r_002',
-            day: '2024-01-15',
-          ),
-        ],
+        data: [OuraDailyReadinessData(id: 'r_002', day: '2024-01-15')],
       );
       final scores = ReadinessMapper.map(response);
       expect(scores, isEmpty);

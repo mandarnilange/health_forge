@@ -19,10 +19,7 @@ void main() {
 
     test('JSON round-trip', () {
       for (final value in ConflictStrategy.values) {
-        expect(
-          ConflictStrategy.values.byName(value.name),
-          equals(value),
-        );
+        expect(ConflictStrategy.values.byName(value.name), equals(value));
       }
     });
   });

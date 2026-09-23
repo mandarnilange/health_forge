@@ -26,16 +26,14 @@ void main() {
 
     test('capabilities returns AppleCapabilities', () {
       expect(provider.capabilities.supportedMetrics.length, 14);
-      expect(
-        provider.capabilities.syncModel,
-        SyncModel.fullWindow,
-      );
+      expect(provider.capabilities.syncModel, SyncModel.fullWindow);
     });
 
     group('isAuthorized', () {
       test('returns true when permissions granted', () async {
-        when(() => mockHealth.hasPermissions(any()))
-            .thenAnswer((_) async => true);
+        when(
+          () => mockHealth.hasPermissions(any()),
+        ).thenAnswer((_) async => true);
 
         final result = await provider.isAuthorized();
 
@@ -43,8 +41,9 @@ void main() {
       });
 
       test('returns false when permissions denied', () async {
-        when(() => mockHealth.hasPermissions(any()))
-            .thenAnswer((_) async => false);
+        when(
+          () => mockHealth.hasPermissions(any()),
+        ).thenAnswer((_) async => false);
 
         final result = await provider.isAuthorized();
 
@@ -52,8 +51,9 @@ void main() {
       });
 
       test('returns false when permissions null', () async {
-        when(() => mockHealth.hasPermissions(any()))
-            .thenAnswer((_) async => null);
+        when(
+          () => mockHealth.hasPermissions(any()),
+        ).thenAnswer((_) async => null);
 
         final result = await provider.isAuthorized();
 
@@ -63,8 +63,9 @@ void main() {
 
     group('authorize', () {
       test('returns success when authorization granted', () async {
-        when(() => mockHealth.requestAuthorization(any()))
-            .thenAnswer((_) async => true);
+        when(
+          () => mockHealth.requestAuthorization(any()),
+        ).thenAnswer((_) async => true);
 
         final result = await provider.authorize();
 
@@ -72,8 +73,9 @@ void main() {
       });
 
       test('returns denied when authorization not granted', () async {
-        when(() => mockHealth.requestAuthorization(any()))
-            .thenAnswer((_) async => false);
+        when(
+          () => mockHealth.requestAuthorization(any()),
+        ).thenAnswer((_) async => false);
 
         final result = await provider.authorize();
 
@@ -81,8 +83,9 @@ void main() {
       });
 
       test('returns error on exception', () async {
-        when(() => mockHealth.requestAuthorization(any()))
-            .thenThrow(Exception('HealthKit unavailable'));
+        when(
+          () => mockHealth.requestAuthorization(any()),
+        ).thenThrow(Exception('HealthKit unavailable'));
 
         final result = await provider.authorize();
 

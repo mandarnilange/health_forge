@@ -9,8 +9,8 @@ class QueryExecutor {
   QueryExecutor({
     required ProviderRegistry registry,
     required MergeEngine mergeEngine,
-  })  : _registry = registry,
-        _mergeEngine = mergeEngine;
+  }) : _registry = registry,
+       _mergeEngine = mergeEngine;
 
   final ProviderRegistry _registry;
   final MergeEngine _mergeEngine;
@@ -62,10 +62,7 @@ class QueryExecutor {
     );
   }
 
-  List<HealthProvider> _resolveProviders(
-    HealthQuery query,
-    MetricType metric,
-  ) {
+  List<HealthProvider> _resolveProviders(HealthQuery query, MetricType metric) {
     if (query.providers != null) {
       return query.providers!
           .map(_registry.provider)

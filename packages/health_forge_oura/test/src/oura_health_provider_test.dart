@@ -41,10 +41,7 @@ void main() {
     });
 
     test('capabilities matches OuraCapabilities', () {
-      expect(
-        provider.capabilities.supportedMetrics,
-        hasLength(8),
-      );
+      expect(provider.capabilities.supportedMetrics, hasLength(8));
     });
 
     group('isAuthorized', () {
@@ -91,9 +88,7 @@ void main() {
       });
 
       test('returns denied when auth manager returns null', () async {
-        when(() => mockAuthManager.authorize()).thenAnswer(
-          (_) async => null,
-        );
+        when(() => mockAuthManager.authorize()).thenAnswer((_) async => null);
 
         final result = await provider.authorize();
         expect(result.isSuccess, isFalse);
@@ -179,11 +174,7 @@ void main() {
         ).thenAnswer(
           (_) async => const OuraDailyActivityResponse(
             data: [
-              OuraDailyActivityData(
-                id: 'a1',
-                day: '2024-01-15',
-                steps: 8000,
-              ),
+              OuraDailyActivityData(id: 'a1', day: '2024-01-15', steps: 8000),
             ],
           ),
         );
@@ -232,13 +223,7 @@ void main() {
           ),
         ).thenAnswer(
           (_) async => const OuraDailySleepResponse(
-            data: [
-              OuraDailySleepData(
-                id: 'ds1',
-                day: '2024-01-15',
-                score: 85,
-              ),
-            ],
+            data: [OuraDailySleepData(id: 'ds1', day: '2024-01-15', score: 85)],
           ),
         );
 
@@ -260,11 +245,7 @@ void main() {
         ).thenAnswer(
           (_) async => const OuraDailyReadinessResponse(
             data: [
-              OuraDailyReadinessData(
-                id: 'r1',
-                day: '2024-01-15',
-                score: 82,
-              ),
+              OuraDailyReadinessData(id: 'r1', day: '2024-01-15', score: 82),
             ],
           ),
         );

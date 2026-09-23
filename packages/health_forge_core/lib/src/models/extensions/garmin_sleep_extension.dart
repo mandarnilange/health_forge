@@ -3,10 +3,7 @@ import 'package:health_forge_core/health_forge_core.dart';
 /// Garmin Connect sleep-specific extension data.
 final class GarminSleepExtension extends ProviderExtension {
   /// Creates a [GarminSleepExtension].
-  GarminSleepExtension({
-    this.bodyBatteryChange,
-    this.stressQualifier,
-  });
+  GarminSleepExtension({this.bodyBatteryChange, this.stressQualifier});
 
   /// Deserializes from JSON.
   factory GarminSleepExtension.fromJson(Map<String, dynamic> json) =>

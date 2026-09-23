@@ -14,7 +14,7 @@ class GhcHealthProvider implements HealthProvider {
   ///
   /// An optional [healthPlugin] can be injected for testing.
   GhcHealthProvider({Health? healthPlugin})
-      : _health = healthPlugin ?? Health();
+    : _health = healthPlugin ?? Health();
 
   final Health _health;
 
@@ -212,8 +212,5 @@ class GhcHealthProvider implements HealthProvider {
     'BLOOD_GLUCOSE',
   };
 
-  static const _respiratoryTypes = {
-    'BLOOD_OXYGEN',
-    'RESPIRATORY_RATE',
-  };
+  static const _respiratoryTypes = {'BLOOD_OXYGEN', 'RESPIRATORY_RATE'};
 }

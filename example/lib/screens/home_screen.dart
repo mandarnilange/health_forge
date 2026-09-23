@@ -139,10 +139,7 @@ class _HomeScreenState extends State<HomeScreen> {
     if (!mounted) return;
     setState(() {
       _loading = false;
-      _steps = _maxBySource<StepCount>(
-        stepRecords,
-        (s) => s.count,
-      );
+      _steps = _maxBySource<StepCount>(stepRecords, (s) => s.count);
       // Pick the sleep session with the most detailed stage data.
       // Multiple sources (Apple Watch, iPhone, Garmin) may each report
       // sleep — select the most informative one for the dashboard.
@@ -231,11 +228,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             Row(
               children: [
-                Icon(
-                  Icons.bedtime,
-                  size: 20,
-                  color: theme.colorScheme.primary,
-                ),
+                Icon(Icons.bedtime, size: 20, color: theme.colorScheme.primary),
                 const SizedBox(width: 8),
                 Text(
                   'Sleep',

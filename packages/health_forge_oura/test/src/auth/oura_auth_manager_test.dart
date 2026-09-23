@@ -74,10 +74,7 @@ void main() {
           capturedAuthUrl!.queryParameters['code_challenge_method'],
           'S256',
         );
-        expect(
-          capturedAuthUrl!.queryParameters['code_challenge'],
-          isNotEmpty,
-        );
+        expect(capturedAuthUrl!.queryParameters['code_challenge'], isNotEmpty);
       });
 
       test('exchanges code for token on success', () async {
@@ -344,10 +341,7 @@ void main() {
         await authManager.authorize();
 
         expect(capturedAuthUrl, isNotNull);
-        expect(
-          capturedAuthUrl!.queryParameters['state'],
-          isNotEmpty,
-        );
+        expect(capturedAuthUrl!.queryParameters['state'], isNotEmpty);
       });
 
       test('returns null when state mismatch in redirect', () async {

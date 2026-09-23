@@ -324,13 +324,7 @@ class MockDataGenerator {
   }
 
   List<HealthRecordMixin> _generateWorkout(TimeRange range) {
-    final activities = [
-      'Running',
-      'Cycling',
-      'Swimming',
-      'Walking',
-      'Yoga',
-    ];
+    final activities = ['Running', 'Cycling', 'Swimming', 'Walking', 'Yoga'];
     return _daysIn(range).map((day) {
       final hour = _intInRange(6, 18);
       final durationMin = _intInRange(20, 90);

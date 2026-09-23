@@ -11,15 +11,16 @@ import 'package:health_forge/health_forge.dart';
 void main() {
   final forge = HealthForgeClient();
 
-  final query = (forge.query()
-        ..forMetrics([MetricType.heartRate, MetricType.sleepSession])
-        ..inRange(
-          TimeRange(
-            start: DateTime.now().subtract(const Duration(days: 7)),
-            end: DateTime.now(),
-          ),
-        ))
-      .build();
+  final query =
+      (forge.query()
+            ..forMetrics([MetricType.heartRate, MetricType.sleepSession])
+            ..inRange(
+              TimeRange(
+                start: DateTime.now().subtract(const Duration(days: 7)),
+                end: DateTime.now(),
+              ),
+            ))
+          .build();
 
   final days = query.timeRange.end.difference(query.timeRange.start).inDays;
   print('Built query for ${query.metrics.length} metric(s) over $days day(s).');

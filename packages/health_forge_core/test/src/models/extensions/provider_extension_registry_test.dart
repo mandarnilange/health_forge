@@ -47,10 +47,7 @@ void main() {
       ProviderExtensionRegistry.clear();
 
       expect(ProviderExtensionRegistry.fromJson('oura_sleep', {}), isNull);
-      expect(
-        ProviderExtensionRegistry.fromJson('strava_workout', {}),
-        isNull,
-      );
+      expect(ProviderExtensionRegistry.fromJson('strava_workout', {}), isNull);
       expect(ProviderExtensionRegistry.fromJson('garmin_sleep', {}), isNull);
     });
   });

@@ -50,8 +50,9 @@ void main() {
       final json = jsonDecode(file.readAsStringSync()) as List<dynamic>;
 
       final response = StravaStreamsResponse.fromJson(json);
-      final hrStream =
-          response.streams.where((s) => s.type == 'heartrate').first;
+      final hrStream = response.streams
+          .where((s) => s.type == 'heartrate')
+          .first;
 
       expect(hrStream.seriesType, 'distance');
       expect(hrStream.originalSize, 6);

@@ -19,10 +19,10 @@ class OuraAuthManager {
     Dio? dio,
     OuraToken? initialToken,
     void Function(OuraToken?)? onTokenChanged,
-  })  : _urlLauncher = urlLauncher,
-        _dio = dio ?? Dio(),
-        _currentToken = initialToken,
-        _onTokenChanged = onTokenChanged;
+  }) : _urlLauncher = urlLauncher,
+       _dio = dio ?? Dio(),
+       _currentToken = initialToken,
+       _onTokenChanged = onTokenChanged;
 
   /// The OAuth 2.0 client identifier.
   final String clientId;
@@ -70,7 +70,7 @@ class OuraAuthManager {
     final code = redirectedUri.queryParameters['code'];
     if (code == null) return null;
 
-    return _exchangeCodeForToken(code, codeVerifier);
+    return await _exchangeCodeForToken(code, codeVerifier);
   }
 
   /// Refreshes an expired token using its refresh token.

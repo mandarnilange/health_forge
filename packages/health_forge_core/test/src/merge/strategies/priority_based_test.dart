@@ -59,11 +59,7 @@ void main() {
 
       const config = MergeConfig();
 
-      final result = strategy.resolve(
-        [record],
-        config,
-        MetricType.heartRate,
-      );
+      final result = strategy.resolve([record], config, MetricType.heartRate);
 
       expect(result, hasLength(1));
       expect(result.first, record);

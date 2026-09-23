@@ -9,9 +9,9 @@ import 'package:health_forge_core/health_forge_core.dart';
 /// Exercise [DriftCacheManager] `_typeName` stripping of a single leading `_`.
 class _PrivatePrefixRecord with HealthRecordMixin {
   _PrivatePrefixRecord()
-      : id = 'priv',
-        startTime = DateTime(2024),
-        endTime = DateTime(2024, 1, 1, 1);
+    : id = 'priv',
+      startTime = DateTime(2024),
+      endTime = DateTime(2024, 1, 1, 1);
 
   @override
   final String id;
@@ -108,10 +108,7 @@ void main() {
 
       final results = await cache.get(
         metric: MetricType.heartRate,
-        range: TimeRange(
-          start: DateTime(2024),
-          end: DateTime(2024, 1, 2),
-        ),
+        range: TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 2)),
       );
 
       expect(results, hasLength(1));
@@ -130,10 +127,7 @@ void main() {
 
       final hrResults = await cache.get(
         metric: MetricType.heartRate,
-        range: TimeRange(
-          start: DateTime(2024),
-          end: DateTime(2024, 1, 2),
-        ),
+        range: TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 2)),
       );
 
       expect(hrResults, hasLength(1));
@@ -156,10 +150,7 @@ void main() {
 
       final results = await cache.get(
         metric: MetricType.heartRate,
-        range: TimeRange(
-          start: DateTime(2024),
-          end: DateTime(2024, 1, 31),
-        ),
+        range: TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 31)),
       );
 
       expect(results, hasLength(1));
@@ -177,10 +168,7 @@ void main() {
 
       final results = await cache.get(
         metric: MetricType.heartRate,
-        range: TimeRange(
-          start: DateTime(2024),
-          end: DateTime(2024, 1, 2),
-        ),
+        range: TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 2)),
         provider: DataProvider.apple,
       );
 
@@ -188,28 +176,27 @@ void main() {
       expect((results.first as HeartRateSample).id, 'apple_hr');
     });
 
-    test('invalidate by provider removes only that providers records',
-        () async {
-      final appleRecord = makeHeartRate(id: 'apple_hr');
-      final ouraRecord = makeHeartRate(
-        provider: DataProvider.oura,
-        id: 'oura_hr',
-      );
+    test(
+      'invalidate by provider removes only that providers records',
+      () async {
+        final appleRecord = makeHeartRate(id: 'apple_hr');
+        final ouraRecord = makeHeartRate(
+          provider: DataProvider.oura,
+          id: 'oura_hr',
+        );
 
-      await cache.put([appleRecord, ouraRecord]);
-      await cache.invalidate(provider: DataProvider.apple);
+        await cache.put([appleRecord, ouraRecord]);
+        await cache.invalidate(provider: DataProvider.apple);
 
-      final results = await cache.get(
-        metric: MetricType.heartRate,
-        range: TimeRange(
-          start: DateTime(2024),
-          end: DateTime(2024, 1, 2),
-        ),
-      );
+        final results = await cache.get(
+          metric: MetricType.heartRate,
+          range: TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 2)),
+        );
 
-      expect(results, hasLength(1));
-      expect((results.first as HeartRateSample).id, 'oura_hr');
-    });
+        expect(results, hasLength(1));
+        expect((results.first as HeartRateSample).id, 'oura_hr');
+      },
+    );
 
     test('invalidate by metric removes matching records', () async {
       final hrRecord = makeHeartRate(id: 'hr_1');
@@ -220,17 +207,11 @@ void main() {
 
       final hrResults = await cache.get(
         metric: MetricType.heartRate,
-        range: TimeRange(
-          start: DateTime(2024),
-          end: DateTime(2024, 1, 2),
-        ),
+        range: TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 2)),
       );
       final stepsResults = await cache.get(
         metric: MetricType.steps,
-        range: TimeRange(
-          start: DateTime(2024),
-          end: DateTime(2024, 1, 2),
-        ),
+        range: TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 2)),
       );
 
       expect(hrResults, isEmpty);
@@ -243,10 +224,7 @@ void main() {
 
       final hrResults = await cache.get(
         metric: MetricType.heartRate,
-        range: TimeRange(
-          start: DateTime(2024),
-          end: DateTime(2024, 1, 2),
-        ),
+        range: TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 2)),
       );
       expect(hrResults, isEmpty);
     });
@@ -263,10 +241,7 @@ void main() {
 
       final results = await cache.get(
         metric: MetricType.heartRate,
-        range: TimeRange(
-          start: DateTime(2024),
-          end: DateTime(2024, 1, 2),
-        ),
+        range: TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 2)),
       );
       final syncTime = await cache.lastSyncTime(
         DataProvider.apple,
@@ -349,10 +324,7 @@ void main() {
     test('invalidate by provider and metric together', () async {
       final appleHr = makeHeartRate(id: 'apple_hr');
       final appleSteps = makeSteps(id: 'apple_steps');
-      final ouraHr = makeHeartRate(
-        provider: DataProvider.oura,
-        id: 'oura_hr',
-      );
+      final ouraHr = makeHeartRate(provider: DataProvider.oura, id: 'oura_hr');
 
       await cache.put([appleHr, appleSteps, ouraHr]);
       await cache.invalidate(
@@ -362,29 +334,20 @@ void main() {
 
       final stepsResults = await cache.get(
         metric: MetricType.steps,
-        range: TimeRange(
-          start: DateTime(2024),
-          end: DateTime(2024, 1, 2),
-        ),
+        range: TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 2)),
       );
       expect(stepsResults, hasLength(1));
 
       final ouraResults = await cache.get(
         metric: MetricType.heartRate,
-        range: TimeRange(
-          start: DateTime(2024),
-          end: DateTime(2024, 1, 2),
-        ),
+        range: TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 2)),
         provider: DataProvider.oura,
       );
       expect(ouraResults, hasLength(1));
 
       final appleHrResults = await cache.get(
         metric: MetricType.heartRate,
-        range: TimeRange(
-          start: DateTime(2024),
-          end: DateTime(2024, 1, 2),
-        ),
+        range: TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 2)),
         provider: DataProvider.apple,
       );
       expect(appleHrResults, isEmpty);
@@ -411,10 +374,7 @@ void main() {
 
         final results = await cache.get(
           metric: MetricType.heartRate,
-          range: TimeRange(
-            start: DateTime(2024),
-            end: DateTime(2024, 2),
-          ),
+          range: TimeRange(start: DateTime(2024), end: DateTime(2024, 2)),
         );
 
         // Should have 1 record (deduped), with updated value
@@ -441,10 +401,7 @@ void main() {
 
         final results = await cache.get(
           metric: MetricType.heartRate,
-          range: TimeRange(
-            start: DateTime(2024),
-            end: DateTime(2024, 2),
-          ),
+          range: TimeRange(start: DateTime(2024), end: DateTime(2024, 2)),
         );
 
         expect(results, hasLength(2));
@@ -471,10 +428,7 @@ void main() {
           bpm: 74,
           provenance: const Provenance(
             dataOrigin: DataOrigin.native_,
-            sourceDevice: DeviceInfo(
-              manufacturer: 'Apple',
-              model: 'iPhone 15',
-            ),
+            sourceDevice: DeviceInfo(manufacturer: 'Apple', model: 'iPhone 15'),
           ),
         );
 
@@ -482,10 +436,7 @@ void main() {
 
         final results = await cache.get(
           metric: MetricType.heartRate,
-          range: TimeRange(
-            start: DateTime(2024),
-            end: DateTime(2024, 2),
-          ),
+          range: TimeRange(start: DateTime(2024), end: DateTime(2024, 2)),
         );
 
         expect(results, hasLength(2));
@@ -520,10 +471,7 @@ void main() {
 
         final results = await cache.get(
           metric: MetricType.heartRate,
-          range: TimeRange(
-            start: DateTime(2024),
-            end: DateTime(2024, 2),
-          ),
+          range: TimeRange(start: DateTime(2024), end: DateTime(2024, 2)),
         );
 
         expect(results, hasLength(1));
@@ -546,10 +494,7 @@ void main() {
 
       final results = await cache.get(
         metric: MetricType.calories,
-        range: TimeRange(
-          start: DateTime(2024),
-          end: DateTime(2024, 1, 2),
-        ),
+        range: TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 2)),
       );
 
       expect(results, hasLength(1));
@@ -572,10 +517,7 @@ void main() {
 
       final results = await cache.get(
         metric: MetricType.heartRate,
-        range: TimeRange(
-          start: DateTime(2024),
-          end: DateTime(2024, 1, 2),
-        ),
+        range: TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 2)),
       );
 
       expect(results, hasLength(100));
@@ -590,17 +532,16 @@ void main() {
 
       final results = await cache.get(
         metric: MetricType.heartRate,
-        range: TimeRange(
-          start: DateTime(2024),
-          end: DateTime(2024, 1, 2),
-        ),
+        range: TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 2)),
       );
 
       expect(results, hasLength(1));
     });
 
     test('get skips rows whose JSON fails to deserialize', () async {
-      await db.into(db.cachedRecords).insert(
+      await db
+          .into(db.cachedRecords)
+          .insert(
             CachedRecordsCompanion.insert(
               recordId: 'bad-row',
               provider: DataProvider.apple.name,
@@ -620,10 +561,7 @@ void main() {
 
       final results = await cache.get(
         metric: MetricType.heartRate,
-        range: TimeRange(
-          start: DateTime(2024),
-          end: DateTime(2024, 1, 2),
-        ),
+        range: TimeRange(start: DateTime(2024), end: DateTime(2024, 1, 2)),
       );
 
       expect(results, hasLength(1));
@@ -652,10 +590,7 @@ void main() {
 
       final remaining = await cache.get(
         metric: MetricType.heartRate,
-        range: TimeRange(
-          start: DateTime(2024),
-          end: DateTime(2024, 2),
-        ),
+        range: TimeRange(start: DateTime(2024), end: DateTime(2024, 2)),
       );
 
       expect(remaining, hasLength(1));

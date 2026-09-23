@@ -20,9 +20,7 @@ void main() {
     when(() => appleProvider.providerType).thenReturn(DataProvider.apple);
     when(() => appleProvider.capabilities).thenReturn(
       const ProviderCapabilities(
-        supportedMetrics: {
-          MetricType.heartRate: AccessMode.read,
-        },
+        supportedMetrics: {MetricType.heartRate: AccessMode.read},
         syncModel: SyncModel.fullWindow,
       ),
     );
@@ -31,9 +29,7 @@ void main() {
     when(() => ouraProvider.providerType).thenReturn(DataProvider.oura);
     when(() => ouraProvider.capabilities).thenReturn(
       const ProviderCapabilities(
-        supportedMetrics: {
-          MetricType.sleepSession: AccessMode.read,
-        },
+        supportedMetrics: {MetricType.sleepSession: AccessMode.read},
         syncModel: SyncModel.incrementalCursor,
       ),
     );
@@ -42,8 +38,9 @@ void main() {
   group('AuthOrchestrator', () {
     test('authorize delegates to provider', () async {
       registry.register(appleProvider);
-      when(() => appleProvider.authorize())
-          .thenAnswer((_) async => AuthResult.success());
+      when(
+        () => appleProvider.authorize(),
+      ).thenAnswer((_) async => AuthResult.success());
 
       final result = await orchestrator.authorize(DataProvider.apple);
 
@@ -71,21 +68,17 @@ void main() {
       registry
         ..register(appleProvider)
         ..register(ouraProvider);
-      when(() => appleProvider.authorize())
-          .thenAnswer((_) async => AuthResult.success());
-      when(() => ouraProvider.authorize())
-          .thenAnswer((_) async => AuthResult.denied());
+      when(
+        () => appleProvider.authorize(),
+      ).thenAnswer((_) async => AuthResult.success());
+      when(
+        () => ouraProvider.authorize(),
+      ).thenAnswer((_) async => AuthResult.denied());
 
       final results = await orchestrator.authorizeAll();
 
-      expect(
-        results[DataProvider.apple]!.isSuccess,
-        isTrue,
-      );
-      expect(
-        results[DataProvider.oura]!.isSuccess,
-        isFalse,
-      );
+      expect(results[DataProvider.apple]!.isSuccess, isTrue);
+      expect(results[DataProvider.oura]!.isSuccess, isFalse);
     });
 
     test('checkAll checks authorization for all providers', () async {

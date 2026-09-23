@@ -16,24 +16,24 @@ class MockAppleProvider implements HealthProvider {
 
   @override
   ProviderCapabilities get capabilities => const ProviderCapabilities(
-        supportedMetrics: {
-          MetricType.heartRate: AccessMode.readWrite,
-          MetricType.steps: AccessMode.readWrite,
-          MetricType.sleepSession: AccessMode.readWrite,
-          MetricType.hrv: AccessMode.read,
-          MetricType.restingHeartRate: AccessMode.read,
-          MetricType.bloodOxygen: AccessMode.read,
-          MetricType.respiratoryRate: AccessMode.read,
-          MetricType.weight: AccessMode.readWrite,
-          MetricType.bodyFat: AccessMode.readWrite,
-          MetricType.bloodPressure: AccessMode.readWrite,
-          MetricType.bloodGlucose: AccessMode.readWrite,
-          MetricType.calories: AccessMode.read,
-          MetricType.distance: AccessMode.read,
-          MetricType.workout: AccessMode.read,
-        },
-        syncModel: SyncModel.fullWindow,
-      );
+    supportedMetrics: {
+      MetricType.heartRate: AccessMode.readWrite,
+      MetricType.steps: AccessMode.readWrite,
+      MetricType.sleepSession: AccessMode.readWrite,
+      MetricType.hrv: AccessMode.read,
+      MetricType.restingHeartRate: AccessMode.read,
+      MetricType.bloodOxygen: AccessMode.read,
+      MetricType.respiratoryRate: AccessMode.read,
+      MetricType.weight: AccessMode.readWrite,
+      MetricType.bodyFat: AccessMode.readWrite,
+      MetricType.bloodPressure: AccessMode.readWrite,
+      MetricType.bloodGlucose: AccessMode.readWrite,
+      MetricType.calories: AccessMode.read,
+      MetricType.distance: AccessMode.read,
+      MetricType.workout: AccessMode.read,
+    },
+    syncModel: SyncModel.fullWindow,
+  );
 
   @override
   Future<bool> isAuthorized() async => _authorized;

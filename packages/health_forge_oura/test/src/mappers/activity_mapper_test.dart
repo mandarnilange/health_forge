@@ -40,12 +40,7 @@ void main() {
 
       test('skips entries with null steps', () {
         response = const OuraDailyActivityResponse(
-          data: [
-            OuraDailyActivityData(
-              id: 'act_002',
-              day: '2024-01-15',
-            ),
-          ],
+          data: [OuraDailyActivityData(id: 'act_002', day: '2024-01-15')],
         );
         final steps = ActivityMapper.mapSteps(response);
         expect(steps, isEmpty);
@@ -65,12 +60,7 @@ void main() {
 
       test('skips entries with null totalCalories', () {
         response = const OuraDailyActivityResponse(
-          data: [
-            OuraDailyActivityData(
-              id: 'act_003',
-              day: '2024-01-15',
-            ),
-          ],
+          data: [OuraDailyActivityData(id: 'act_003', day: '2024-01-15')],
         );
         final calories = ActivityMapper.mapCalories(response);
         expect(calories, isEmpty);

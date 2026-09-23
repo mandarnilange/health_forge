@@ -32,10 +32,7 @@ void main() {
       ),
     );
 
-    apiClient = OuraApiClient(
-      authManager: mockAuthManager,
-      dio: mockDio,
-    );
+    apiClient = OuraApiClient(authManager: mockAuthManager, dio: mockDio);
   });
 
   setUpAll(() {

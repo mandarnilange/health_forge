@@ -39,10 +39,7 @@ class _DataBrowserScreenState extends State<DataBrowserScreen> {
       _dateRange.end.month,
       _dateRange.end.day,
     ).add(const Duration(days: 1));
-    final range = TimeRange(
-      start: _dateRange.start,
-      end: endOfDay,
-    );
+    final range = TimeRange(start: _dateRange.start, end: endOfDay);
 
     // Sync from all providers that support this metric in parallel.
     await Future.wait([
@@ -203,10 +200,7 @@ class _DataBrowserScreenState extends State<DataBrowserScreen> {
                     border: OutlineInputBorder(),
                   ),
                   items: MetricType.values.map((m) {
-                    return DropdownMenuItem(
-                      value: m,
-                      child: Text(m.name),
-                    );
+                    return DropdownMenuItem(value: m, child: Text(m.name));
                   }).toList(),
                   onChanged: (value) {
                     if (value != null) {

@@ -42,19 +42,13 @@ void main() {
     test('register makes provider retrievable', () {
       registry.register(appleProvider);
 
-      expect(
-        registry.provider(DataProvider.apple),
-        equals(appleProvider),
-      );
+      expect(registry.provider(DataProvider.apple), equals(appleProvider));
       expect(registry.isRegistered(DataProvider.apple), isTrue);
     });
 
     test('provider returns null for unregistered provider', () {
       expect(registry.provider(DataProvider.apple), isNull);
-      expect(
-        registry.isRegistered(DataProvider.apple),
-        isFalse,
-      );
+      expect(registry.isRegistered(DataProvider.apple), isFalse);
     });
 
     test('unregister removes provider', () {
@@ -63,10 +57,7 @@ void main() {
         ..unregister(DataProvider.apple);
 
       expect(registry.provider(DataProvider.apple), isNull);
-      expect(
-        registry.isRegistered(DataProvider.apple),
-        isFalse,
-      );
+      expect(registry.isRegistered(DataProvider.apple), isFalse);
     });
 
     test('all returns all registered providers', () {
@@ -74,10 +65,7 @@ void main() {
         ..register(appleProvider)
         ..register(ouraProvider);
 
-      expect(
-        registry.all,
-        containsAll([appleProvider, ouraProvider]),
-      );
+      expect(registry.all, containsAll([appleProvider, ouraProvider]));
       expect(registry.all, hasLength(2));
     });
 
@@ -97,17 +85,11 @@ void main() {
       expect(sleepProviders, [ouraProvider]);
     });
 
-    test(
-      'supporting returns empty when no provider supports metric',
-      () {
-        registry.register(appleProvider);
+    test('supporting returns empty when no provider supports metric', () {
+      registry.register(appleProvider);
 
-        expect(
-          registry.supporting(MetricType.readiness),
-          isEmpty,
-        );
-      },
-    );
+      expect(registry.supporting(MetricType.readiness), isEmpty);
+    });
 
     test('duplicate registration throws StateError', () {
       registry.register(appleProvider);
